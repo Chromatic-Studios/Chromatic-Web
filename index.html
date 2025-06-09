@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cromatic</title>
+    <title>Chromatic</title>
        <style>
     html, body {
         height: 100%;
@@ -111,6 +111,7 @@
         }
     }
 </style>
+
 
     <!-- Orbitron font for a futuristic look -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
@@ -219,7 +220,7 @@
     </nav>
     <div class="tab-content" id="tab-home">
         <div class="container">
-            <h1>Cromatic Proxy</h1>
+            <h1>Chromatic Proxy</h1>
             <label for="proxy-link">Enter link here:</label>
             <input type="text" id="proxy-link" placeholder="https://example.com" autocomplete="off">
             <button class="go-btn" id="go-btn">Go</button>
@@ -3499,10 +3500,10 @@ document.addEventListener('DOMContentLoaded', function() {
         float chrome = smoothstep(0.08, 0.75, n+0.17);
 
         // Reflection coloring - darker chrome
-        vec3 base = mix(vec3(0.04,0.10,0.13), vec3(0.55,0.8,0.95), chrome);
-        float shine = pow(chrome, 3.5) * 0.7 + pow(1.0-chrome, 7.0) * 0.3;
-        vec3 color = base + shine * vec3(0.77,0.95,1.0);
-        color = mix(color, vec3(0.0, 0.6, 1.0), 0.10*chrome);
+       vec3 base = mix(vec3(0.15, 0.04, 0.00), vec3(1.0, 0.36, 0.30), chrome); // dark red to light orange
+float shine = pow(chrome, 3.5) * 0.7 + pow(1.0 - chrome, 7.0) * 0.3;
+vec3 color = base + shine * vec3(1.0, 0.65, 0.60); // bright highlights
+color = mix(color, vec3(1.0, 0.36, 0.30), 0.15 * chrome); // final color blend
 
         // Subtle vignette
         float vignette = smoothstep(1.15, 0.65, length(p));
