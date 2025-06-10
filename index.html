@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cromatic</title>
-    <style>
+   <style>
         .tabbar {
             position: absolute;
             top: 0; left: 0;
@@ -14,16 +14,15 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 16px;
+            gap: 32px;
             background: rgba(10,18,30,0.85);
-            box-shadow: 0 2px 24px #00d0ff44;
             z-index: 2;
             padding: 0.7rem 0 0.3rem 0;
             border-bottom: 2px solid #00d0ff55;
         }
         .tabbar .tab {
             color: #c0f6ff;
-            background: linear-gradient(90deg, #161c24 60%, #1c2430 100%);
+            background: black;
             border: none;
             outline: none;
             padding: 0.7rem 2.3rem;
@@ -31,8 +30,7 @@
             font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
             font-size: 1.12rem;
             letter-spacing: 2px;
-            font-weight: 700;
-            box-shadow: 0 2px 12px #00d0ff33, 0 0 2px #fff2;
+            font-weight: 700;;
             margin: 0 3px;
             cursor: pointer;
             transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s;
@@ -71,6 +69,7 @@
             justify-content: center;
             position: relative;
             font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+            background: black;
         }
         #liquid-bg {
             position: fixed;
@@ -80,7 +79,7 @@
         .container {
             z-index: 1;
             position: relative;
-            background: rgba(30,30,40,0.7);
+            background: #222;
             border-radius: 24px;
             box-shadow: 0 0 60px #00d0ff88, 0 0 12px #fff9;
             padding: 48px 32px 32px 32px;
@@ -89,17 +88,15 @@
             align-items: center;
         }
         h1 {
-            color: #c0f6ff;
+            color: white;
             font-size: 2.5rem;
             margin-bottom: 16px;
             letter-spacing: 3px;
-            text-shadow: 0 0 10px #00d0ff, 0 0 2px #fff;
         }
         label {
-            color: #fff;
+            color: white;
             font-size: 1.1rem;
             margin-bottom: 10px;
-            text-shadow: 0 0 3px #00d0ff;
         }
         input[type="text"] {
             border: none;
@@ -109,24 +106,22 @@
             font-size: 1.1rem;
             width: 320px;
             margin-bottom: 24px;
-            background: #222c;
-            color: #fff;
-            box-shadow: 0 0 12px #00d0ff77;
+            background: black;
+            color: white;
             transition: box-shadow 0.2s;
         }
         input[type="text"]:focus {
-            box-shadow: 0 0 24px #00d0ffcc;
+          color: white;
         }
         .go-btn {
-            background: linear-gradient(90deg, #00d0ff, #c0f6ff 60%, #00d0ff);
-            color: #222;
+            background: black;
+            color: white;
             font-size: 1.3rem;
             font-weight: bold;
             border: none;
             border-radius: 12px;
             padding: 14px 48px;
             cursor: pointer;
-            box-shadow: 0 0 20px #00d0ff99, 0 0 2px #fff;
             transition: transform 0.15s, box-shadow 0.2s;
             letter-spacing: 2px;
             position: relative;
@@ -134,8 +129,8 @@
         }
         .go-btn:hover {
             transform: scale(1.08) rotate(-2deg);
-            box-shadow: 0 0 32px #00fff7cc, 0 0 4px #fff;
-            background: linear-gradient(90deg, #c0f6ff, #00d0ff 60%, #c0f6ff);
+            background: white;
+            color: black;
         }
         .go-btn::after {
             content: '';
