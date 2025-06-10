@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chromatic</title>
+    <title>Cromatic</title>
    <style>
 :root {
     --sidebar-width: 80px;
@@ -114,9 +114,11 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    /* Modern cyberpunk-inspired gradient background */
-    background: linear-gradient(135deg, #181828 0%, #0a0a23 60%, #000 100%);
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: linear-gradient(135deg, var(--bg) 0%, var(--bg-secondary) 60%, #000 100%);
+    color: var(--text);
+    transition: background 0.3s, color 0.3s;
 }
 body {
     height: 100vh;
@@ -136,22 +138,21 @@ body {
         .container {
             z-index: 1;
             position: relative;
-            background: #222;
+            background: #181828;
             border-radius: 24px;
             box-shadow: 0 0 60px #00d0ff88, 0 0 12px #fff9;
             padding: 48px 32px 32px 32px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            color: #f6f8fa;
+            border: 1.5px solid #33344d;
         }
-        h1 {
-            color: white;
-            font-size: 2.5rem;
-            margin-bottom: 16px;
-            letter-spacing: 3px;
+        h1, h2, h3, h4, h5, h6 {
+            color: #f6f8fa;
         }
         label {
-            color: white;
+            color: #f6f8fa;
             font-size: 1.1rem;
             margin-bottom: 10px;
         }
@@ -163,31 +164,31 @@ body {
             font-size: 1.1rem;
             width: 320px;
             margin-bottom: 24px;
-            background: black;
-            color: white;
+            background: #232336;
+            color: #f6f8fa;
             transition: box-shadow 0.2s;
+            border: 1.5px solid #33344d;
         }
         input[type="text"]:focus {
-          color: white;
+          background: #22223a;
+          color: #fff;
         }
         .go-btn {
-            background: black;
-            color: white;
-            font-size: 1.3rem;
-            font-weight: bold;
+            background: linear-gradient(90deg, #ff00ff, #00ffff);
+            color: #fff;
             border: none;
-            border-radius: 12px;
-            padding: 14px 48px;
+            border-radius: 8px;
+            padding: 10px 28px;
+            font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
             cursor: pointer;
-            transition: transform 0.15s, box-shadow 0.2s;
-            letter-spacing: 2px;
-            position: relative;
-            overflow: hidden;
+            transition: background 0.2s;
+            box-shadow: 0 2px 8px #0002;
         }
         .go-btn:hover {
-            transform: scale(1.08) rotate(-2deg);
-            background: white;
-            color: black;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            color: #fff;
         }
         .go-btn::after {
             content: '';
@@ -276,7 +277,7 @@ body {
 }
 .play-now-btn:hover {
     background: linear-gradient(90deg, #00ffff, #ff00ff);
-    color: #222;
+    color: #fff;
     transform: scale(1.08);
 }
 .game-thumbnail {
@@ -315,7 +316,7 @@ body {
 }
 .play-now-btn {
     background: linear-gradient(90deg, #c0f6ff, #b8b6b4 80%, #e0e0e0);
-    color: #222;
+    color: #fff;
     border: none;
     border-radius: 10px;
     padding: 13px 32px;
@@ -331,7 +332,7 @@ body {
 }
 .play-now-btn:hover {
     background: linear-gradient(90deg, #b8b6b4, #c0f6ff 80%, #e0e0e0);
-    color: #000;
+    color: #fff;
     transform: scale(1.06);
 }
 .game-thumbnail {
@@ -360,7 +361,7 @@ body {
 }
 .game-tag {
     background: rgba(192,246,255,0.22);
-    color: #222;
+    color: #fff;
     border-radius: 5px;
     padding: 2px 12px;
     font-size: 0.88rem;
@@ -402,7 +403,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
 </style>
 
 </head>
-<body style="margin-left:var(--sidebar-width);">
+<body style="margin-left:var(--sidebar-width);" class="dark-mode">
 
         <nav class="sidebar">
   <div class="sidebar-tabs">
@@ -424,12 +425,14 @@ body, .container, .header, .tabs, .tab-content, .footer {
         </div>
     </div>
     <div class="tab-content" id="tab-apps" style="display:none;">
-  <div class="container" style="background: #fff; border-radius: 18px; box-shadow: 0 2px 24px #0001; padding: 32px 20px; max-width: 1100px; margin: 30px auto 0 auto;">
-    <h2 style="color: #222; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 2rem; letter-spacing: 2px; font-weight: 700; margin-bottom: 30px; text-align: left;">Apps</h2>
+  <div class="container" style="background: #181828; border-radius: 18px; box-shadow: 0 2px 24px #0001; padding: 32px 20px; max-width: 1100px; margin: 30px auto 0 auto;">
+    <h2 style="color: #f6f8fa; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 2rem; letter-spacing: 2px; font-weight: 700; margin-bottom: 30px; text-align: left;">Apps</h2>
     <div class="apps-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px;">
       <!-- Windows 11 App Card -->
-      <div class="app-card" style="background: #f6f8fa; border: 1.5px solid #e0e0e0; border-radius: 14px; box-shadow: 0 2px 8px #0001; padding: 20px 16px; display: flex; flex-direction: column; align-items: center;">
+      <div class="app-card" style="background: #232336; border: 1.5px solid #33344d; border-radius: 14px; box-shadow: 0 2px 8px #0001; padding: 20px 16px; display: flex; flex-direction: column; align-items: center;">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Windows_logo_-_2021.svg/2048px-Windows_logo_-_2021.svg.png" alt="Windows 11" style="width: 72px; height: 72px; object-fit: contain; margin-bottom: 14px; border-radius: 10px; background: #fff; border: 1px solid #e0e0e0;">
+        <h3 style="color: #f6f8fa; font-size: 1.15rem; margin: 0 0 8px 0; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;">Windows 11</h3>
+        <div style="font-size: 0.93rem; color: #f6f8fa; margin-bottom: 10px; text-align: center;">Windows 11 operating system in your browser</div>
         <h3 style="color: #222; font-size: 1.15rem; margin: 0 0 8px 0; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;">Windows 11</h3>
         <div style="font-size: 0.93rem; color: #444; margin-bottom: 10px; text-align: center;">Windows 11 operating system in your browser</div>
         <div style="display: flex; gap: 7px; margin-bottom: 14px;">
@@ -464,7 +467,14 @@ body, .container, .header, .tabs, .tab-content, .footer {
   </div>
 </div>
     <div class="tab-content" id="tab-games" style="display:none;">
-    
+ <!-- Games Tab Content -->
+        <div class="main-tab-content" id="games">
+            <div class="glass-panel" style="background-color: #1a1a2e; padding: 20px; border-radius: 10px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                   
+                       
+                    </div>
+                </div>
 
       
                 <div class="search-container" style="margin-bottom: 20px; position: relative;">
@@ -3757,10 +3767,9 @@ document.addEventListener('DOMContentLoaded', function() {
     localStorage.setItem('darkMode', on ? '1' : '0');
   }
 
-  // Initial load
+  // Initial load: default to dark mode unless user has set preference
   const saved = localStorage.getItem('darkMode');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  setDarkMode(saved === '1' || (saved === null && prefersDark));
+  setDarkMode(saved === '1' || saved === null);
 
   btn.addEventListener('click', function() {
     setDarkMode(!body.classList.contains('dark-mode'));
