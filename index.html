@@ -5,72 +5,129 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chromatic Web</title>
-    <style>
-        .tabbar {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100vw;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 32px;
-            background: rgba(10,18,30,0.85);
-            z-index: 2;
-            padding: 0.7rem 0 0.3rem 0;
-            border-bottom: 2px solid #00d0ff55;
-        }
-        .tabbar .tab {
-            color: #c0f6ff;
-            background: black;
-            border: none;
-            outline: none;
-            padding: 0.7rem 2.3rem;
-            border-radius: 16px 16px 0 0;
-            font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
-            font-size: 1.12rem;
-            letter-spacing: 2px;
-            font-weight: 700;;
-            margin: 0 3px;
-            cursor: pointer;
-            transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s;
-            position: relative;
-        }
-        .tabbar .tab:hover, .tabbar .tab:focus {
-            background: linear-gradient(90deg, #00d0ff 10%, #c0f6ff 90%);
-            color: #222;
-            box-shadow: 0 4px 24px #00d0ff88, 0 0 6px #fff8;
-            transform: translateY(-2px) scale(1.06);
-        }
-        .tabbar .tab.active {
-            background: linear-gradient(90deg, #c0f6ff 10%, #00d0ff 90%);
-            color: #222;
-            box-shadow: 0 6px 32px #00d0ffbb, 0 0 8px #fff;
-            transform: translateY(-4px) scale(1.09);
-        }
-        @media (max-width: 600px) {
-            .tabbar .tab {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.97rem;
-            }
-        }
-
+    <title>Cromatic</title>
+   <style>
+:root {
+    --sidebar-width: 80px;
+    --sidebar-bg: rgba(10,18,30,0.92);
+    --sidebar-border: #00d0ff55;
+    --sidebar-shadow: 2px 0 16px #00d0ff22;
+    --sidebar-radius: 22px;
+    --bg: #f6f8fa;
+    --bg-secondary: #fff;
+    --text: #181828;
+    --card: #fff;
+    --card-border: #e0e0e0;
+    --accent: #ff00ff;
+    --accent2: #00ffff;
+    --shadow: 0 2px 24px #0001;
+    --input-bg: #f6f8fa;
+    --input-text: #181828;
+}
+body.dark-mode {
+    --bg: #181828;
+    --bg-secondary: #181828;
+    --text: #f6f8fa;
+    --card: #232336;
+    --card-border: #33344d;
+    --accent: #ff00ff;
+    --accent2: #00ffff;
+    --shadow: 0 2px 24px #0009;
+    --input-bg: #232336;
+    --input-text: #f6f8fa;
+}
+.sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: var(--sidebar-width);
+    height: 100vh;
+    align-items: center;
+}
+.sidebar .tab {
+    width: 56px;
+    height: 56px;
+    background: var(--card);
+    color: var(--accent2);
+    border: none;
+    outline: none;
+    border-radius: 16px;
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s;
+    box-shadow: 0 2px 10px #00d0ff22;
+    position: relative;
+}
+.sidebar .tab i {
+    font-size: 1.4rem;
+    margin-bottom: 2px;
+}
+.sidebar .tab:hover, .sidebar .tab:focus {
+    background: linear-gradient(90deg, var(--accent2) 10%, var(--accent) 90%);
+    color: #222;
+    box-shadow: 0 4px 24px #00d0ff88, 0 0 6px #fff8;
+    transform: scale(1.10);
+}
+.sidebar .tab.active {
+    background: linear-gradient(90deg, var(--accent) 10%, var(--accent2) 90%);
+    color: #222;
+    box-shadow: 0 6px 32px #00d0ffbb, 0 0 8px #fff;
+    transform: scale(1.14);
+}
+.dark-toggle {
+    margin-top: auto;
+    margin-bottom: 10px;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    color: var(--accent);
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+}
+.dark-toggle:hover, .dark-toggle:focus {
+    color: var(--accent2);
+    background: var(--card);
+}
+/* Push main content to the right of sidebar */
+body {
+    margin-left: var(--sidebar-width);
+}
+.tab-content, .container {
+    margin-left: 0;
+}
         html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-        body {
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
-            background: black;
-        }
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* Modern cyberpunk-inspired gradient background */
+    background: linear-gradient(135deg, #181828 0%, #0a0a23 60%, #000 100%);
+}
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    /* Remove solid black background so gradient applies */
+}
         #liquid-bg {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -163,15 +220,75 @@
 /* Games Tab Custom Styles for Cromatic */
 .games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 32px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 0;
+    width: 100vw;
+    min-height: 0;
+    flex: 1 1 auto;
+    background: none;
+    padding: 30px 30px 60px 30px;
+    box-sizing: border-box;
+}
+.game-card {
+    background: linear-gradient(135deg, rgba(255,0,255,0.15), rgba(0,255,255,0.13));
+    border: 2px solid #ff00ff;
+    border-radius: 16px;
+    box-shadow: 0 0 25px rgba(255,0,255,0.25);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    position: relative;
+}
+.game-card:hover {
+    transform: scale(1.04) translateY(-4px);
+    box-shadow: 0 0 40px #ff00ffbb, 0 0 8px #fff;
+}
+.game-card-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: linear-gradient(0deg, rgba(255,0,255,0.4) 0%, rgba(0,0,0,0) 80%);
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 2;
+}
+.game-card:hover .game-card-overlay {
+    opacity: 1;
+}
+.play-now-btn {
+    background: linear-gradient(90deg, #ff00ff, #00ffff);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 28px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    font-weight: bold;
+    box-shadow: 0 0 10px #ff00ff99, 0 0 2px #fff;
+    cursor: pointer;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 5px #00ffff;
+    transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+.play-now-btn:hover {
+    background: linear-gradient(90deg, #00ffff, #ff00ff);
+    color: #222;
+    transform: scale(1.08);
+}
+.game-thumbnail {
+    width: 100%;
+    height: 180px;
     margin-top: 30px;
     background: none;
 }
 .game-card {
-    background: black;
+    background: linear-gradient(120deg, #e0e0e0 0%, #b8b6b4 100%);
     border: 1.5px solid #c0f6ff77;
-    border-radius: 35px;
+    border-radius: 18px;
     box-shadow: 0 4px 18px #b8b6b488, 0 1px 2px #fff9;
     overflow: hidden;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -188,15 +305,14 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    background: white;
+    background: linear-gradient(0deg, rgba(192,246,255,0.18) 0%, rgba(0,0,0,0) 80%);
     opacity: 0;
     transition: opacity 0.2s;
     z-index: 2;
 }
-game-card:hover .play-now-btn {
-  opacity: 0;
+.game-card:hover .game-card-overlay {
+    opacity: 1;
 }
-
 .play-now-btn {
     background: linear-gradient(90deg, #c0f6ff, #b8b6b4 80%, #e0e0e0);
     color: #222;
@@ -217,7 +333,6 @@ game-card:hover .play-now-btn {
     background: linear-gradient(90deg, #b8b6b4, #c0f6ff 80%, #e0e0e0);
     color: #000;
     transform: scale(1.06);
-    opacity: 1;
 }
 .game-thumbnail {
     width: 100%;
@@ -239,35 +354,67 @@ game-card:hover .play-now-btn {
 }
 .game-tags {
     display: flex;
-    justify-content: center;
-    align-items: center;
     gap: 6px;
     flex-wrap: wrap;
     margin-bottom: 7px;
 }
 .game-tag {
-    align-items: center;
-    justify-content: center;
-    background: black;
-    color: #FFFFFF;
+    background: rgba(192,246,255,0.22);
+    color: #222;
     border-radius: 5px;
     padding: 2px 12px;
     font-size: 0.88rem;
     font-family: 'Orbitron', sans-serif;
     letter-spacing: 1px;
     box-shadow: 0 1px 4px #b8b6b433;
+    text-shadow: 0 1px 2px #fff9;
+}
+    </style>
+
+<!-- Liquid Chrome Background CSS -->
+<style>
+/* .chrome-bg { (REMOVED for no background)
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: linear-gradient(120deg, #b8b6b4 0%, #e0e0e0 40%, #a7a6a5 60%, #f8f8ff 100%);
+}
+/* .chrome-bg::before { (REMOVED for no background)
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg width="100%25" height="100%25" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="chrome" x1="0" y1="0" x2="1" y2="1"><stop offset="0%25" stop-color="%23e0e0e0"/><stop offset="50%25" stop-color="%23b8b6b4"/><stop offset="100%25" stop-color="%23f8f8ff"/></linearGradient><filter id="drip"><feTurbulence type="fractalNoise" baseFrequency="0.01 0.03" numOctaves="2" seed="2"/><feDisplacementMap in2="SourceGraphic" scale="60" xChannelSelector="R" yChannelSelector="G"/></filter></defs><rect width="1920" height="1080" fill="url(%23chrome)" filter="url(%23drip)"/></svg>');
+  opacity: 0.9;
+  animation: chrome-drip-move 12s linear infinite alternate;
+}
+@keyframes chrome-drip-move {
+  0% { filter: blur(0px) brightness(1); }
+  50% { filter: blur(3px) brightness(1.08); }
+  100% { filter: blur(0px) brightness(1); }
+}
+body, .container, .header, .tabs, .tab-content, .footer {
+  position: relative;
+  z-index: 1;
+  background: transparent !important;
 }
 </style>
 
 </head>
-<body>
+<body style="margin-left:var(--sidebar-width);">
 
-        <nav class="tabbar">
-        <button class="tab active" data-tab="home">Home</button>
-        <button class="tab" data-tab="apps">Apps</button>
-        <button class="tab" data-tab="games">Games</button>
-        <button class="tab" data-tab="settings">Settings</button>
-    </nav>
+        <nav class="sidebar">
+  <div class="sidebar-tabs">
+    <button class="tab active" data-tab="home"><i class="fas fa-home"></i> Home</button>
+    <button class="tab" data-tab="apps"><i class="fas fa-th-large"></i> Apps</button>
+    <button class="tab" data-tab="games"><i class="fas fa-gamepad"></i> Games</button>
+    <button class="tab" data-tab="settings"><i class="fas fa-cog"></i> Settings</button>
+  </div>
+  <button id="dark-mode-toggle" title="Toggle Dark Mode" class="dark-toggle">
+    <span id="dark-mode-icon" class="fas fa-moon"></span>
+  </button>
+</nav>
     <div class="tab-content" id="tab-home">
         <div class="container">
             <h1>Cromatic Proxy</h1>
@@ -319,38 +466,7 @@ game-card:hover .play-now-btn {
     <div class="tab-content" id="tab-games" style="display:none;">
     
 
-        <!-- Games Tab Content -->
-        <div class="main-tab-content" id="games">
-            <div class="glass-panel" style="background-color: #1a1a2e; padding: 20px; border-radius: 10px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <h2 style="color: #3cb8f2; text-shadow: 0 0 10px #b8eaff; font-family: 'Orbitron', sans-serif; margin: 0;">CYBER ARCADE</h2>
-                    <div class="autoclicker-toggle" style="display: flex; align-items: center; background: rgba(192,246,255,0.13); padding: 8px 15px; border-radius: 20px; border: 1px solid #b8eaff;">
-                        <span style="color: #3cb8f2; margin-right: 10px; font-family: 'Orbitron', sans-serif; font-size: 14px;">AUTO CLICKER:</span>
-                        <!-- Toggle switch can go here -->
-                    </div>
-                </div>
-               
-                <!-- Game of the Hour Section -->
-                <div id="game-of-hour" style="margin-bottom: 40px; background: linear-gradient(135deg, rgba(255, 0, 255, 0.2), rgba(0, 255, 255, 0.2)); border-radius: 15px; padding: 20px; box-shadow: 0 0 25px rgba(255, 0, 255, 0.5); position: relative; overflow: hidden;">
-                    <div style="position: absolute; top: 0; right: 0; background: linear-gradient(45deg, #ff00ff, #00ffff); padding: 8px 15px; border-bottom-left-radius: 15px; font-family: 'Orbitron', sans-serif; font-weight: bold; color: #000; font-size: 0.9rem; box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);">
-                        <i class="fas fa-clock" style="margin-right: 5px;"></i> GAME OF THE HOUR
-                    </div>
-                    <div style="display: flex; flex-direction: column; align-items: center; margin-top: 20px;">
-                        <h2 style="font-family: 'Orbitron', sans-serif; font-size: 2rem; text-align: center; margin-bottom: 15px; background: linear-gradient(45deg, #ff00ff, #00ffff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);">FEATURED GAME</h2>
-                        <p style="text-align: center; margin-bottom: 20px; color: #ccc; font-size: 1rem;">This special game changes every hour - don't miss out!</p>
-                        <div id="featured-game-container" style="width: 100%; max-width: 600px; margin: 0 auto; position: relative; border-radius: 15px; overflow: hidden; box-shadow: 0 0 30px rgba(255, 0, 255, 0.7);">
-                            <!-- Game will be inserted here by JavaScript -->
-                        </div>
-                        <div style="display: flex; justify-content: space-between; width: 100%; max-width: 600px; margin-top: 15px;">
-                            <div id="next-update" style="font-family: 'Exo 2', sans-serif; color: #ccc; font-size: 0.9rem;">
-                                <i class="fas fa-sync-alt" style="margin-right: 5px;"></i> Next update in: <span id="countdown-timer">00:00:00</span>
-                            </div>
-                            <button onclick="selectNewGameOfHour()" style="background: rgba(255, 0, 255, 0.3); border: 1px solid #ff00ff; color: white; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-family: 'Exo 2', sans-serif; font-size: 0.8rem; transition: all 0.3s ease;">
-                                <i class="fas fa-dice"></i> Refresh
-                            </button>
-                        </div>
-                    </div>
-                </div>
+      
                 <div class="search-container" style="margin-bottom: 20px; position: relative;">
                     <div style="position: relative;">
                         <i class="fas fa-search" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #3cb8f2; text-shadow: 0 0 5px #b8eaff;"></i>
@@ -3594,7 +3710,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 // --- Tab Switching Logic ---
 document.addEventListener('DOMContentLoaded', function() {
-  const tabButtons = document.querySelectorAll('.tabbar .tab');
+  const tabButtons = document.querySelectorAll('.sidebar .tab');
   const tabContents = document.querySelectorAll('.tab-content');
 
   tabButtons.forEach(btn => {
@@ -3611,13 +3727,45 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   // Optionally: Show home tab by default on load
-  const activeTab = document.querySelector('.tabbar .tab.active');
+  const activeTab = document.querySelector('.sidebar .tab.active');
   if (activeTab) {
     const tabName = activeTab.getAttribute('data-tab');
     const showTab = document.getElementById('tab-' + tabName);
     if (showTab) showTab.style.display = '';
   }
 });
+</script>
+<script>
+// Dark mode toggle
+(function() {
+  const btn = document.getElementById('dark-mode-toggle');
+  const icon = document.getElementById('dark-mode-icon');
+  const body = document.body;
+
+  function setDarkMode(on) {
+    if (on) {
+      body.classList.add('dark-mode');
+      icon.classList.remove('fa-moon');
+      icon.classList.add('fa-sun');
+      icon.title = 'Switch to Light Mode';
+    } else {
+      body.classList.remove('dark-mode');
+      icon.classList.remove('fa-sun');
+      icon.classList.add('fa-moon');
+      icon.title = 'Switch to Dark Mode';
+    }
+    localStorage.setItem('darkMode', on ? '1' : '0');
+  }
+
+  // Initial load
+  const saved = localStorage.getItem('darkMode');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  setDarkMode(saved === '1' || (saved === null && prefersDark));
+
+  btn.addEventListener('click', function() {
+    setDarkMode(!body.classList.contains('dark-mode'));
+  });
+})();
 </script>
 </body>
 </html>
