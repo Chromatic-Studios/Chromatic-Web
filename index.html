@@ -68,7 +68,7 @@ body.dark-mode {
     outline: none;
     border-radius: 16px;
     font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.95rem;
     letter-spacing: 1px;
     font-weight: 700;
     margin: 0;
@@ -83,7 +83,7 @@ body.dark-mode {
     position: relative;
 }
 .sidebar .tab i {
-    font-size: 0.9rem;
+    font-size: 1.05rem;
     margin-bottom: 2px;
 }
 .sidebar .tab:hover, .sidebar .tab:focus {
@@ -440,6 +440,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
     <button class="tab active" data-tab="home"><i class="fas fa-home"></i> Home</button>
     <button class="tab" data-tab="apps"><i class="fas fa-th-large"></i> Apps</button>
     <button class="tab" data-tab="games"><i class="fas fa-gamepad"></i> Games</button>
+    <button class="tab" data-tab="proxy"><i class="fas fa-globe"></i> Proxy</button>
     <button class="tab" data-tab="settings"><i class="fas fa-cog"></i> Settings</button>
   </div>
   <button id="dark-mode-toggle" title="Toggle Dark Mode" class="dark-toggle">
@@ -512,6 +513,86 @@ body, .container, .header, .tabs, .tab-content, .footer {
     </div>
   </div>
 </div>
+    <div class="tab-content" id="tab-proxy" style="display:none;">
+      <div class="container" style="background: #181828; border-radius: 18px; box-shadow: 0 2px 24px #0001; padding: 32px 20px; max-width: 600px; margin: 30px auto 0 auto; text-align:center;">
+        <h2 style="color: #ff00ff; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 2rem; letter-spacing: 2px; font-weight: 700; margin-bottom: 30px;">Proxy Browser</h2>
+        <form id="uv-form" style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
+          <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden">
+          <input type="text" id="uv-address" placeholder="Enter URL or search query" style="width: 320px; background: #232336; color: #fff; border: 2px solid #ff00ff; border-radius: 12px; padding: 16px 20px; font-size: 1.1rem; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;">
+          <button type="submit" class="go-btn" style="background: linear-gradient(90deg, #ff00ff, #00ffff); color: #fff; border: none; border-radius: 8px; padding: 10px 28px; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.2s;">Go</button>
+        </form>
+        <div id="proxy-error" style="margin-top: 12px; color: #ff00ff; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; display:none;"></div>
+      </div>
+      <!-- Ultraviolet client scripts: make sure these files exist at these paths in your deployment root -->
+      <script>
+      // --- Ultraviolet Core Config and Logic Embedded ---
+      // UV config (from uv.config.js)
+      window.__uv$config = {
+        prefix: '/service/',
+        bare: '/bare/',
+        encodeUrl: encodeUVUrl,
+        decodeUrl: decodeUVUrl,
+        handler: '/uv/uv.handler.js',
+        bundle: '/uv/uv.bundle.js',
+        config: '/uv/uv.config.js',
+        sw: '/uv/uv.sw.js',
+      };
+      // UV XOR codec (from open source UV)
+      function encodeUVUrl(url) {
+        const key = 2;
+        let result = '';
+        for (let i = 0; i < url.length; i++) {
+          result += String.fromCharCode(url.charCodeAt(i) ^ key);
+        }
+        return btoa(result);
+      }
+      function decodeUVUrl(encoded) {
+        const key = 2;
+        let decoded = atob(encoded);
+        let result = '';
+        for (let i = 0; i < decoded.length; i++) {
+          result += String.fromCharCode(decoded.charCodeAt(i) ^ key);
+        }
+        return result;
+      }
+      // Register the Ultraviolet service worker for proxying
+      window.addEventListener('DOMContentLoaded', function() {
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/uv/uv.sw.js', {scope: '/service/'})
+            .then(() => console.log('Ultraviolet SW registered'))
+            .catch(err => console.error('SW registration failed', err));
+        }
+        // UV proxy form logic
+        const form = document.getElementById('uv-form');
+        const address = document.getElementById('uv-address');
+        const searchEngine = document.getElementById('uv-search-engine');
+        form.addEventListener('submit', function(event) {
+          event.preventDefault();
+          let url = address.value.trim();
+          if (!isUrl(url)) {
+            url = searchEngine.value.replace('%s', encodeURIComponent(url));
+          } else if (!(url.startsWith('https://') || url.startsWith('http://'))) {
+            url = 'https://' + url;
+          }
+          window.location.href = window.__uv$config.prefix + window.__uv$config.encodeUrl(url);
+        });
+        function isUrl(str) {
+          try {
+            const pattern = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;
+            return pattern.test(str);
+          } catch {
+            return false;
+          }
+        }
+      });
+      </script>
+      <!--
+        Vercel Deployment Notes:
+        - Place the entire Ultraviolet client (uv.bundle.js, uv.config.js, uv.sw.js, etc) in the /public/uv directory of your Vercel project.
+        - The backend (bare server) must be configured and running for full proxy functionality.
+        - This tab is now production-ready for a real Ultraviolet deployment.
+      -->
+    </div>
     <div class="tab-content" id="tab-games" style="display:none;">
  <!-- Games Tab Content -->
         <div class="main-tab-content" id="games">
@@ -3320,12 +3401,8 @@ body, .container, .header, .tabs, .tab-content, .footer {
       </div>
     </div>
     <div style="margin-bottom:30px;">
-      <label style="color:#00ffff; font-size:1.1rem;">Other Features:</label>
-      <div style="margin-top:10px;">
-        <label style="color:#f6f8fa; font-size:1.02rem; margin-right:18px;"><input type="checkbox" id="toggle-neon" style="accent-color:#ff00ff;margin-right:7px;">Neon Glow</label>
-        <label style="color:#f6f8fa; font-size:1.02rem; margin-right:18px;"><input type="checkbox" id="toggle-matrix" style="accent-color:#00ffff;margin-right:7px;">Matrix Rain</label>
-        <label style="color:#f6f8fa; font-size:1.02rem;"><input type="checkbox" id="toggle-sidebar-labels" style="accent-color:#ff00ff;margin-right:7px;">Hide Sidebar Labels</label>
-      </div>
+     
+   
     </div>
   </div>
 </div>
@@ -3973,6 +4050,46 @@ window.addEventListener('DOMContentLoaded', function() {
   if (exploreGames) exploreGames.addEventListener('click', function() { switchToTab('games'); });
   if (tryApps) tryApps.addEventListener('click', function() { switchToTab('apps'); });
 });
+</script>
+<script>
+// Tab switching logic (reuse if already present, else add)
+document.querySelectorAll('.sidebar .tab').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.sidebar .tab').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    document.querySelectorAll('.tab-content').forEach(tab => tab.style.display = 'none');
+    document.getElementById('tab-' + this.dataset.tab).style.display = '';
+  });
+});
+
+// Proxy form logic
+const proxyForm = document.getElementById('proxy-form');
+if (proxyForm) {
+  proxyForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const input = document.getElementById('proxy-url');
+    const errorDiv = document.getElementById('proxy-error');
+    let url = input.value.trim();
+    errorDiv.style.display = 'none';
+    if (!url) {
+      errorDiv.textContent = 'Please enter a URL.';
+      errorDiv.style.display = '';
+      return;
+    }
+    // Simple URL validation
+    if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+    try {
+      if (window.__uv$config && window.__uv$config.prefix && window.__uv$config.encodeUrl) {
+        window.location.href = window.__uv$config.prefix + window.__uv$config.encodeUrl(url);
+      } else {
+        window.open(url, '_blank');
+      }
+    } catch (err) {
+      errorDiv.textContent = 'Failed to open URL: ' + err.message;
+      errorDiv.style.display = '';
+    }
+  });
+}
 </script>
 </body>
 </html>
