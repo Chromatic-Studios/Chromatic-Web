@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chromatic Web</title>
+    <title>Cromatic</title>
    <style>
 :root {
     --sidebar-width: 80px;
@@ -400,51 +400,6 @@ body {
     box-shadow: 0 1px 4px #b8b6b433;
     text-shadow: 0 1px 2px #fff9;
 }
-
-.gradient-button {
-      padding: 8px 16px;
-      color: white;
-      background: linear-gradient(90deg,#ff00ff,#00ffff);
-      border:0 solid transparent;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.8s ease;
-      position: relative;
-      z-index: 1;
-      font-weight:bold;
-    }
-
-    .gradient-button::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      border-radius: 8px;
-      padding: 2px; /* Border thickness */
-      background: linear-gradient(90deg,#ff00ff,#00ffff);
-      -webkit-mask: 
-        linear-gradient(#fff 0 0) content-box, 
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-              mask-composite: exclude;
-      z-index: -1;
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
-
-    .gradient-button:hover {
-      background: linear-gradient(90deg,#ff00ff,#00ffff);
-       -webkit-mask-image: text;
-      -webkit-mask-repeat: no-repeat;
-      -webkit-mask-position: center;
-      -webkit-mask-size: contain;
-      color: transparent;
-      background-clip: text;
-      box-shadow: 0 0 128px #ff00ff;
-    }
-
-    .gradient-button:hover::before {
-      opacity: 1;
-    }
     </style>
 
 <!-- Liquid Chrome Background CSS -->
@@ -480,11 +435,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
 </head>
 <body style="margin-left:var(--sidebar-width);" class="dark-mode">
 
-
         <nav class="sidebar">
-          <div class="sidebar-tabs-icon">
-            <img src="icon.png", style="width: 56; height: 56;">
-          </div>
   <div class="sidebar-tabs">
     <button class="tab active" data-tab="home"><i class="fas fa-home"></i> Home</button>
     <button class="tab" data-tab="apps"><i class="fas fa-th-large"></i> Apps</button>
@@ -498,12 +449,21 @@ body, .container, .header, .tabs, .tab-content, .footer {
 </nav>
     <div class="tab-content" id="tab-home">
         <div class="container" style="text-align:center; padding: 50px 10px; min-height: 350px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-            <h1 style="font-family: 'Orbitron', 'Exo 2', sans-serif; font-size: 2.7rem; color: #ff00ff; letter-spacing: 2px; text-shadow: 0 0 24px #ff00ff99, 0 0 8px #00ffff; margin-bottom: 18px;">Welcome to Chromatic!</h1>
+            <h1 style="font-family: 'Orbitron', 'Exo 2', sans-serif; font-size: 2.7rem; color: #ff00ff; letter-spacing: 2px; text-shadow: 0 0 24px #ff00ff99, 0 0 8px #00ffff; margin-bottom: 18px;">Welcome to Cromatic!</h1>
+            <div id="greeting-block" style="margin-bottom: 28px;"></div>
+            <!-- Greeting Modal Popup -->
+            <div id="greeting-modal-overlay" class="greeting-modal-overlay"></div>
+            <div id="greeting-modal" class="greeting-modal" role="dialog" aria-modal="true" aria-labelledby="greeting-modal-title">
+                <form id="greeting-form" style="display:flex; flex-direction:column; align-items:center; gap:16px;">
+                    <h2 id="greeting-modal-title" style="font-family: 'Orbitron', 'Exo 2', sans-serif; font-size:1.5rem; color:#ff00ff; letter-spacing:1px; text-shadow:0 0 12px #ff00ff99, 0 0 4px #00ffff; margin-bottom:0;">Welcome! What's your name?</h2>
+                    <input id="greeting-input" type="text" maxlength="24" required placeholder="Enter your name..." autocomplete="off" style="background:#232336; color:#ffb3ff; border:1.5px solid #ff00ff; box-shadow:0 0 10px #ff00ff55; font-family:'Orbitron', 'Exo 2', sans-serif; font-size:1.1rem; border-radius:10px; padding:12px 18px; width:230px; transition:box-shadow 0.2s; outline:none;" />
+                    <button type="submit" class="go-btn" style="background:linear-gradient(90deg,#ff00ff,#00ffff); margin-top:4px; box-shadow:0 0 8px #ff00ff88; font-family:'Orbitron', 'Exo 2', sans-serif;">Save</button>
+                </form>
+            </div>
             <p style="max-width: 600px; color: #f6f8fa; font-size: 1.25rem; margin-bottom: 36px; text-shadow: 0 0 8px #00ffff99;">
                 Your all-in-one cyberpunk hub for unblocked games, cool apps, and more. Dive into a world of fun and productivity, all wrapped in a neon glow.<br>
-                <button id="browse-games-btn" class="gradient-button" style=>Browse Games</button>, <button id="try-apps-btn" class="gradient-button">Try Apps</button>, or <span ">Customize Settings</span> — all from one place!
+                <button id="browse-games-btn" style="color:#fff; background: linear-gradient(90deg,#ff00ff,#00ffff); border:none; border-radius:8px; padding:6px 18px; font-weight:bold; cursor:pointer; margin-right:8px; box-shadow:0 0 8px #ff00ff88; transition:transform .13s;">Browse Games</button>, <button id="try-apps-btn" style="color:#fff; background: linear-gradient(90deg,#00ffff,#ff00ff); border:none; border-radius:8px; padding:6px 18px; font-weight:bold; cursor:pointer; margin-right:8px; box-shadow:0 0 8px #00ffff88; transition:transform .13s;">Try Apps</button>, or <span style="color:#fff; font-weight: bold;">Customize Settings</span> — all from one place!
             </p>
-    </style>
             <div style="display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-top: 18px;">
                 <div style="background: linear-gradient(135deg, #1a0a30 60%, #ff00ff44 100%); border: 2px solid #ff00ff; border-radius: 14px; padding: 28px 36px; box-shadow: 0 0 18px #ff00ff55; min-width: 210px; margin-bottom: 16px; display: flex; flex-direction: column; align-items: center;">
                     <i class="fas fa-gamepad" style="font-size: 2.2rem; color: #ff00ff;"></i>
@@ -4140,6 +4100,146 @@ if (proxyForm) {
     }
   });
 }
+</script>
+<style>
+.greeting-modal-overlay {
+  position: fixed;
+  z-index: 1001;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(24, 24, 40, 0.82);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.44s cubic-bezier(.77,0,.18,1);
+}
+.greeting-modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.greeting-modal {
+  position: fixed;
+  z-index: 1002;
+  top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.93);
+  min-width: 320px; max-width: 92vw;
+  background: linear-gradient(135deg, #181828 85%, #ff00ff44 100%);
+  border: 2.5px solid #ff00ff;
+  border-radius: 18px;
+  box-shadow: 0 0 44px #ff00ff99, 0 0 10px #00ffff88, 0 0 0 #0000;
+  padding: 38px 34px 28px 34px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.93);
+  transition: opacity 0.44s cubic-bezier(.77,0,.18,1), transform 0.44s cubic-bezier(.77,0,.18,1);
+}
+.greeting-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+.greeting-modal input[type="text"] {
+  outline: none;
+  box-shadow: 0 0 12px #ff00ff55;
+}
+.greeting-modal input[type="text"]:focus {
+  box-shadow: 0 0 22px #ff00ffbb;
+}
+@media (max-width: 600px) {
+  .greeting-modal {
+    min-width: 0;
+    padding: 18px 8vw 18px 8vw;
+  }
+}
+</style>
+<script>
+// Persistent personalized greeting as a smooth modal popup
+function showGreetingModal() {
+  const overlay = document.getElementById('greeting-modal-overlay');
+  const modal = document.getElementById('greeting-modal');
+  overlay.classList.add('active');
+  modal.classList.add('active');
+  // Remove display:none if present
+  overlay.style.display = 'block';
+  modal.style.display = 'flex';
+  // Force reflow for transition
+  void overlay.offsetWidth; void modal.offsetWidth;
+  overlay.classList.add('active');
+  modal.classList.add('active');
+  setTimeout(() => {
+    document.getElementById('greeting-input').focus();
+  }, 200);
+}
+function hideGreetingModal() {
+  const overlay = document.getElementById('greeting-modal-overlay');
+  const modal = document.getElementById('greeting-modal');
+  overlay.classList.remove('active');
+  modal.classList.remove('active');
+  setTimeout(() => {
+    overlay.style.display = 'none';
+    modal.style.display = 'none';
+  }, 440);
+}
+function renderGreeting() {
+  const greetingBlock = document.getElementById('greeting-block');
+  greetingBlock.innerHTML = '';
+  const storedName = localStorage.getItem('cromaticUserName');
+  if (storedName) {
+    // Show greeting
+    const greeting = document.createElement('div');
+    greeting.textContent = `Hi ${storedName}!`;
+    greeting.style.fontFamily = "Orbitron, 'Exo 2', sans-serif";
+    greeting.style.fontSize = '1.7rem';
+    greeting.style.color = '#ff00ff';
+    greeting.style.letterSpacing = '1.5px';
+    greeting.style.textShadow = '0 0 16px #ff00ff99, 0 0 6px #00ffff';
+    greeting.style.marginBottom = '12px';
+    greeting.style.background = 'linear-gradient(90deg, #181828 70%, #ff00ff22 100%)';
+    greeting.style.border = '2px solid #ff00ff';
+    greeting.style.borderRadius = '12px';
+    greeting.style.padding = '12px 28px';
+    greeting.style.display = 'inline-block';
+    greetingBlock.appendChild(greeting);
+    hideGreetingModal();
+  } else {
+    showGreetingModal();
+  }
+}
+document.addEventListener('DOMContentLoaded', function() {
+  renderGreeting();
+  // Modal form logic
+  const form = document.getElementById('greeting-form');
+  const input = document.getElementById('greeting-input');
+  form.onsubmit = function(e) {
+    e.preventDefault();
+    const name = input.value.trim();
+    if (name.length > 0) {
+      localStorage.setItem('cromaticUserName', name);
+      renderGreeting();
+    } else {
+      input.focus();
+    }
+  };
+  // Trap focus in modal for accessibility
+  document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('greeting-modal');
+    if (modal.classList.contains('active')) {
+      if (e.key === 'Tab') {
+        const focusable = modal.querySelectorAll('input, button');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault(); first.focus();
+        }
+      } else if (e.key === 'Escape') {
+        // Optionally allow closing with Escape
+        // hideGreetingModal();
+      }
+    }
+  });
+});
 </script>
 </body>
 </html>
