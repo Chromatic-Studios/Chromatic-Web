@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chromatic Web</title>
+    <title>Cromatic</title>
    <style>
 :root {
     --sidebar-width: 80px;
@@ -59,14 +59,6 @@ body.dark-mode {
     width: 100%;
     align-items: center;
 }
-.sidebar-tabs-icon {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
-    width: 100%;
-    align-items: center;
-}
 .sidebar .tab {
     width: 56px;
     height: 56px;
@@ -76,7 +68,7 @@ body.dark-mode {
     outline: none;
     border-radius: 16px;
     font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
-    font-size: 0.6rem;
+    font-size: 0.95rem;
     letter-spacing: 1px;
     font-weight: 700;
     margin: 0;
@@ -408,51 +400,6 @@ body {
     box-shadow: 0 1px 4px #b8b6b433;
     text-shadow: 0 1px 2px #fff9;
 }
-
-.gradient-button {
-      font-size: 48px;
-      color: white;
-      background: linear-gradient(90deg,#ff00ff,#00ffff);
-      border:0 solid transparent;
-      border-radius: 32px;
-      cursor: pointer;
-      transition: all 0.8s ease;
-      position: relative;
-      z-index: 1;
-      font-family: Impact, Charcoal, sans-serif;
-    }
-
-    .gradient-button::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      border-radius: 32px;
-      padding: 16px; /* Border thickness */
-      background: linear-gradient(90deg,#ff00ff,#00ffff);
-      -webkit-mask: 
-        linear-gradient(#fff 0 0) content-box, 
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-              mask-composite: exclude;
-      z-index: -1;
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
-
-    .gradient-button:hover {
-      background: linear-gradient(90deg,#ff00ff,#00ffff);
-       -webkit-mask-image: text;
-      -webkit-mask-repeat: no-repeat;
-      -webkit-mask-position: center;
-      -webkit-mask-size: contain;
-      color: transparent;
-      background-clip: text;
-      box-shadow: 0 0 96px #ff00ff;
-    }
-
-    .gradient-button:hover::before {
-      opacity: 1;
-    }
     </style>
 
 <!-- Liquid Chrome Background CSS -->
@@ -488,11 +435,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
 </head>
 <body style="margin-left:var(--sidebar-width);" class="dark-mode">
 
-
         <nav class="sidebar">
-          <div class="sidebar-tabs-icon">
-            <img src="icon.png", style="width: 56; height: 56;">
-          </div>
   <div class="sidebar-tabs">
     <button class="tab active" data-tab="home"><i class="fas fa-home"></i> Home</button>
     <button class="tab" data-tab="apps"><i class="fas fa-th-large"></i> Apps</button>
@@ -506,10 +449,10 @@ body, .container, .header, .tabs, .tab-content, .footer {
 </nav>
     <div class="tab-content" id="tab-home">
         <div class="container" style="text-align:center; padding: 50px 10px; min-height: 350px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-            <h1 style="font-family: 'Orbitron', 'Exo 2', sans-serif; font-size: 2.7rem; color: #ff00ff; letter-spacing: 2px; text-shadow: 0 0 24px #ff00ff99, 0 0 8px #00ffff; margin-bottom: 18px;">Welcome to Chromatic!</h1>
+            <h1 style="font-family: 'Orbitron', 'Exo 2', sans-serif; font-size: 2.7rem; color: #ff00ff; letter-spacing: 2px; text-shadow: 0 0 24px #ff00ff99, 0 0 8px #00ffff; margin-bottom: 18px;">Welcome to Cromatic!</h1>
             <p style="max-width: 600px; color: #f6f8fa; font-size: 1.25rem; margin-bottom: 36px; text-shadow: 0 0 8px #00ffff99;">
                 Your all-in-one cyberpunk hub for unblocked games, cool apps, and more. Dive into a world of fun and productivity, all wrapped in a neon glow.<br>
-                <button id="browse-games-btn" class="gradient-button" style="color:#fff; background: linear-gradient(90deg,#ff00ff,#00ffff); border:none; border-radius:8px; padding:6px 18px; font-weight:bold; cursor:pointer; margin-right:8px; box-shadow:0 0 8px #ff00ff88; transition:transform .13s;">Browse Games</button>, <button id="try-apps-btn" style="color:#fff; background: linear-gradient(90deg,#00ffff,#ff00ff); border:none; border-radius:8px; padding:6px 18px; font-weight:bold; cursor:pointer; margin-right:8px; box-shadow:0 0 8px #00ffff88; transition:transform .13s;">Try Apps</button>, or <span style="color:#fff; font-weight: bold;">Customize Settings</span> — all from one place!
+                <button id="browse-games-btn" style="color:#fff; background: linear-gradient(90deg,#ff00ff,#00ffff); border:none; border-radius:8px; padding:6px 18px; font-weight:bold; cursor:pointer; margin-right:8px; box-shadow:0 0 8px #ff00ff88; transition:transform .13s;">Browse Games</button>, <button id="try-apps-btn" style="color:#fff; background: linear-gradient(90deg,#00ffff,#ff00ff); border:none; border-radius:8px; padding:6px 18px; font-weight:bold; cursor:pointer; margin-right:8px; box-shadow:0 0 8px #00ffff88; transition:transform .13s;">Try Apps</button>, or <span style="color:#fff; font-weight: bold;">Customize Settings</span> — all from one place!
             </p>
             <div style="display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-top: 18px;">
                 <div style="background: linear-gradient(135deg, #1a0a30 60%, #ff00ff44 100%); border: 2px solid #ff00ff; border-radius: 14px; padding: 28px 36px; box-shadow: 0 0 18px #ff00ff55; min-width: 210px; margin-bottom: 16px; display: flex; flex-direction: column; align-items: center;">
@@ -580,7 +523,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
         </form>
         <div id="proxy-error" style="margin-top: 12px; color: #ff00ff; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; display:none;"></div>
       </div>
-      <!-- Ultraviolet client scripts: make sure these files exist at these paths in your deployment root -->
+      <!-- Ultraviolet client scripts: make sure these files exist at these paths in your deployment root -->404: NOT_FOUND Code: NOT_FOUND ID: pdx1::nhzkz-1749527396154-d97d6c432442
       <script>
       // --- Ultraviolet Core Config and Logic Embedded ---
       // UV config (from uv.config.js)
