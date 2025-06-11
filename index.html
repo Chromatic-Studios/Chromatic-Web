@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cromatic</title>
+    <title>Chromatic</title>
    <style>
 :root {
     --sidebar-width: 80px;
@@ -56,15 +56,6 @@ body.dark-mode {
     display: flex;
     flex-direction: column;
     gap: 36px;
-    width: 100%;
-    align-items: center;
-}
-
-    .sidebar-tabs-icon {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
     width: 100%;
     align-items: center;
 }
@@ -446,9 +437,6 @@ body, .container, .header, .tabs, .tab-content, .footer {
 
         <nav class="sidebar">
   <div class="sidebar-tabs">
-           <div class="sidebar-tabs-icon">
-            <img src="icon.png", style="width: 56; height: 56;">
-          </div>
     <button class="tab active" data-tab="home"><i class="fas fa-home"></i> Home</button>
     <button class="tab" data-tab="apps"><i class="fas fa-th-large"></i> Apps</button>
     <button class="tab" data-tab="games"><i class="fas fa-gamepad"></i> Games</button>
@@ -461,7 +449,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
 </nav>
     <div class="tab-content" id="tab-home">
         <div class="container" style="text-align:center; padding: 50px 10px; min-height: 350px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-            <h1 style="font-family: 'Orbitron', 'Exo 2', sans-serif; font-size: 2.7rem; color: #ff00ff; letter-spacing: 2px; text-shadow: 0 0 24px #ff00ff99, 0 0 8px #00ffff; margin-bottom: 18px;">Welcome to Cromatic!</h1>
+            <h1 style="font-family: 'Orbitron', 'Exo 2', sans-serif; font-size: 2.7rem; color: #ff00ff; letter-spacing: 2px; text-shadow: 0 0 24px #ff00ff99, 0 0 8px #00ffff; margin-bottom: 18px;">Welcome to Chromatic!</h1>
             <div id="greeting-block" style="margin-bottom: 28px;"></div>
             <!-- Greeting Modal Popup -->
             <div id="greeting-modal-overlay" class="greeting-modal-overlay"></div>
@@ -538,75 +526,192 @@ body, .container, .header, .tabs, .tab-content, .footer {
     <div class="tab-content" id="tab-proxy" style="display:none;">
       <div class="container" style="background: #181828; border-radius: 18px; box-shadow: 0 2px 24px #0001; padding: 32px 20px; max-width: 600px; margin: 30px auto 0 auto; text-align:center;">
         <h2 style="color: #ff00ff; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 2rem; letter-spacing: 2px; font-weight: 700; margin-bottom: 30px;">Proxy Browser</h2>
-        <form id="uv-form" style="display: flex; flex-direction: column; align-items: center; gap: 16px;">
-          <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden">
-          <input type="text" id="uv-address" placeholder="Enter URL or search query" style="width: 320px; background: #232336; color: #fff; border: 2px solid #ff00ff; border-radius: 12px; padding: 16px 20px; font-size: 1.1rem; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;">
-          <button type="submit" class="go-btn" style="background: linear-gradient(90deg, #ff00ff, #00ffff); color: #fff; border: none; border-radius: 8px; padding: 10px 28px; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.2s;">Go</button>
-        </form>
-        <div id="proxy-error" style="margin-top: 12px; color: #ff00ff; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; display:none;"></div>
+        <div class="chromatic-proxy-profile" style="display: flex; justify-content: flex-end; align-items: center; width: 100%; margin-bottom: 8px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=chromatic" alt="avatar" style="width: 46px; height: 46px; border-radius: 50%; box-shadow: 0 0 8px #ff00ff99; border: 2.5px solid #00ffff; background: #181828;" />
+            <div style="display: flex; flex-direction: column; align-items: flex-start;">
+              <span id="chromatic-username" style="color: #ff00ff; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 1.08rem; font-weight: 700;">chromaticuser</span>
+              <span style="color: #00ffae; font-size: 0.95rem; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;">● Online</span>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 420px;">
+          <h2 style="color: #ff00ff; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 2.1rem; letter-spacing: 2px; font-weight: 700; margin-bottom: 38px; text-shadow: 0 0 18px #ff00ff99, 0 0 8px #00ffff;">Proxy Browser</h2>
+          <form id="chromatic-proxy-form" style="display: flex; flex-direction: row; align-items: center; gap: 0; background: #232336; border-radius: 32px; box-shadow: 0 0 24px #ff00ff33, 0 0 4px #00ffff44; padding: 8px 12px; width: 100%; max-width: 440px; margin-bottom: 24px; border: 2.5px solid #ff00ff;">
+  <input id="chromatic-proxy-input" type="text" placeholder="Enter a website URL or search..." style="flex:1; background: transparent; border: none; outline: none; color: #fff; font-size: 1.15rem; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; padding: 14px 18px; border-radius: 32px;" />
+  <button type="submit" style="background: linear-gradient(90deg, #ff00ff, #00ffff); color: #fff; border: none; border-radius: 28px; padding: 12px 30px; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 1.08rem; font-weight: 700; margin-left: 8px; box-shadow: 0 0 12px #00ffff66; cursor: pointer; transition: background 0.2s;">Go Proxy!</button>
+</form>
+<div id="chromatic-proxy-error" style="margin-top: 8px; color: #ff00ff; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; display:none;"></div>
+<div id="chromatic-proxy-iframe-container" style="width:100%;max-width:800px;margin:28px auto 0 auto;display:none;">
+  <iframe id="chromatic-proxy-iframe" style="width:100%; min-height:420px; border-radius:14px; border:2.5px solid #ff00ff; background:#232336; box-shadow:0 0 18px #ff00ff44; margin-bottom:10px;" allow="fullscreen"></iframe>
+</div>
+        </div>
+        <style>
+          .chromatic-proxy-profile {
+            margin-bottom: 16px;
+          }
+          #chromatic-proxy-form:focus-within {
+            box-shadow: 0 0 0 3px #00ffff99, 0 0 24px #ff00ff33;
+            border-color: #00ffff;
+          }
+          #chromatic-proxy-input:focus {
+            background: #2e2e4a;
+            color: #fff;
+          }
+          #chromatic-proxy-form button:hover {
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            color: #fff;
+            box-shadow: 0 0 18px #00ffffbb, 0 0 4px #ff00ff88;
+          }
+        </style>
       </div>
-      <!-- Ultraviolet client scripts: make sure these files exist at these paths in your deployment root -->404: NOT_FOUND Code: NOT_FOUND ID: pdx1::nhzkz-1749527396154-d97d6c432442
       <script>
-      // --- Ultraviolet Core Config and Logic Embedded ---
-      // UV config (from uv.config.js)
-      window.__uv$config = {
-        prefix: '/service/',
-        bare: '/bare/',
-        encodeUrl: encodeUVUrl,
-        decodeUrl: decodeUVUrl,
-        handler: '/uv/uv.handler.js',
-        bundle: '/uv/uv.bundle.js',
-        config: '/uv/uv.config.js',
-        sw: '/uv/uv.sw.js',
-      };
-      // UV XOR codec (from open source UV)
-      function encodeUVUrl(url) {
-        const key = 2;
-        let result = '';
-        for (let i = 0; i < url.length; i++) {
-          result += String.fromCharCode(url.charCodeAt(i) ^ key);
-        }
-        return btoa(result);
-      }
-      function decodeUVUrl(encoded) {
-        const key = 2;
-        let decoded = atob(encoded);
-        let result = '';
-        for (let i = 0; i < decoded.length; i++) {
-          result += String.fromCharCode(decoded.charCodeAt(i) ^ key);
-        }
-        return result;
-      }
-      // Register the Ultraviolet service worker for proxying
-      window.addEventListener('DOMContentLoaded', function() {
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.register('/uv/uv.sw.js', {scope: '/service/'})
-            .then(() => console.log('Ultraviolet SW registered'))
-            .catch(err => console.error('SW registration failed', err));
-        }
-        // UV proxy form logic
-        const form = document.getElementById('uv-form');
-        const address = document.getElementById('uv-address');
-        const searchEngine = document.getElementById('uv-search-engine');
-        form.addEventListener('submit', function(event) {
-          event.preventDefault();
-          let url = address.value.trim();
-          if (!isUrl(url)) {
-            url = searchEngine.value.replace('%s', encodeURIComponent(url));
-          } else if (!(url.startsWith('https://') || url.startsWith('http://'))) {
-            url = 'https://' + url;
+      // Replace chromaticuser with system username if possible
+      (function() {
+        let username = 'chromaticuser';
+        // Try to get Windows username via environment (only works in some local/server contexts)
+        try {
+          if (window && window.process && window.process.env && window.process.env.USERNAME) {
+            username = window.process.env.USERNAME;
+          } else if (navigator.userAgent.indexOf('Windows') !== -1) {
+            // Try from localStorage (if set elsewhere)
+            if (localStorage.getItem('chromatic-username')) {
+              username = localStorage.getItem('chromatic-username');
+            }
           }
-          window.location.href = window.__uv$config.prefix + window.__uv$config.encodeUrl(url);
-        });
-        function isUrl(str) {
-          try {
-            const pattern = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;
-            return pattern.test(str);
-          } catch {
-            return false;
-          }
+        } catch (e) {}
+        // Optionally, allow user to set their username manually if not detected
+        document.getElementById('chromatic-username').textContent = username;
+      })();
+      // Advanced Iframe Bypass Worker integration for Proxy Browser
+      const chromaticProxyForm = document.getElementById('chromatic-proxy-form');
+      const chromaticProxyInput = document.getElementById('chromatic-proxy-input');
+      const chromaticProxyError = document.getElementById('chromatic-proxy-error');
+      const chromaticProxyIframeContainer = document.getElementById('chromatic-proxy-iframe-container');
+      const chromaticProxyIframe = document.getElementById('chromatic-proxy-iframe');
+      
+      chromaticProxyForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        let url = chromaticProxyInput.value.trim();
+        chromaticProxyError.style.display = 'none';
+        chromaticProxyError.textContent = '';
+        chromaticProxyIframeContainer.style.display = 'none';
+        chromaticProxyIframe.src = '';
+        if (!url) {
+          chromaticProxyError.textContent = 'Please enter a URL.';
+          chromaticProxyError.style.display = '';
+          return;
+        }
+        // Prepend https:// if missing
+        if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+        try {
+          // Encode the URL using the worker's /encode endpoint
+          const encodeUrl = `https://classlinkapps.derekter127.workers.dev/encode?url=${encodeURIComponent(url)}`;
+          const response = await fetch(encodeUrl);
+          if (!response.ok) throw new Error('Encoding failed.');
+          const data = await response.json();
+          if (!data.encoded) throw new Error('No encoded URL returned.');
+          // Set iframe src to /lessons?encoded=...
+          const proxyUrl = `https://classlinkapps.derekter127.workers.dev/lessons?encoded=${encodeURIComponent(data.encoded)}`;
+          chromaticProxyIframe.src = proxyUrl;
+          chromaticProxyIframeContainer.style.display = '';
+        } catch (err) {
+          chromaticProxyError.textContent = 'Proxy error: ' + err.message;
+          chromaticProxyError.style.display = '';
         }
       });
+      // --- Google/Chrome-style tabbed proxy browser ---
+        const tabsBar = document.getElementById('proxy-tabs-bar');
+        const tabsContent = document.getElementById('proxy-tabs-content');
+        const searchForm = document.getElementById('proxy-tab-search-form');
+        const searchInput = document.getElementById('proxy-tab-search-input');
+        const errorBox = document.getElementById('proxy-tab-error');
+
+        let proxyTabs = [];
+        let activeTabId = null;
+
+        function createTabElement(tab) {
+          const btn = document.createElement('button');
+          btn.className = 'proxy-tab' + (tab.id === activeTabId ? ' active' : '');
+          btn.title = tab.title;
+          btn.innerHTML = `<span class="tab-title">${tab.title}</span>`;
+          // Close button
+          const closeBtn = document.createElement('button');
+          closeBtn.className = 'close-btn';
+          closeBtn.innerHTML = '&times;';
+          closeBtn.onclick = (e) => {
+            e.stopPropagation();
+            closeTab(tab.id);
+          };
+          btn.appendChild(closeBtn);
+          btn.onclick = () => setActiveTab(tab.id);
+          return btn;
+        }
+
+        function renderTabs() {
+          tabsBar.innerHTML = '';
+          proxyTabs.forEach(tab => {
+            tabsBar.appendChild(createTabElement(tab));
+          });
+        }
+
+        function renderTabContent() {
+          tabsContent.innerHTML = '';
+          const tab = proxyTabs.find(t => t.id === activeTabId);
+          if (!tab) return;
+          // Iframe area
+          const iframe = document.createElement('iframe');
+          iframe.src = tab.proxyUrl;
+          iframe.style = 'width:100%; min-height:410px; border-radius:12px; border:2px solid #ff00ff; background:#232336; box-shadow:0 0 18px #ff00ff44; margin-bottom:10px;';
+          iframe.allow = 'fullscreen';
+          iframe.onerror = function() {
+            iframe.style.display = 'none';
+            const fallback = document.createElement('div');
+            fallback.innerHTML = `<a href="${tab.proxyUrl}" target="_blank" style="color:#ff00ff; font-size:1.13rem;">Open in new tab</a>`;
+            tabsContent.appendChild(fallback);
+          };
+          tabsContent.appendChild(iframe);
+          // Tab info
+          const info = document.createElement('div');
+          info.innerHTML = `<span style="color:#ffb3ff;font-size:0.98rem;">${tab.proxyUrl}</span>`;
+          tabsContent.appendChild(info);
+  const iframeBypassError = document.getElementById('iframe-bypass-error');
+  if (iframeBypassForm && iframeBypassInput) {
+    iframeBypassForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      let input = iframeBypassInput.value.trim();
+      iframeBypassError.style.display = 'none';
+      iframeBypassError.textContent = '';
+      if (!input) {
+        iframeBypassError.textContent = 'Please enter a URL or search.';
+        iframeBypassError.style.display = 'block';
+        return;
+      }
+      // If not a valid URL, treat as Google search
+      let url;
+      try {
+        url = new URL(input);
+        url = url.href;
+      } catch {
+        url = 'https://www.google.com/search?q=' + encodeURIComponent(input);
+      }
+      try {
+        // Use the /encode?url= API
+        const encodeUrl = `https://classlinkapps.derekter127.workers.dev/encode?url=${encodeURIComponent(url)}`;
+        const response = await fetch(encodeUrl);
+        if (!response.ok) throw new Error('Encoding failed.');
+        const data = await response.json();
+        if (!data.encoded) throw new Error('No encoded URL returned.');
+        const bypassUrl = `https://classlinkapps.derekter127.workers.dev/lessons?encoded=${encodeURIComponent(data.encoded)}`;
+        window.open(bypassUrl, '_blank');
+      } catch (err) {
+        iframeBypassError.textContent = 'Bypass error: ' + err.message;
+        iframeBypassError.style.display = 'block';
+      }
+    });
+  }
+</script>
+
       </script>
       <!--
         Vercel Deployment Notes:
@@ -4084,8 +4189,45 @@ document.querySelectorAll('.sidebar .tab').forEach(btn => {
   });
 });
 
-// Proxy form logic
-const proxyForm = document.getElementById('proxy-form');
+// Proxy form logic for Cloudflare URL Encoder
+const cfProxyForm = document.getElementById('cf-proxy-form');
+const cfProxyInput = document.getElementById('cf-proxy-address');
+const cfProxyError = document.getElementById('proxy-error');
+
+if (cfProxyForm && cfProxyInput) {
+  cfProxyForm.addEventListener('submit', async function(event) {
+    event.preventDefault();
+    let url = cfProxyInput.value.trim();
+    cfProxyError.style.display = 'none';
+    cfProxyError.textContent = '';
+    if (!url) {
+      cfProxyError.textContent = 'Please enter a URL.';
+      cfProxyError.style.display = 'block';
+      return;
+    }
+    if (!/^https?:\/\//i.test(url)) {
+      url = 'https://' + url;
+    }
+    try {
+      // Call the Cloudflare worker to encode
+      const response = await fetch('https://classlinkapps.derekter127.workers.dev/api/encrypt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url })
+      });
+      if (!response.ok) throw new Error('Encoding failed.');
+      const data = await response.json();
+      if (!data.encoded) throw new Error('No encoded URL returned.');
+      // Open the proxied URL in a new tab
+      const proxyUrl = `https://classlinkapps.derekter127.workers.dev/proxy/${data.encoded}`;
+      window.open(proxyUrl, '_blank');
+    } catch (err) {
+      cfProxyError.textContent = 'Proxy error: ' + err.message;
+      cfProxyError.style.display = 'block';
+    }
+  });
+}
+// End Cloudflare proxy logic
 if (proxyForm) {
   proxyForm.addEventListener('submit', function(e) {
     e.preventDefault();
