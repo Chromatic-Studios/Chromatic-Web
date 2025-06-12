@@ -7,6 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chromatic Web</title>
    <style>
+
+[data-theme='galaxy'] {
+    --sidebar-bg: rgba(10,18,50,0.92);
+    --sidebar-border: #00cfff99;
+    --sidebar-shadow: 2px 0 16px #00bfff55;
+    --bg: #0a0a2a;
+    --bg-secondary: #151540;
+    --text: #e0e6ff;
+    --card: #1a1a3a;
+    --card-border: #2a2a5a;
+    --accent: #00bfff;
+    --accent2: #ff00ff;
+    --shadow: 0 2px 24px #0011;
+    --input-bg: #151540;
+    --input-text: #e0e6ff;
+}
 :root {
     --sidebar-width: 80px;
     --sidebar-bg: rgba(10,18,30,0.92);
@@ -453,59 +469,6 @@ body {
     .gradient-button:hover::before {
       opacity: 1;
     }
-    
-    .gradient-border {
-      background: linear-gradient(135deg, #181828 60%, #00ffff44 100%);
-      border-radius: 14px; 
-      padding: 28px 36px; 
-      box-shadow: 0 0 18px #00ffff55; 
-      min-width: 210px; 
-      margin-bottom: 16px;
-      position: relative;
-      border:0 solid transparent;
-    }
-    
-    .gradient-border::before {
-      content: "";
-      inset: -2px;
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      border-radius: 14px;
-      background: linear-gradient(90deg,#ff00ff,#00ffff);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2px;
-      z-index: -1;
-    }
-    
-        .gradient-border-2 {
-      background: linear-gradient(135deg, #181828 60%, #00ffff44 100%);
-      border-radius: 14px; 
-      padding: 28px 36px; 
-      box-shadow: 0 0 18px #00ffff55; 
-      min-width: 210px; 
-      margin-bottom: 16px;
-      position: relative;
-      border:0 solid transparent;
-    }
-    
-    .gradient-border-2::before {
-      content: "";
-      inset: -2px;
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      border-radius: 14px;
-      background: linear-gradient(-90deg,#ff00ff,#00ffff);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2px;
-      z-index: -1;
-    }
-    
     </style>
 
 <!-- Liquid Chrome Background CSS -->
@@ -574,12 +537,12 @@ body, .container, .header, .tabs, .tab-content, .footer {
                 <button id="browse-games-btn" class="gradient-button" style=>Browse Games</button>, <button id="try-apps-btn" class="gradient-button">Try Apps</button>, or <span ">Customize Settings</span> — all from one place!
             </p>
             <div style="display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-top: 18px;">
-                <div class="gradient-border">
+                <div style="background: linear-gradient(135deg, #1a0a30 60%, #ff00ff44 100%); border: 2px solid #ff00ff; border-radius: 14px; padding: 28px 36px; box-shadow: 0 0 18px #ff00ff55; min-width: 210px; margin-bottom: 16px; display: flex; flex-direction: column; align-items: center;">
                     <i class="fas fa-gamepad" style="font-size: 2.2rem; color: #ff00ff;"></i>
                   
                     <div style="font-size: 0.95rem; color: #ffb3ff; margin-top: 6px;">Unblocked, sorted, and ready to play!</div>
                 </div>
-                <div class="gradient-border-2" >
+                <div style="background: linear-gradient(135deg, #181828 60%, #00ffff44 100%); border: 2px solid #00ffff; border-radius: 14px; padding: 28px 36px; box-shadow: 0 0 18px #00ffff55; min-width: 210px; margin-bottom: 16px;">
                     <i class="fas fa-th-large" style="font-size: 2.2rem; color: #00ffff;"></i>
                     <div style="font-size: 1.15rem; color: #fff; margin-top: 10px;">Try <b>Apps</b></div>
                     <div style="font-size: 0.95rem; color: #b3ffff; margin-top: 6px;">Windows 11, Gemini AI, and more!</div>
@@ -634,29 +597,97 @@ body, .container, .header, .tabs, .tab-content, .footer {
   </div>
 </div>
     <div class="tab-content" id="tab-proxy" style="display:none;">
-      <div class="container" style="background: #181828; border-radius: 18px; box-shadow: 0 2px 24px #0001; padding: 32px 20px; max-width: 600px; margin: 30px auto 0 auto; text-align:center;">
-        <h2 style="color: #ff00ff; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 2rem; letter-spacing: 2px; font-weight: 700; margin-bottom: 30px;">Proxy Browser</h2>
-        <div class="chromatic-proxy-profile" style="display: flex; justify-content: flex-end; align-items: center; width: 100%; margin-bottom: 8px;">
-          <div style="display: flex; align-items: center; gap: 10px;">
-            <img src="https://api.dicebear.com/7.x/pixel-art/svg?seed=chromatic" alt="avatar" style="width: 46px; height: 46px; border-radius: 50%; box-shadow: 0 0 8px #ff00ff99; border: 2.5px solid #00ffff; background: #181828;" />
-            <div style="display: flex; flex-direction: column; align-items: flex-start;">
-              <span id="chromatic-username" style="color: #ff00ff; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 1.08rem; font-weight: 700;">chromaticuser</span>
-              <span style="color: #00ffae; font-size: 0.95rem; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;">● Online</span>
-            </div>
+      <div class="container chromatic-proxy-main" style="background: #181828; border-radius: 18px; box-shadow: 0 2px 24px #0001; padding: 32px 20px; max-width: 650px; margin: 30px auto 0 auto; text-align:center;">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 420px;">
+          <div style="margin-bottom: 22px;">
+            <img src="/icon.png" alt="Chromatic J icon" style="width: 68px; height: 68px; filter: drop-shadow(0 0 18px #ff00ff88); margin-bottom: 8px;">
+            <div style="color: #ff00ff; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 2.2rem; letter-spacing: 2px; font-weight: 700; text-shadow: 0 0 18px #ff00ff99, 0 0 8px #00ffff;">Chromatic Proxy</div>
+          </div>
+          <div style="margin-bottom: 18px; color: #00ffff; font-size: 1.09rem; font-family: 'Exo 2', 'Orbitron', Arial, sans-serif;">Enter a URL below to start browsing securely and privately.</div>
+          <form id="chromatic-proxy-form" autocomplete="off" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 14px;">
+  <input id="chromatic-proxy-input" type="text" placeholder="https://example.com" style="width: 100%; max-width: 420px; border-radius: 10px; border: 2.5px solid #ff00ff; background: #232336; color: #fff; font-size: 1.1rem; padding: 16px 20px; box-shadow: 0 0 18px #ff00ff44; outline: none; transition: border 0.2s, box-shadow 0.2s; text-align: center;" />
+  <div style="display: flex; gap: 12px; width: 100%; max-width: 420px; justify-content: center;">
+    <button type="submit" class="go-btn" style="flex:1; background: linear-gradient(90deg, #ff00ff, #00ffff); color: #fff; font-weight: bold; border-radius: 8px; font-size: 1.1rem; border: none; padding: 13px 0; box-shadow: 0 0 12px #ff00ff44; cursor: pointer; transition: background 0.2s;">Open in Browser</button>
+    <button type="button" onclick="alert('AB Cloaked coming soon!')" style="flex:1; background: linear-gradient(90deg, #00ffff, #ff00ff); color: #fff; font-weight: bold; border-radius: 8px; font-size: 1.1rem; border: none; padding: 13px 0; box-shadow: 0 0 12px #00ffff44; cursor: pointer; transition: background 0.2s;">Open AB Cloaked</button>
+    <button type="button" id="chromatic-proxy-direct-btn" style="flex:1; background: linear-gradient(90deg, #ff00ff, #232336); color: #fff; font-weight: bold; border-radius: 8px; font-size: 1.1rem; border: none; padding: 13px 0; box-shadow: 0 0 12px #ff00ff44; cursor: pointer; transition: background 0.2s;">Open Direct</button>
+  </div>
+  <div id="chromatic-proxy-error" style="display:none; color:#ff3333; font-size:1rem; margin-top:10px; font-family: 'Exo 2', Arial, sans-serif;"></div>
+</form>
+<script>
+(function() {
+  const proxyForm = document.getElementById('chromatic-proxy-form');
+  const proxyInput = document.getElementById('chromatic-proxy-input');
+  const proxyError = document.getElementById('chromatic-proxy-error');
+  const directBtn = document.getElementById('chromatic-proxy-direct-btn');
+  const ENCODE_BASE = 'https://classlinkapps.derekter127.workers.dev/encode?url=';
+  const PROXY_BASE = 'https://classlinkapps.derekter127.workers.dev/lessons?encoded=';
+  
+  function normalizeUrl(url) {
+    url = url.trim();
+    if (!/^https?:\/\//i.test(url)) {
+      url = 'https://' + url;
+    }
+    return url;
+  }
+
+  if (proxyForm && proxyInput && proxyError) {
+    proxyForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      proxyError.style.display = 'none';
+      proxyError.textContent = '';
+      let url = proxyInput.value.trim();
+      if (!url) {
+        proxyError.textContent = 'Please enter a URL.';
+        proxyError.style.display = 'block';
+        return;
+      }
+      url = normalizeUrl(url);
+      try {
+        // Encode the URL via the worker
+        const encodeRes = await fetch(ENCODE_BASE + encodeURIComponent(url));
+        if (!encodeRes.ok) throw new Error('Encoding failed.');
+        const data = await encodeRes.json();
+        if (!data.encoded) throw new Error('No encoded URL returned.');
+        const proxyUrl = PROXY_BASE + encodeURIComponent(data.encoded);
+        window.open(proxyUrl, '_blank');
+      } catch (err) {
+        proxyError.textContent = 'Proxy error: ' + err.message;
+        proxyError.style.display = 'block';
+      }
+    });
+    if (directBtn) {
+      directBtn.addEventListener('click', function() {
+        proxyError.style.display = 'none';
+        proxyError.textContent = '';
+        let url = proxyInput.value.trim();
+        if (!url) {
+          proxyError.textContent = 'Please enter a URL.';
+          proxyError.style.display = 'block';
+          return;
+        }
+        url = normalizeUrl(url);
+        try {
+          window.open(url, '_blank');
+        } catch (err) {
+          proxyError.textContent = 'Direct open error: ' + err.message;
+          proxyError.style.display = 'block';
+        }
+      });
+    }
+  }
+})();
+</script>
+
+          <div id="proxy-tabs-bar" style="display: flex; gap: 0; align-items: flex-end; margin: 32px auto 18px auto; max-width: 800px; overflow-x: auto; background: #232336; border-radius: 14px 14px 0 0; border: 2.5px solid #ff00ff; border-bottom: none; box-shadow: 0 0 18px #ff00ff44; min-height: 44px; padding: 0 6px;">
+            <!-- Tabs will be rendered here -->
+          </div>
+          <div id="proxy-tabs-content" style="max-width: 800px; margin: 0 auto 0 auto; background: #232336; border-radius: 0 0 14px 14px; border: 2.5px solid #ff00ff; border-top: none; box-shadow: 0 0 18px #ff00ff44; min-height: 420px; padding: 0 0 16px 0; display: flex; align-items: center; justify-content: center;">
+            <!-- Tab content (iframe or placeholder) will be rendered here by JS -->
           </div>
         </div>
-        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 420px;">
-          <h2 style="color: #ff00ff; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 2.1rem; letter-spacing: 2px; font-weight: 700; margin-bottom: 38px; text-shadow: 0 0 18px #ff00ff99, 0 0 8px #00ffff;">Proxy Browser</h2>
-          <form id="chromatic-proxy-form" style="display: flex; flex-direction: row; align-items: center; gap: 0; background: #232336; border-radius: 32px; box-shadow: 0 0 24px #ff00ff33, 0 0 4px #00ffff44; padding: 8px 12px; width: 100%; max-width: 440px; margin-bottom: 24px; border: 2.5px solid #ff00ff;">
-  <input id="chromatic-proxy-input" type="text" placeholder="Enter a website URL or search..." style="flex:1; background: transparent; border: none; outline: none; color: #fff; font-size: 1.15rem; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; padding: 14px 18px; border-radius: 32px;" />
-  <button type="submit" style="background: linear-gradient(90deg, #ff00ff, #00ffff); color: #fff; border: none; border-radius: 28px; padding: 12px 30px; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 1.08rem; font-weight: 700; margin-left: 8px; box-shadow: 0 0 12px #00ffff66; cursor: pointer; transition: background 0.2s;">Go Proxy!</button>
-</form>
-<div id="chromatic-proxy-error" style="margin-top: 8px; color: #ff00ff; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; display:none;"></div>
-<div id="chromatic-proxy-iframe-container" style="width:100%;max-width:800px;margin:28px auto 0 auto;display:none;">
-  <iframe id="chromatic-proxy-iframe" style="width:100%; min-height:420px; border-radius:14px; border:2.5px solid #ff00ff; background:#232336; box-shadow:0 0 18px #ff00ff44; margin-bottom:10px;" allow="fullscreen"></iframe>
-</div>
-        </div>
-        <style>
+      </div>
+    </div>
+    <style>
           .chromatic-proxy-profile {
             margin-bottom: 16px;
           }
@@ -693,43 +724,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
         // Optionally, allow user to set their username manually if not detected
         document.getElementById('chromatic-username').textContent = username;
       })();
-      // Advanced Iframe Bypass Worker integration for Proxy Browser
-      const chromaticProxyForm = document.getElementById('chromatic-proxy-form');
-      const chromaticProxyInput = document.getElementById('chromatic-proxy-input');
-      const chromaticProxyError = document.getElementById('chromatic-proxy-error');
-      const chromaticProxyIframeContainer = document.getElementById('chromatic-proxy-iframe-container');
-      const chromaticProxyIframe = document.getElementById('chromatic-proxy-iframe');
-      
-      chromaticProxyForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        let url = chromaticProxyInput.value.trim();
-        chromaticProxyError.style.display = 'none';
-        chromaticProxyError.textContent = '';
-        chromaticProxyIframeContainer.style.display = 'none';
-        chromaticProxyIframe.src = '';
-        if (!url) {
-          chromaticProxyError.textContent = 'Please enter a URL.';
-          chromaticProxyError.style.display = '';
-          return;
-        }
-        // Prepend https:// if missing
-        if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
-        try {
-          // Encode the URL using the worker's /encode endpoint
-          const encodeUrl = `https://classlinkapps.derekter127.workers.dev/encode?url=${encodeURIComponent(url)}`;
-          const response = await fetch(encodeUrl);
-          if (!response.ok) throw new Error('Encoding failed.');
-          const data = await response.json();
-          if (!data.encoded) throw new Error('No encoded URL returned.');
-          // Set iframe src to /lessons?encoded=...
-          const proxyUrl = `https://classlinkapps.derekter127.workers.dev/lessons?encoded=${encodeURIComponent(data.encoded)}`;
-          chromaticProxyIframe.src = proxyUrl;
-          chromaticProxyIframeContainer.style.display = '';
-        } catch (err) {
-          chromaticProxyError.textContent = 'Proxy error: ' + err.message;
-          chromaticProxyError.style.display = '';
-        }
-      });
+
       // --- Google/Chrome-style tabbed proxy browser ---
         const tabsBar = document.getElementById('proxy-tabs-bar');
         const tabsContent = document.getElementById('proxy-tabs-content');
@@ -785,41 +780,42 @@ body, .container, .header, .tabs, .tab-content, .footer {
           const info = document.createElement('div');
           info.innerHTML = `<span style="color:#ffb3ff;font-size:0.98rem;">${tab.proxyUrl}</span>`;
           tabsContent.appendChild(info);
+
+  // Robust iframe bypass logic with improved linting and error handling
+  const iframeBypassForm = document.getElementById('iframe-bypass-form');
+  const iframeBypassInput = document.getElementById('iframe-bypass-input');
   const iframeBypassError = document.getElementById('iframe-bypass-error');
-  if (iframeBypassForm && iframeBypassInput) {
-    iframeBypassForm.addEventListener('submit', async (e) => {
+
+  if (iframeBypassForm && iframeBypassInput && iframeBypassError) {
+    iframeBypassForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      let input = iframeBypassInput.value.trim();
+      const input = iframeBypassInput.value.trim();
       iframeBypassError.style.display = 'none';
       iframeBypassError.textContent = '';
+
       if (!input) {
         iframeBypassError.textContent = 'Please enter a URL or search.';
         iframeBypassError.style.display = 'block';
         return;
       }
+
       // If not a valid URL, treat as Google search
       let url;
       try {
-        url = new URL(input);
-        url = url.href;
-      } catch {
+        url = new URL(input).href;
+      } catch (err) {
         url = 'https://www.google.com/search?q=' + encodeURIComponent(input);
       }
+
       try {
-        // Use the /encode?url= API
-        const encodeUrl = `https://classlinkapps.derekter127.workers.dev/encode?url=${encodeURIComponent(url)}`;
-        const response = await fetch(encodeUrl);
-        if (!response.ok) throw new Error('Encoding failed.');
-        const data = await response.json();
-        if (!data.encoded) throw new Error('No encoded URL returned.');
-        const bypassUrl = `https://classlinkapps.derekter127.workers.dev/lessons?encoded=${encodeURIComponent(data.encoded)}`;
-        window.open(bypassUrl, '_blank');
+        window.open(url, '_blank');
       } catch (err) {
         iframeBypassError.textContent = 'Bypass error: ' + err.message;
         iframeBypassError.style.display = 'block';
       }
     });
   }
+
 </script>
 
       </script>
@@ -3619,24 +3615,48 @@ body, .container, .header, .tabs, .tab-content, .footer {
   <div class="container" style="max-width:540px;margin:36px auto 0 auto;">
     <h2 style="color:#ff00ff; font-family:'Orbitron',sans-serif; font-size:2rem; margin-bottom:24px;">Settings</h2>
     <div style="margin-bottom:30px;">
-      <label for="preset-select" style="color:#00ffff; font-size:1.1rem;">Cloak:</label>
-      <select id="preset-select" style="background:#232336; color:#fff; border:1.5px solid #33344d; border-radius:8px; padding:8px 16px; font-size:1.1rem; margin-left:14px;">
-        <option value="custom">Custom</option>
-        <option value="classroom">Google Classroom</option>
-        <option value="docs">Google Docs</option>
-        <option value="slides">Google Slides</option>
-        <option value="canvas">Canvas</option>
-        <option value="desmos">Desmos</option>
+  <label for="preset-select" style="color:#00ffff; font-size:1.1rem;">Cloak:</label>
+  <select id="preset-select" style="background:#232336; color:#fff; border:1.5px solid #33344d; border-radius:8px; padding:8px 16px; font-size:1.1rem; margin-left:14px;">
+    <option value="custom">Custom</option>
+    <option value="classroom">Google Classroom</option>
+    <option value="docs">Google Docs</option>
+    <option value="slides">Google Slides</option>
+    <option value="canvas">Canvas</option>
+    <option value="desmos">Desmos</option>
+  </select>
+  <div style="margin-top:14px;">
+    <label style="color:#ff00ff; font-size:1.05rem;">Site Title:</label>
+    <input id="site-title-input" type="text" maxlength="32" style="background:#181828; color:#fff; border:1.5px solid #33344d; border-radius:8px; padding:8px 14px; font-size:1.1rem; margin-left:10px; width:220px;">
+  </div>
+  <div style="margin-top:14px;">
+    <label style="color:#ff00ff; font-size:1.05rem;">Favicon URL:</label>
+    <input id="favicon-input" type="text" maxlength="256" style="background:#181828; color:#fff; border:1.5px solid #33344d; border-radius:8px; padding:8px 14px; font-size:1.1rem; margin-left:10px; width:220px;">
+  </div>
+  <div style="margin-top:18px; display: flex; flex-wrap: wrap; gap: 18px;">
+    <div>
+      <label style="color:#00ffff; font-size:1.05rem;">Theme:</label>
+      <select id="theme-select" style="background:#232336; color:#fff; border:1.5px solid #33344d; border-radius:8px; padding:7px 12px; font-size:1.05rem; margin-left:10px;">
+        <option value="cyberpunk">Cyberpunk Pink</option>
+        <option value="galaxy">Galaxy Blue</option>
       </select>
-      <div style="margin-top:14px;">
-        <label style="color:#ff00ff; font-size:1.05rem;">Site Title:</label>
-        <input id="site-title-input" type="text" maxlength="32" style="background:#181828; color:#fff; border:1.5px solid #33344d; border-radius:8px; padding:8px 14px; font-size:1.1rem; margin-left:10px; width:220px;">
-      </div>
-      <div style="margin-top:14px;">
-        <label style="color:#ff00ff; font-size:1.05rem;">Favicon URL:</label>
-        <input id="favicon-input" type="text" maxlength="256" style="background:#181828; color:#fff; border:1.5px solid #33344d; border-radius:8px; padding:8px 14px; font-size:1.1rem; margin-left:10px; width:220px;">
-      </div>
     </div>
+    <div>
+      <label style="color:#00ffff; font-size:1.05rem;">Animated Background:</label>
+      <input id="toggle-anim-bg" type="checkbox" style="transform:scale(1.4); margin-left:10px;">
+    </div>
+    <div>
+      <label style="color:#00ffff; font-size:1.05rem;">Sound Effects:</label>
+      <input id="toggle-sound" type="checkbox" style="transform:scale(1.4); margin-left:10px;">
+    </div>
+  </div>
+  <div style="margin-top:18px;">
+    <label style="color:#ff00ff; font-size:1.05rem;">Profile Avatar:</label>
+    <div id="avatar-picker" style="display:flex;gap:10px;align-items:center;margin-top:6px;"></div>
+  </div>
+  <div style="margin-top:18px;">
+    <button id="surprise-btn" style="background:linear-gradient(90deg,#ff00ff,#00ffff);color:#181828;border:none;border-radius:8px;padding:8px 22px;font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:bold;box-shadow:0 0 10px #ff00ff99,0 0 2px #fff;cursor:pointer;letter-spacing:1px;text-shadow:0 0 5px #00ffff;transition:background 0.2s, color 0.2s, transform 0.1s;">Surprise Me!</button>
+  </div>
+</div>
     <div style="margin-bottom:30px;">
      
    
@@ -4195,9 +4215,12 @@ document.addEventListener('DOMContentLoaded', function() {
   };
   // Utility
   function setFavicon(url) {
-    let link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+    // Remove all existing favicon links
+    document.querySelectorAll("link[rel*='icon']").forEach(link => link.parentNode.removeChild(link));
+    // Create new favicon link
+    let link = document.createElement('link');
     link.type = 'image/x-icon';
-    link.rel = 'shortcut icon';
+    link.rel = 'icon';
     link.href = url;
     document.getElementsByTagName('head')[0].appendChild(link);
   }
@@ -4212,6 +4235,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let neon = localStorage.getItem('neonGlow') === '1';
     let matrix = localStorage.getItem('matrixRain') === '1';
     let hideLabels = localStorage.getItem('hideSidebarLabels') === '1';
+    let theme = localStorage.getItem('siteTheme') || 'cyberpunk';
+    let animBg = localStorage.getItem('animBg') === '1';
+    let sound = localStorage.getItem('soundFx') === '1';
+    let avatar = localStorage.getItem('profileAvatar') || '';
     // Set UI
     if(document.getElementById('preset-select')){
       document.getElementById('preset-select').value = preset;
@@ -4220,6 +4247,15 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('toggle-neon').checked = neon;
       document.getElementById('toggle-matrix').checked = matrix;
       document.getElementById('toggle-sidebar-labels').checked = hideLabels;
+      document.getElementById('theme-select').value = theme;
+      document.getElementById('toggle-anim-bg').checked = animBg;
+      document.getElementById('toggle-sound').checked = sound;
+      // Highlight avatar
+      if (document.getElementById('avatar-picker')) {
+        Array.from(document.getElementById('avatar-picker').children).forEach(img => {
+          img.style.border = (img.src === avatar) ? '3px solid #ff00ff' : '2px solid #33344d';
+        });
+      }
     }
     // Apply
     setSiteTitle(title);
@@ -4227,6 +4263,13 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.classList.toggle('neon-glow', neon);
     document.body.classList.toggle('matrix-rain', matrix);
     document.body.classList.toggle('hide-sidebar-labels', hideLabels);
+    document.body.setAttribute('data-theme', theme);
+    document.body.classList.toggle('anim-bg', animBg);
+    // Show avatar in sidebar/profile (if you have such a spot)
+    if (avatar) {
+      let profileSpot = document.getElementById('sidebar-avatar');
+      if (profileSpot) profileSpot.src = avatar;
+    }
   }
   // Save settings
   function saveSettings() {
@@ -4236,34 +4279,116 @@ document.addEventListener('DOMContentLoaded', function() {
     let neon = document.getElementById('toggle-neon').checked;
     let matrix = document.getElementById('toggle-matrix').checked;
     let hideLabels = document.getElementById('toggle-sidebar-labels').checked;
+    let theme = document.getElementById('theme-select').value;
+    let animBg = document.getElementById('toggle-anim-bg').checked;
+    let sound = document.getElementById('toggle-sound').checked;
     localStorage.setItem('sitePreset', preset);
     localStorage.setItem('siteTitle', title);
     localStorage.setItem('siteFavicon', favicon);
     localStorage.setItem('neonGlow', neon ? '1' : '0');
     localStorage.setItem('matrixRain', matrix ? '1' : '0');
     localStorage.setItem('hideSidebarLabels', hideLabels ? '1' : '0');
+    localStorage.setItem('siteTheme', theme);
+    localStorage.setItem('animBg', animBg ? '1' : '0');
+    localStorage.setItem('soundFx', sound ? '1' : '0');
     loadSettings();
   }
   // Event listeners
   document.addEventListener('DOMContentLoaded', function(){
-    if(document.getElementById('preset-select')){
-      document.getElementById('preset-select').onchange = function(){
+    // Cloak preset
+    const presetSelect = document.getElementById('preset-select');
+    if (presetSelect) {
+      presetSelect.onchange = function(){
         let val = this.value;
         if(val !== 'custom' && presets[val]){
-          document.getElementById('site-title-input').value = presets[val].title;
-          document.getElementById('favicon-input').value = presets[val].favicon;
+          const titleInput = document.getElementById('site-title-input');
+          const faviconInput = document.getElementById('favicon-input');
+          if (titleInput) titleInput.value = presets[val].title;
+          if (faviconInput) faviconInput.value = presets[val].favicon;
         }
         saveSettings();
       };
-      document.getElementById('site-title-input').oninput = saveSettings;
-      document.getElementById('favicon-input').oninput = saveSettings;
-      document.getElementById('toggle-neon').onchange = saveSettings;
-      document.getElementById('toggle-matrix').onchange = saveSettings;
-      document.getElementById('toggle-sidebar-labels').onchange = saveSettings;
-      loadSettings();
     }
-  });
-})();
+    // Site title input
+    const titleInput = document.getElementById('site-title-input');
+    if (titleInput) titleInput.oninput = saveSettings;
+    // Favicon input
+    const faviconInput = document.getElementById('favicon-input');
+    if (faviconInput) faviconInput.oninput = saveSettings;
+    // Neon toggle
+    const neonToggle = document.getElementById('toggle-neon');
+    if (neonToggle) neonToggle.onchange = saveSettings;
+    // Matrix toggle
+    const matrixToggle = document.getElementById('toggle-matrix');
+    if (matrixToggle) matrixToggle.onchange = saveSettings;
+    // Sidebar labels
+    const sidebarLabelsToggle = document.getElementById('toggle-sidebar-labels');
+    if (sidebarLabelsToggle) sidebarLabelsToggle.onchange = saveSettings;
+    // Theme select
+    const themeSelect = document.getElementById('theme-select');
+    if (themeSelect) themeSelect.onchange = saveSettings;
+    // Animated background
+    const animBgToggle = document.getElementById('toggle-anim-bg');
+    if (animBgToggle) animBgToggle.onchange = saveSettings;
+    // Sound effects
+    const soundToggle = document.getElementById('toggle-sound');
+    if (soundToggle) soundToggle.onchange = saveSettings;
+
+    // Avatar picker
+    const avatarPicker = document.getElementById('avatar-picker');
+    if (avatarPicker) {
+      avatarPicker.innerHTML = '';
+      const avatars = [
+        'https://api.dicebear.com/7.x/pixel-art/svg?seed=cat',
+        'https://api.dicebear.com/7.x/pixel-art/svg?seed=dog',
+        'https://api.dicebear.com/7.x/pixel-art/svg?seed=alien',
+        'https://api.dicebear.com/7.x/pixel-art/svg?seed=robot',
+        'https://api.dicebear.com/7.x/pixel-art/svg?seed=unicorn',
+        'https://api.dicebear.com/7.x/pixel-art/svg?seed=ghost',
+        'https://api.dicebear.com/7.x/pixel-art/svg?seed=fox'
+      ];
+      avatars.forEach(url => {
+        const img = document.createElement('img');
+        img.src = url;
+        img.style.width = '40px';
+        img.style.height = '40px';
+        img.style.borderRadius = '50%';
+        img.style.cursor = 'pointer';
+        img.style.border = '2px solid #33344d';
+        img.style.transition = 'border 0.2s';
+        img.onclick = () => {
+          localStorage.setItem('profileAvatar', url);
+          loadSettings();
+        };
+        avatarPicker.appendChild(img);
+      });
+      console.log('[Settings] Avatar picker initialized.');
+    } else {
+      console.log('[Settings] No avatar-picker element found.');
+    }
+
+    // Surprise button
+    const surpriseBtn = document.getElementById('surprise-btn');
+    if (surpriseBtn) {
+      surpriseBtn.onclick = function() {
+        const jokes = [
+          "Why did the computer get cold? Because it left its Windows open!",
+          "Why was the math book sad? Because it had too many problems!",
+          "Why did the student eat his homework? Because his teacher said it was a piece of cake!",
+          "What do you call a bear with no teeth? A gummy bear!",
+          "Why did the kid cross the playground? To get to the other slide!",
+          "What do you call cheese that isn't yours? Nacho cheese!"
+        ];
+        const idx = Math.floor(Math.random() * jokes.length);
+        alert(jokes[idx]);
+      };
+      console.log('[Settings] Surprise button initialized.');
+    } else {
+      console.log('[Settings] No surprise-btn element found.');
+    }
+    // Initial settings load
+    loadSettings();
+});
 </script>
 
 <script>
@@ -4299,13 +4424,13 @@ document.querySelectorAll('.sidebar .tab').forEach(btn => {
   });
 });
 
-// Proxy form logic for Cloudflare URL Encoder
+// Proxy form logic for XOR URL Encoder
 const cfProxyForm = document.getElementById('cf-proxy-form');
 const cfProxyInput = document.getElementById('cf-proxy-address');
 const cfProxyError = document.getElementById('proxy-error');
 
 if (cfProxyForm && cfProxyInput) {
-  cfProxyForm.addEventListener('submit', async function(event) {
+  cfProxyForm.addEventListener('submit', function(event) {
     event.preventDefault();
     let url = cfProxyInput.value.trim();
     cfProxyError.style.display = 'none';
@@ -4319,17 +4444,10 @@ if (cfProxyForm && cfProxyInput) {
       url = 'https://' + url;
     }
     try {
-      // Call the Cloudflare worker to encode
-      const response = await fetch('https://classlinkapps.derekter127.workers.dev/api/encrypt', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ url })
-      });
-      if (!response.ok) throw new Error('Encoding failed.');
-      const data = await response.json();
-      if (!data.encoded) throw new Error('No encoded URL returned.');
-      // Open the proxied URL in a new tab
-      const proxyUrl = `https://classlinkapps.derekter127.workers.dev/proxy/${data.encoded}`;
+      // XOR encode the URL
+      const encoded = window.xorUrl.encode(url);
+      // Open the proxied URL in a new tab (replace with your proxy base URL as needed)
+      const proxyUrl = `https://classlinkapps.derekter127.workers.dev/proxy/${encoded}`;
       window.open(proxyUrl, '_blank');
     } catch (err) {
       cfProxyError.textContent = 'Proxy error: ' + err.message;
@@ -4337,7 +4455,7 @@ if (cfProxyForm && cfProxyInput) {
     }
   });
 }
-// End Cloudflare proxy logic
+// End XOR proxy logic
 if (proxyForm) {
   proxyForm.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -4364,6 +4482,21 @@ if (proxyForm) {
     }
   });
 }
+</script>
+<script>
+// XOR URL Encoder/Decoder for Proxy Tab
+// Uses a simple XOR cipher with a fixed key and base64 encoding for URL safety
+const XOR_KEY = 23; // You can change this key for more obfuscation
+function xorEncode(str) {
+    const charCodes = Array.from(str).map(c => c.charCodeAt(0) ^ XOR_KEY);
+    const bytes = new Uint8Array(charCodes);
+    return btoa(String.fromCharCode(...bytes));
+}
+function xorDecode(encoded) {
+    const bytes = atob(encoded).split('').map(c => c.charCodeAt(0));
+    return String.fromCharCode(...bytes.map(b => b ^ XOR_KEY));
+}
+window.xorUrl = { encode: xorEncode, decode: xorDecode };
 </script>
 <style>
 .greeting-modal-overlay {
