@@ -469,6 +469,60 @@ body {
     .gradient-button:hover::before {
       opacity: 1;
     }
+
+
+
+      .gradient-border {
+      background: linear-gradient(135deg, #181828 60%, #00ffff44 100%);
+      border-radius: 14px; 
+      padding: 28px 36px; 
+      box-shadow: 0 0 18px #00ffff55; 
+      min-width: 210px; 
+      margin-bottom: 16px;
+      position: relative;
+      border:0 solid transparent;
+    }
+    
+    .gradient-border::before {
+      content: "";
+      inset: -2px;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      border-radius: 14px;
+      background: linear-gradient(90deg,#ff00ff,#00ffff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px;
+      z-index: -1;
+    }
+    
+        .gradient-border-2 {
+      background: linear-gradient(135deg, #181828 60%, #00ffff44 100%);
+      border-radius: 14px; 
+      padding: 28px 36px; 
+      box-shadow: 0 0 18px #00ffff55; 
+      min-width: 210px; 
+      margin-bottom: 16px;
+      position: relative;
+      border:0 solid transparent;
+    }
+    
+    .gradient-border-2::before {
+      content: "";
+      inset: -2px;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      border-radius: 14px;
+      background: linear-gradient(-90deg,#ff00ff,#00ffff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px;
+      z-index: -1;
+    }
     </style>
 
 <!-- Liquid Chrome Background CSS -->
@@ -537,12 +591,12 @@ body, .container, .header, .tabs, .tab-content, .footer {
                 <button id="browse-games-btn" class="gradient-button" style=>Browse Games</button>, <button id="try-apps-btn" class="gradient-button">Try Apps</button>, or <span ">Customize Settings</span> — all from one place!
             </p>
             <div style="display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-top: 18px;">
-                <div style="background: linear-gradient(135deg, #1a0a30 60%, #ff00ff44 100%); border: 2px solid #ff00ff; border-radius: 14px; padding: 28px 36px; box-shadow: 0 0 18px #ff00ff55; min-width: 210px; margin-bottom: 16px; display: flex; flex-direction: column; align-items: center;">
+                <div class="gradient-border">
                     <i class="fas fa-gamepad" style="font-size: 2.2rem; color: #ff00ff;"></i>
                   
                     <div style="font-size: 0.95rem; color: #ffb3ff; margin-top: 6px;">Unblocked, sorted, and ready to play!</div>
                 </div>
-                <div style="background: linear-gradient(135deg, #181828 60%, #00ffff44 100%); border: 2px solid #00ffff; border-radius: 14px; padding: 28px 36px; box-shadow: 0 0 18px #00ffff55; min-width: 210px; margin-bottom: 16px;">
+                <div class="gradient-border-2" >
                     <i class="fas fa-th-large" style="font-size: 2.2rem; color: #00ffff;"></i>
                     <div style="font-size: 1.15rem; color: #fff; margin-top: 10px;">Try <b>Apps</b></div>
                     <div style="font-size: 0.95rem; color: #b3ffff; margin-top: 6px;">Windows 11, Gemini AI, and more!</div>
@@ -558,7 +612,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
   <div class="container" style="background: #181828; border-radius: 18px; box-shadow: 0 2px 24px #0001; padding: 32px 20px; max-width: 1100px; margin: 30px auto 0 auto;">
     <h2 style="color: #f6f8fa; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 2rem; letter-spacing: 2px; font-weight: 700; margin-bottom: 30px; text-align: left;">Apps</h2>
     <div class="apps-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px;">
-      <!-- Windows 11 App Card -->
+ <!-- Windows 11 App Card -->
       <div class="app-card" style="border-radius: 16px; background: #111; border: 2px solid #ff00ff; box-shadow: 0 0 25px rgba(255,0,255,0.25); padding: 20px 16px; display: flex; flex-direction: column; align-items: center;">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Windows_logo_-_2021.svg/2048px-Windows_logo_-_2021.svg.png" alt="Windows 11" style="width: 72px; height: 72px; object-fit: contain; margin-bottom: 14px; border-radius: 10px; background: #fff; border: 1px solid #e0e0e0;">
         <h3 style="color: #f6f8fa; font-size: 1.15rem; margin: 0 0 8px 0; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;">Windows 11</h3>
