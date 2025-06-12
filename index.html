@@ -605,10 +605,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
             <div style="margin-top: 32px; font-size: 1rem; color: #ffb3ff; text-shadow: 0 0 6px #ff00ff44;">
                 <i class="fas fa-bolt" style="color:#ff00ff;"></i> Stay cyber, stay chromatic.
             </div>
-            
-                     <div style="margin-top: 32px; font-size: 1rem; color: #00ffff; text-shadow: 0 0 6px #ff00ff44;">
-                <i></i> Created by Ummmyah and Justa5thgrader
-            </div>
+            <i style="color:#ff00ff; margin-top: 16px"></i> Created by Ummmyah and Justa5thgrader
         </div>
     </div>
     <div class="tab-content" id="tab-apps" style="display:none;">
@@ -664,10 +661,9 @@ body, .container, .header, .tabs, .tab-content, .footer {
           <form id="chromatic-proxy-form" autocomplete="off" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 14px;">
   <input id="chromatic-proxy-input" type="text" placeholder="https://example.com" style="width: 100%; max-width: 420px; border-radius: 10px; border: 2.5px solid #ff00ff; background: #232336; color: #fff; font-size: 1.1rem; padding: 16px 20px; box-shadow: 0 0 18px #ff00ff44; outline: none; transition: border 0.2s, box-shadow 0.2s; text-align: center;" />
   <div style="display: flex; gap: 12px; width: 100%; max-width: 420px; justify-content: center;">
-    <button type="submit" class="go-btn" style="flex:1; background: linear-gradient(90deg, #ff00ff, #00ffff); color: #fff; font-weight: bold; border-radius: 8px; font-size: 1.1rem; border: none; padding: 13px 0; box-shadow: 0 0 12px #ff00ff44; cursor: pointer; transition: background 0.2s;">Open in Browser</button>
-    <button type="button" onclick="alert('AB Cloaked coming soon!')" style="flex:1; background: linear-gradient(90deg, #00ffff, #ff00ff); color: #fff; font-weight: bold; border-radius: 8px; font-size: 1.1rem; border: none; padding: 13px 0; box-shadow: 0 0 12px #00ffff44; cursor: pointer; transition: background 0.2s;">Open AB Cloaked</button>
-    <button type="button" id="chromatic-proxy-direct-btn" style="flex:1; background: linear-gradient(90deg, #ff00ff, #232336); color: #fff; font-weight: bold; border-radius: 8px; font-size: 1.1rem; border: none; padding: 13px 0; box-shadow: 0 0 12px #ff00ff44; cursor: pointer; transition: background 0.2s;">Open Direct</button>
-  </div>
+    <button type="submit" class="go-btn" style="flex:1; background: linear-gradient(90deg, #ff00ff, #00ffff); color: #fff; font-weight: bold; border-radius: 8px; font-size: 1.1rem; border: none; padding: 13px 0; box-shadow: 0 0 12px #ff00ff44; cursor: pointer; transition: background 0.2s;">Open in Tab!</button>
+    
+   
   <div id="chromatic-proxy-error" style="display:none; color:#ff3333; font-size:1rem; margin-top:10px; font-family: 'Exo 2', Arial, sans-serif;"></div>
 </form>
 <script>
@@ -735,10 +731,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
 })();
 </script>
 
-          <div id="proxy-tabs-bar" style="display: flex; gap: 0; align-items: flex-end; margin: 32px auto 18px auto; max-width: 800px; overflow-x: auto; background: #232336; border-radius: 14px 14px 0 0; border: 2.5px solid #ff00ff; border-bottom: none; box-shadow: 0 0 18px #ff00ff44; min-height: 44px; padding: 0 6px;">
-            <!-- Tabs will be rendered here -->
-          </div>
-          <div id="proxy-tabs-content" style="max-width: 800px; margin: 0 auto 0 auto; background: #232336; border-radius: 0 0 14px 14px; border: 2.5px solid #ff00ff; border-top: none; box-shadow: 0 0 18px #ff00ff44; min-height: 420px; padding: 0 0 16px 0; display: flex; align-items: center; justify-content: center;">
+         
             <!-- Tab content (iframe or placeholder) will be rendered here by JS -->
           </div>
         </div>
@@ -913,7 +906,29 @@ body, .container, .header, .tabs, .tab-content, .footer {
                     <p style="margin-bottom: 15px;">Try a different search term or category</p>
                     <i class="fas fa-times-circle"></i> CLEAR SEARCH
                 </div>
+                <!-- Spin the Wheel Button -->
+                <div style="text-align:center; margin: 25px 0 2px 0;">
+                  <button id="spin-wheel-btn" style="background: linear-gradient(90deg, #ff00ff 10%, #00ffff 90%); color: #fff; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 1.2rem; font-weight: bold; border: none; border-radius: 16px; box-shadow: 0 0 24px #ff00ff88, 0 0 8px #00ffff; padding: 14px 38px; cursor: pointer; letter-spacing: 1px; transition: background 0.2s, transform 0.1s;">🎰 Spin the Wheel</button>
+                </div>
+                <div style="text-align:center; margin-bottom: 18px;">
+                  <span style="display:inline-block; color:#ffb3ff; background:rgba(24,24,40,0.75); border-radius:10px; padding:8px 18px; font-size:1.08rem; font-family:'Orbitron',sans-serif; letter-spacing:0.5px; box-shadow:0 0 8px #ff00ff55;">Not sure what to play? Click the wheel to randomly pick a game from the list below. The selected game will open just like clicking a game card!</span>
+                </div>
+
+                <!-- Wheel Spinner Modal -->
+                <div id="wheel-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(24,24,40,0.95); z-index:9999; align-items:center; justify-content:center;">
+                  <div style="position:relative; background:#181828; border-radius:32px; box-shadow:0 0 60px #ff00ff88,0 0 16px #00ffff; padding:38px 24px 38px 24px; min-width:340px; max-width:98vw; max-height:90vh; display:flex; flex-direction:column; align-items:center;">
+                    <button id="close-wheel-modal" style="position:absolute; top:16px; right:18px; background:none; border:none; color:#ff00ff; font-size:2rem; cursor:pointer; z-index:2; text-shadow:0 0 12px #ff00ff;">&times;</button>
+                    <h2 style="font-family:'Orbitron',sans-serif; color:#ff00ff; letter-spacing:2px; margin-bottom:18px; text-shadow:0 0 18px #ff00ff80,0 0 8px #00ffff;">Random Game Spinner</h2>
+                    <div id="wheel-spinner-container" style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                      <canvas id="wheel-canvas" width="340" height="340" style="background:radial-gradient(circle at 60% 40%, #2a2a5a 60%, #ff00ff22 100%); border-radius:50%; box-shadow:0 0 32px #ff00ff77,0 0 8px #00ffff; margin-bottom:20px;"></canvas>
+                      <button id="spin-btn" style="background:linear-gradient(90deg,#ff00ff 10%,#00ffff 90%); color:#fff; font-family:'Orbitron',sans-serif; font-size:1.1rem; font-weight:bold; border:none; border-radius:14px; box-shadow:0 0 16px #ff00ff88,0 0 4px #00ffff; padding:10px 32px; cursor:pointer; letter-spacing:1px; margin-bottom:10px;">SPIN!</button>
+                      <div id="wheel-result" style="margin-top:18px; font-size:1.15rem; color:#ff00ff; font-family:'Orbitron',sans-serif;"></div>
+                    </div>
+                  </div>
+                </div>
+
                 <div class="games-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px;">
+
                     <!-- Game cards organized alphabetically -->
                     <!-- Aces of the Sky (CrazyGames) -->
                     
@@ -4036,8 +4051,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const canvas = document.getElementById('liquid-bg');
     const gl = canvas.getContext('webgl');
     function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.width = 700; 
+      canvas.height = 700;
       gl.viewport(0, 0, canvas.width, canvas.height);
     }
     window.addEventListener('resize', resize);
@@ -4694,6 +4709,264 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+</script>
+<script>
+// --- Wheel Spinner Logic ---
+(function() {
+  let games = [];
+  let spinning = false;
+  let selectedIdx = -1;
+  let angle = 0;
+  let spinTimeout;
+
+  // Helper to open the spinner modal and reset state
+  function openSpinnerModal() {
+    games = fetchGamesFromDOM();
+    if (!games.length) {
+      alert('No games found!');
+      return;
+    }
+    selectedIdx = -1;
+    angle = 0;
+    spinning = false;
+    document.getElementById('wheel-modal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    const canvas = document.getElementById('wheel-canvas');
+    canvas.width = 700;
+    canvas.height = 700;
+    drawWheel(games.map(g => g.title));
+    document.getElementById('wheel-result').textContent = '';
+    const preview = document.getElementById('wheel-card-preview');
+    if (preview) preview.innerHTML = '';
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const spinBtn = document.getElementById('spin-wheel-btn');
+    if (spinBtn) {
+      spinBtn.addEventListener('click', openSpinnerModal);
+    }
+    const spinModalBtn = document.getElementById('spin-btn');
+    if (spinModalBtn) {
+      spinModalBtn.addEventListener('click', function() {
+        if (!spinning && games.length > 0) {
+          // Hide preview before spinning again
+          const preview = document.getElementById('wheel-card-preview');
+          if (preview) preview.innerHTML = '';
+          spinWheel();
+        }
+      });
+    }
+  });
+
+  const modal = document.getElementById('wheel-modal');
+  const closeBtn = document.getElementById('close-wheel-modal');
+  const spinButton = document.getElementById('spin-btn');
+  const wheelCanvas = document.getElementById('wheel-canvas');
+  const resultDiv = document.getElementById('wheel-result');
+  const cardPreview = document.getElementById('wheel-card-preview');
+
+  // Dynamically build the game list from .game-card elements
+  function fetchGamesFromDOM() {
+    const cards = Array.from(document.querySelectorAll('.game-card'));
+    const pairs = [];
+    cards.forEach(card => {
+      const titleElem = card.querySelector('.game-info h3');
+      const title = titleElem ? titleElem.textContent.trim() : 'Untitled';
+      if (title) pairs.push({ title, cardElem: card });
+    });
+    // Shuffle and pick 10 unique
+    for (let i = pairs.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pairs[i], pairs[j]] = [pairs[j], pairs[i]];
+    }
+    return pairs.slice(0, 10);
+  }
+
+
+  // The spinner now uses the static array, not the DOM
+  function fetchGames() {
+    return staticGamesList;
+  }
+
+  // Draw the wheel
+  function drawWheel(games, highlightIdx = -1) {
+    const ctx = wheelCanvas.getContext('2d');
+    ctx.clearRect(0, 0, wheelCanvas.width, wheelCanvas.height);
+    const centerX = wheelCanvas.width/2;
+    const centerY = wheelCanvas.height/2;
+    const radius = 310; 
+    const n = games.length;
+    const colors = ['#ff00ff', '#00ffff', '#ff80ff', '#00bfff', '#ff00aa', '#00ffa7'];
+    for(let i=0; i<n; ++i) {
+      const start = angle + i*2*Math.PI/n;
+      const end = angle + (i+1)*2*Math.PI/n;
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY);
+      ctx.arc(centerX, centerY, radius, start, end);
+      ctx.closePath();
+      ctx.fillStyle = i === highlightIdx ? '#fff' : colors[i%colors.length] + 'cc';
+      ctx.shadowColor = i === highlightIdx ? '#ff00ff' : '#0000';
+      ctx.shadowBlur = i === highlightIdx ? 24 : 0;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+      // Text (just the title)
+      ctx.save();
+      ctx.translate(centerX, centerY);
+      ctx.rotate(start + (end-start)/2);
+      ctx.textAlign = 'right';
+      const fontSize = Math.max(16, Math.floor(34 - n*0.6));
+      ctx.font = `bold ${fontSize}px Orbitron, sans-serif`;
+      ctx.fillStyle = i === highlightIdx ? '#ff00ff' : '#fff';
+      ctx.strokeStyle = '#181828';
+      ctx.lineWidth = 4;
+      ctx.strokeText(games[i].title, radius * 0.7, 0);
+      ctx.fillText(games[i].title, radius * 0.7, 0);
+      ctx.restore();
+    }
+    // Draw pointer
+    ctx.save();
+    ctx.translate(centerX, centerY);
+    ctx.rotate(-Math.PI/2);
+    ctx.beginPath();
+    ctx.moveTo(radius+6, 0);
+    ctx.lineTo(radius+28, -18);
+    ctx.lineTo(radius+28, 18);
+    ctx.closePath();
+    ctx.fillStyle = '#ff00ff';
+    ctx.shadowColor = '#ff00ff';
+    ctx.shadowBlur = 12;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  // Animate spin
+  function spinWheel() {
+    if (spinning) return;
+    spinning = true;
+    resultDiv.innerHTML = '';
+    const n = games.length;
+    selectedIdx = Math.floor(Math.random()*n);
+    // Calculate the angle so the selected segment lands at the pointer (top, -90deg)
+    const segmentAngle = 2 * Math.PI / n;
+    const targetAngle = (3.5 + Math.random() * 2) * 2 * Math.PI; // 3.5-5.5 full spins for a longer, smoother effect
+    // Pointer is at -Math.PI/2 (top). Align center of selected segment to pointer.
+    const finalAngle = targetAngle + (-Math.PI/2 - selectedIdx * segmentAngle - segmentAngle/2);
+    let start = null;
+    let duration = 4200 + Math.random()*800; // longer duration for smoother feel
+    let startAngle = angle;
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+    function animate(ts) {
+      if (!start) start = ts;
+      let elapsed = ts - start;
+      let progress = Math.min(1, elapsed/duration);
+      let eased = easeInOutCubic(progress);
+      angle = startAngle + (finalAngle-startAngle)*eased;
+      drawWheel(games);
+      if(progress < 1) {
+        spinTimeout = requestAnimationFrame(animate);
+      } else {
+        spinning = false;
+        angle = finalAngle;
+        drawWheel(games, selectedIdx);
+        setTimeout(()=>{
+          resultDiv.innerHTML = `<div style='margin-bottom:8px;'>🎉 <b>${games[selectedIdx].title}</b> was chosen!</div><button id='play-now-picked' style='background:linear-gradient(90deg,#ff00ff 10%,#00ffff 90%);color:#fff;padding:10px 26px;border-radius:12px;font-family:Orbitron,sans-serif;font-size:1.05rem;font-weight:bold;text-decoration:none;box-shadow:0 0 12px #ff00ff88, 0 0 4px #00ffff;display:inline-block;margin-top:4px;cursor:pointer;'>PLAY NOW</button>`;
+
+          // Attach handler to PLAY NOW button in result
+          setTimeout(() => {
+            const pickedBtn = document.getElementById('play-now-picked');
+            if (pickedBtn && games[selectedIdx] && games[selectedIdx].cardElem) {
+              let url = '';
+              // Try to extract from onclick of the card
+              const onclick = games[selectedIdx].cardElem.getAttribute('onclick');
+              if (onclick) {
+                const match = onclick.match(/openGame\(['"]([^'"]+)/);
+                if (match) url = match[1];
+              }
+              // If not found, try from the card's play-now-btn
+              const origPlayBtn = games[selectedIdx].cardElem.querySelector('.play-now-btn');
+              if (!url && origPlayBtn && origPlayBtn.getAttribute('onclick')) {
+                const match = origPlayBtn.getAttribute('onclick').match(/openGame\(['"]([^'"]+)/);
+                if (match) url = match[1];
+              }
+              if (url) {
+                pickedBtn.onclick = function(e) {
+                  e.preventDefault();
+                  openGame(url);
+                };
+              }
+            }
+          }, 0);
+
+          // Show the selected game card below the wheel
+          setTimeout(() => {
+            if (cardPreview && games[selectedIdx] && games[selectedIdx].cardElem) {
+              cardPreview.innerHTML = '';
+              const clone = games[selectedIdx].cardElem.cloneNode(true);
+              clone.style.margin = '0 auto 16px auto';
+              clone.style.maxWidth = '340px';
+              clone.style.boxShadow = '0 0 24px #ff00ff88, 0 0 8px #00ffff';
+              cardPreview.appendChild(clone);
+              // Fix the PLAY NOW button in the card preview
+              const playBtn = clone.querySelector('.play-now-btn');
+              let url = '';
+              // Try to extract from onclick of the card
+              const onclick = games[selectedIdx].cardElem.getAttribute('onclick');
+              if (onclick) {
+                const match = onclick.match(/openGame\(['"]([^'"]+)/);
+                if (match) url = match[1];
+              }
+              // If not found, try from playBtn's onclick
+              if (!url && playBtn && playBtn.getAttribute('onclick')) {
+                const match = playBtn.getAttribute('onclick').match(/openGame\(['"]([^'"]+)/);
+                if (match) url = match[1];
+              }
+              if (playBtn && url) {
+                playBtn.onclick = function(e) {
+                  e.preventDefault();
+                  openGame(url);
+                };
+              }
+            }
+          }, 700);
+        }, 700);
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+
+  // Open modal
+  spinBtn.addEventListener('click', function() {
+    games = fetchGames();
+    if(games.length === 0) {
+      alert('No games found to spin!');
+      return;
+    }
+    angle = 0;
+    selectedIdx = -1;
+    drawWheel(games);
+    resultDiv.innerHTML = '';
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  });
+  // Close modal
+  closeBtn.addEventListener('click', function() {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+    if(spinTimeout) clearTimeout(spinTimeout);
+    spinning = false;
+    angle = 0;
+  });
+  // Spin
+  spinButton.addEventListener('click', function() {
+    if(!spinning && games.length > 0) spinWheel();
+  });
+  // Close modal on outside click
+  modal.addEventListener('click', function(e) {
+    if(e.target === modal) closeBtn.click();
+  });
+})();
 </script>
 </body>
 </html>
