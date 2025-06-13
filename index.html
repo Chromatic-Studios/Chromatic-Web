@@ -458,7 +458,7 @@ body {
     }
 
     .gradient-button:hover {
-      background: linear-gradient(90deg,#ff00ff,#00ffff);
+      background: linear-gradient(90deg,#ff00ff,#00ffff, 100%);
        -webkit-mask-image: text;
       -webkit-mask-repeat: no-repeat;
       -webkit-mask-position: center;
@@ -466,12 +466,12 @@ body {
       color: transparent;
       background-clip: text;
       box-shadow: 0 0 128px #ff00ff;
+      animation: animatedBorder 2s ease-in-out infinite;
     }
 
     .gradient-button:hover::before {
       opacity: 1;
     }
-
 
 
       .gradient-border {
@@ -505,7 +505,7 @@ body {
   position: absolute;
   background: linear-gradient(270deg, #ff00ff, #00ffff);
   background-size: 200% 200%;
-  animation: animatedBorder 2s ease-in-out infinite;
+  animation: animatedBorder 1s ease-in-out infinite;
   z-index: -1;
   border-radius: 16px;
 }
