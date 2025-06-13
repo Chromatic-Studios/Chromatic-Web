@@ -3712,13 +3712,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
             </select>
           </div>
           <div style="display: flex; flex-wrap: wrap; gap: 22px; align-items: center;">
-            <label style="min-width: 100px;">Neon Glow:</label>
-            <input id="toggle-neon" type="checkbox" style="accent-color: #ff00ff; width: 20px; height: 20px;" />
-            <label style="min-width: 100px;">Matrix Rain:</label>
-            <input id="toggle-matrix" type="checkbox" style="accent-color: #00ffff; width: 20px; height: 20px;" />
-            <label style="min-width: 100px;">Sidebar Labels:</label>
-            <input id="toggle-sidebar-labels" type="checkbox" style="accent-color: #ff00ff; width: 20px; height: 20px;" />
-          </div>
+        
           <div style="display: flex; flex-wrap: wrap; gap: 22px; align-items: center;">
             <label for="theme-select" style="min-width: 100px;">Theme:</label>
             <select id="theme-select" style="flex:1; border-radius: 8px; padding: 10px 14px; border: 1.5px solid #ff00ff; background: #181828; color: #ff00ff; font-family: 'Orbitron',sans-serif; font-size: 1.1rem;">
@@ -3731,10 +3725,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
             <label>Sound FX:</label>
             <input id="toggle-sound" type="checkbox" style="accent-color: #ff00ff; width: 20px; height: 20px;" />
           </div>
-          <div style="margin: 12px 0 0 0;">
-          
-            <div id="avatar-picker" style="display: flex; gap: 14px; margin: 10px 0 0 0; align-items: center;"></div>
-          </div>
+
           <div style="margin: 18px 0 0 0; display: flex; align-items: center; gap: 18px;">
             <button id="surprise-btn" type="button" style="background: linear-gradient(90deg, #ff00ff, #00ffff); color: #fff; border: none; border-radius: 8px; padding: 10px 28px; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.2s; box-shadow: 0 0 12px #ff00ff99, 0 0 4px #00ffff;">Surprise Me</button>
             <span id="surprise-joke" style="color:#ff00ff; font-size:1.09rem; margin-left:10px;"></span>
@@ -3749,6 +3740,20 @@ body, .container, .header, .tabs, .tab-content, .footer {
 
     <!-- FontAwesome for icons -->
     <script src="https://kit.fontawesome.com/5e6c40d9c6.js" crossorigin="anonymous"></script>
+    <style>
+      .network-background {
+        position: fixed;
+        top: 0; left: 0; width: 100vw; height: 100vh;
+        z-index: -1;
+        pointer-events: none;
+        background: #0a1550;
+      }
+      .network-canvas {
+        width: 100vw; height: 100vh;
+        display: block;
+      }
+    </style>
+
     <!-- Games Tab JS (inlined) -->
     <script>
 // Cromatic Games Tab Integration Script (inlined)
@@ -3805,7 +3810,100 @@ document.addEventListener('DOMContentLoaded', function() {
             this.onerror = null;
         };
     });
-    // --- Game Search Functionality ---
+    // --- Network Background Animation (Embedded) ---
+    function createNetworkBackground() {
+      const body = document.body;
+      // Create container
+      const networkContainer = document.createElement('div');
+      networkContainer.className = 'network-background';
+      // Create canvas
+      const canvas = document.createElement('canvas');
+      canvas.className = 'network-canvas';
+      canvas.id = 'network-canvas';
+      // Add to DOM
+      networkContainer.appendChild(canvas);
+      body.insertBefore(networkContainer, body.firstChild);
+      // Initialize the animation
+      initNetworkAnimation();
+    }
+    function initNetworkAnimation() {
+      const canvas = document.getElementById('network-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      // Set canvas size
+      const resizeCanvas = () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      };
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+      // Network nodes and connections
+      const nodes = [];
+      const maxNodes = 150;
+      const connectionDistance = 120;
+      for (let i = 0; i < maxNodes; i++) {
+        nodes.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 0.8 + 0.4,
+          vx: Math.random() * 0.4 - 0.2,
+          vy: Math.random() * 0.4 - 0.2
+        });
+      }
+      const animate = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < nodes.length; i++) {
+          const node = nodes[i];
+          node.x += node.vx;
+          node.y += node.vy;
+          if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+          if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+          ctx.fill();
+          for (let j = i + 1; j < nodes.length; j++) {
+            const node2 = nodes[j];
+            const dx = node.x - node2.x;
+            const dy = node.y - node2.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < connectionDistance) {
+              const opacity = 1 - (distance / connectionDistance);
+              ctx.beginPath();
+              ctx.moveTo(node.x, node.y);
+              ctx.lineTo(node2.x, node2.y);
+              ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.2})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(animate);
+      };
+      animate();
+    }
+    // --- Animated Background Toggle Handler (Robust) ---
+    // --- Unified Animated Background Toggle Handler ---
+    function updateNetworkBackground() {
+      const animBg = document.getElementById('toggle-anim-bg')?.checked;
+      document.querySelectorAll('.network-background').forEach(bg => bg.remove());
+      if (animBg) createNetworkBackground();
+    }
+    // Attach handler once
+    document.addEventListener('DOMContentLoaded', function() {
+      const animBgToggle = document.getElementById('toggle-anim-bg');
+      if (animBgToggle) animBgToggle.addEventListener('change', updateNetworkBackground);
+      // Initial run after settings load
+      setTimeout(updateNetworkBackground, 0);
+    });
+    // If you use tab switching, re-run update when settings tab is shown
+    document.addEventListener('click', function(e) {
+      if (e.target && (e.target.id === 'tab-settings-btn' || (e.target.closest && e.target.closest('#tab-settings-btn')))) {
+        setTimeout(updateNetworkBackground, 100); // Wait for DOM update
+      }
+    });
+// END Animated BG section
+
     const searchInput = document.getElementById('game-search');
     if (searchInput) {
         searchInput.addEventListener('input', function() {
@@ -4349,6 +4447,8 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('theme-select').value = theme;
       document.getElementById('toggle-anim-bg').checked = animBg;
       document.getElementById('toggle-sound').checked = sound;
+      // Update animated background immediately when settings are loaded
+      updateNetworkBackground();
       // Highlight avatar
       if (document.getElementById('avatar-picker')) {
         Array.from(document.getElementById('avatar-picker').children).forEach(img => {
@@ -5185,10 +5285,27 @@ document.addEventListener('DOMContentLoaded', function() {
   <button id="profile-dropdown-btn" style="background:none;border:none;outline:none;cursor:pointer;padding:0 0 0 6px;display:flex;align-items:center;">
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="#ff00ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
-<div id="profile-dropdown-menu" style="display:none;position:absolute;top:60px;right:0;background:rgba(24,24,40,0.98);border-radius:12px;box-shadow:0 0 16px #ff00ff99,0 0 6px #00ffff66;padding:10px 0;min-width:150px;z-index:10000;">
+<div id="profile-dropdown-menu" class="profile-dropdown-menu" style="position:absolute;top:60px;right:0;background:rgba(24,24,40,0.98);border-radius:12px;box-shadow:0 0 16px #ff00ff99,0 0 6px #00ffff66;padding:10px 0;min-width:180px;z-index:10000;opacity:0;pointer-events:none;transform:translateY(-10px);transition:opacity 0.25s cubic-bezier(.4,0,.2,1),transform 0.25s cubic-bezier(.4,0,.2,1);">
   <button id="customize-profile-btn" style="width:100%;background:none;border:none;color:#ff00ff;font-family:'Orbitron',sans-serif;font-size:1rem;padding:10px 20px;text-align:left;cursor:pointer;transition:background 0.2s;">Customize</button>
+  
 </div>
 </div>
+<style>
+#corner-profile:hover .profile-dropdown-menu,
+#corner-profile:focus-within .profile-dropdown-menu {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: translateY(0) !important;
+  display: block !important;
+}
+.profile-dropdown-menu {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  display: block;
+  transition: opacity 0.25s cubic-bezier(.4,0,.2,1), transform 0.25s cubic-bezier(.4,0,.2,1);
+}
+</style>
 
 <!-- Hidden Customize Tab/Modal -->
 <div id="customize-tab" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(10,21,80,0.96);z-index:20000;backdrop-filter:blur(8px);align-items:center;justify-content:center;">
@@ -5299,9 +5416,16 @@ document.addEventListener('DOMContentLoaded', function() {
       img.style.border = '2px solid #33344d';
       img.style.transition = 'border 0.2s';
       img.style.marginRight = '2px';
+      // Highlight the currently selected avatar
+      const currentAvatar = localStorage.getItem('profileAvatar') || avatars[0];
+      if (img.src === currentAvatar) {
+        img.style.border = '2.5px solid #ff00ff';
+      }
       img.onclick = () => {
         Array.from(avatarPicker.children).forEach(child => child.style.border = '2px solid #33344d');
         img.style.border = '2.5px solid #ff00ff';
+        localStorage.setItem('profileAvatar', img.src);
+        if(window.updateCornerProfile) window.updateCornerProfile();
       };
       avatarPicker.appendChild(img);
     });
