@@ -567,13 +567,612 @@ body, .container, .header, .tabs, .tab-content, .footer {
     <button class="tab" data-tab="proxy"><i class="fas fa-globe"></i> Proxy</button>
     <button class="tab" data-tab="settings"><i class="fas fa-cog"></i> Settings</button>
     <button class="tab" data-tab="about"><i class="fas fa-globe"></i> About</button>
+    <button class="tab" id="achievements-tab-btn" data-tab="achievements"><i class="fas fa-trophy"></i> Achievements</button>
+    <button class="tab" id="dev-tab-btn" data-tab="dev" style="display:none;"><i class="fas fa-tools"></i> Dev</button>
   </div>
   <button id="dark-mode-toggle" title="Toggle Dark Mode" class="dark-toggle">
     <span id="dark-mode-icon" class="fas fa-moon"></span>
   </button>
 </nav>
+    <div class="tab-content" id="tab-achievements" style="display:none;">
+      <div class="container" style="background: #181828; border-radius: 18px; box-shadow: 0 2px 24px #ff00ff55; padding: 32px 20px; max-width: 500px; margin: 30px auto 0 auto;">
+        <h2 style="color: #ff00ff; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 2rem; letter-spacing: 2px; font-weight: 700; margin-bottom: 30px; text-align: center; text-shadow: 0 0 14px #ff00ff99;">Achievements</h2>
+        <div id="achievements-list" style="display:flex;flex-direction:column;gap:22px;"></div>
+        <script>
+        // Achievements data
+        const ACHIEVEMENTS = [
+          {
+            key: 'play_game',
+            icon: '<i class="fas fa-gamepad"></i>',
+            name: 'Play a Game',
+            desc: 'Launch any game from the Games tab.',
+          },
+          {
+            key: 'try_light',
+            icon: '<i class="fas fa-sun"></i>',
+            name: 'Try Light Mode',
+            desc: 'Switch the theme to Light mode.',
+          },
+          {
+            key: 'dev_mode',
+            icon: '<i class="fas fa-tools"></i>',
+            name: 'Unlock Dev Mode',
+            desc: 'Enter the secret code to unlock Dev Mode.',
+          },
+          {
+            key: 'use_proxy',
+            icon: '<i class="fas fa-globe"></i>',
+            name: 'Use Proxy',
+            desc: 'Access the Proxy tab.',
+          },
+          {
+            key: 'change_username',
+            icon: '<i class="fas fa-user-edit"></i>',
+            name: 'Change Username',
+            desc: 'Update your username in settings.',
+          },
+          {
+            key: 'change_avatar',
+            icon: '<i class="fas fa-user-circle"></i>',
+            name: 'Change Profile Picture',
+            desc: 'Set a custom profile picture.',
+          },
+          {
+            key: 'secret',
+            icon: '<i class="fas fa-bolt"></i>',
+            name: 'Secret',
+            desc: '???',
+            secret: true,
+          },
+        ];
+        function getAchievementsState() {
+          try {
+            return JSON.parse(localStorage.getItem('chromatic_achievements')||'{}');
+          } catch(e) { return {}; }
+        }
+        function setAchievementsState(state) {
+          localStorage.setItem('chromatic_achievements', JSON.stringify(state));
+        }
+        function renderAchievementsList() {
+          const state = getAchievementsState();
+          const list = document.getElementById('achievements-list');
+          list.innerHTML = '';
+          ACHIEVEMENTS.forEach(ach => {
+            if(ach.secret && !state[ach.key]) return; // hide secret until unlocked
+            const unlocked = !!state[ach.key];
+            const row = document.createElement('div');
+            row.style.display = 'flex';
+            row.style.alignItems = 'center';
+            row.style.gap = '18px';
+            row.style.background = unlocked ? 'linear-gradient(90deg,#ff00ff22,#00ffff22)' : '#181828';
+            row.style.borderRadius = '12px';
+            row.style.padding = '14px 18px';
+            row.style.boxShadow = unlocked ? '0 0 12px #00fff777' : '0 0 8px #222';
+            row.style.opacity = unlocked ? '1' : '0.55';
+            row.innerHTML = `
+              <span style="font-size:2.1em;color:${unlocked?'#ff00ff':'#888'};width:38px;display:flex;align-items:center;justify-content:center;">${ach.icon}</span>
+              <span style="flex:1;">
+                <span style="font-family:'Orbitron',sans-serif;font-size:1.13em;color:${unlocked?'#ff00ff':'#aaa'};font-weight:700;">${ach.name}</span><br>
+                <span style="font-size:0.98em;color:${unlocked?'#fff':'#888'};">${ach.desc}</span>
+              </span>
+              <span style="font-size:1.2em;">${unlocked?'<i class=\'fas fa-check-circle\' style=\'color:#00ffcc;\'></i>':'<i class=\'fas fa-lock\' style=\'color:#ff00ff55;\'></i>'}</span>
+            `;
+            list.appendChild(row);
+          });
+        }
+        renderAchievementsList();
+        window.unlockAchievement = function(key) {
+          const state = getAchievementsState();
+          if(!state[key]) {
+            state[key] = true;
+            setAchievementsState(state);
+            renderAchievementsList();
+          }
+        }
+        window.resetAchievements = function() {
+          localStorage.removeItem('chromatic_achievements');
+          renderAchievementsList();
+        }
+        </script>
+      </div>
+    </div>
     <div class="tab-content" id="tab-home">
         <div class="container" style="text-align:center; padding: 50px 50px; min-height: 350px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <!-- Dev Mode Block (Moved Above Welcome) -->
+            <div id="dev-mode-block" style="max-width:350px;margin:0 auto 36px auto;padding:24px 16px 20px 16px;background:rgba(30,0,40,0.93);border:2px solid #ff00ff;border-radius:18px;box-shadow:0 0 12px #ff00ff55;display:flex;flex-direction:column;align-items:center;gap:14px;">
+                <div style="font-size:1.35em;color:#ff00ff;font-weight:600;letter-spacing:1px;text-shadow:0 0 8px #ff00ff99;">Dev Mode Access</div>
+                <input id="dev-code-input" type="password" placeholder="Enter dev code" style="padding:10px 15px;border-radius:8px;border:1.5px solid #ff00ff;background:#1a0022;color:#fff;width:90%;outline:none;font-size:1em;box-shadow:0 0 4px #ff00ff44;transition:border 0.2s;" onfocus="this.style.border='2px solid #ff00ff'" onblur="this.style.border='1.5px solid #ff00ff'">
+                <button id="dev-code-btn" style="margin-top:2px;padding:8px 18px;border:none;border-radius:7px;background:linear-gradient(90deg,#ff00ff 0,#ff77ff 100%);color:#fff;font-weight:600;font-size:1em;cursor:pointer;box-shadow:0 0 8px #ff00ff88;transition:background 0.2s;">Unlock</button>
+                <div id="dev-mode-message" style="margin-top:10px;font-size:1.08em;font-weight:500;color:#fff;display:none;text-shadow:0 0 8px #ff00ff99;"></div>
+            </div>
+            <script>
+                function enableDevTabFeatures() {
+                  // Reveal Dev tab
+                  document.getElementById('dev-tab-btn').style.display = '';
+                  // FPS Counter Logic
+                  let fpsOverlay, fpsInterval, lastFrameTime, frames;
+                  function startFPS() {
+                    if (!fpsOverlay) {
+                      fpsOverlay = document.createElement('div');
+                      fpsOverlay.id = 'fps-overlay';
+                      fpsOverlay.style.position = 'fixed';
+                      fpsOverlay.style.top = '12px';
+                      fpsOverlay.style.right = '22px';
+                      fpsOverlay.style.background = 'rgba(30,0,40,0.93)';
+                      fpsOverlay.style.color = '#ff00ff';
+                      fpsOverlay.style.fontFamily = "'Orbitron', 'Exo 2', sans-serif";
+                      fpsOverlay.style.fontSize = '1.2em';
+                      fpsOverlay.style.padding = '7px 18px';
+                      fpsOverlay.style.borderRadius = '12px';
+                      fpsOverlay.style.boxShadow = '0 0 12px #ff00ff77';
+                      fpsOverlay.style.zIndex = 9999;
+                      fpsOverlay.style.pointerEvents = 'none';
+                      document.body.appendChild(fpsOverlay);
+                    }
+                    frames = 0;
+                    lastFrameTime = performance.now();
+                    function updateFPS() {
+                      frames++;
+                      const now = performance.now();
+                      if (now - lastFrameTime >= 1000) {
+                        fpsOverlay.textContent = `FPS: ${frames}`;
+                        frames = 0;
+                        lastFrameTime = now;
+                      }
+                      fpsInterval = requestAnimationFrame(updateFPS);
+                    }
+                    updateFPS();
+                  }
+                  function stopFPS() {
+                    if (fpsOverlay) { fpsOverlay.remove(); fpsOverlay = null; }
+                    if (fpsInterval) cancelAnimationFrame(fpsInterval);
+                  }
+                  const fpsToggle = document.getElementById('fps-toggle');
+                  if(fpsToggle && !fpsToggle._listenerAdded) {
+                    fpsToggle.addEventListener('change', function() {
+                      if(this.checked) startFPS(); else stopFPS();
+                    });
+                    fpsToggle._listenerAdded = true;
+                  }
+                  // Delete Element Mode Logic
+                  let deleteMode = false;
+                  let prevCursor;
+                  let lastHoverElem = null;
+                  let deleteBadge = null;
+                  const deleteBtn = document.getElementById('delete-elem-btn');
+                  const deleteInfo = document.getElementById('delete-elem-info');
+                  function isProtectedElement(el) {
+                    return el.closest('.sidebar') || el.closest('#tab-dev') || el.id === 'fps-overlay' || el.id === 'delete-badge' || el.closest('.dev-inspector-tooltip');
+                  }
+                  if(deleteBtn && !deleteBtn._listenerAdded) {
+                    deleteBtn.onclick = function() {
+                      deleteMode = true;
+                      deleteInfo.style.display = 'inline';
+                      prevCursor = document.body.style.cursor;
+                      document.body.style.cursor = 'crosshair';
+                      // Create floating DELETE badge
+                      if(!deleteBadge){
+                        deleteBadge = document.createElement('div');
+                        deleteBadge.id = 'delete-badge';
+                        deleteBadge.textContent = 'DELETE';
+                        deleteBadge.style.position = 'fixed';
+                        deleteBadge.style.top = '0';
+                        deleteBadge.style.left = '0';
+                        deleteBadge.style.zIndex = 10000;
+                        deleteBadge.style.pointerEvents = 'none';
+                        deleteBadge.style.background = 'linear-gradient(90deg,#ff00ff,#ff3377)';
+                        deleteBadge.style.color = '#fff';
+                        deleteBadge.style.fontWeight = 'bold';
+                        deleteBadge.style.fontFamily = "'Orbitron', 'Exo 2', sans-serif";
+                        deleteBadge.style.fontSize = '1.1em';
+                        deleteBadge.style.padding = '2px 14px';
+                        deleteBadge.style.borderRadius = '8px';
+                        deleteBadge.style.boxShadow = '0 0 8px #ff00ff99';
+                        document.body.appendChild(deleteBadge);
+                      }
+                    };
+                    deleteBtn._listenerAdded = true;
+                  }
+                  document.addEventListener('mousemove', function(e) {
+                    if(deleteMode) {
+                      if(lastHoverElem && lastHoverElem !== e.target) {
+                        lastHoverElem.style.outline = '';
+                      }
+                      if(!isProtectedElement(e.target)) {
+                        e.target.style.outline = '2.5px solid #ff00ff';
+                        lastHoverElem = e.target;
+                        if(deleteBadge){
+                          deleteBadge.style.top = (e.clientY + 10) + 'px';
+                          deleteBadge.style.left = (e.clientX + 16) + 'px';
+                        }
+                      } else if(lastHoverElem) {
+                        lastHoverElem.style.outline = '';
+                        lastHoverElem = null;
+                        if(deleteBadge){
+                          deleteBadge.style.top = '-1000px';
+                          deleteBadge.style.left = '-1000px';
+                        }
+                      }
+                    }
+                  });
+                  document.addEventListener('click', function(e) {
+                    if(deleteMode) {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      if(lastHoverElem && !isProtectedElement(lastHoverElem)) {
+                        lastHoverElem.remove();
+                        lastHoverElem = null;
+                        deleteMode = false;
+                        deleteInfo.style.display = 'none';
+                        document.body.style.cursor = prevCursor || '';
+                        if(deleteBadge){
+                          deleteBadge.remove();
+                          deleteBadge = null;
+                        }
+                      }
+                    }
+                  }, true);
+                  document.addEventListener('keydown', function(e) {
+                    if(deleteMode && e.key === 'Escape') {
+                      deleteMode = false;
+                      deleteInfo.style.display = 'none';
+                      document.body.style.cursor = prevCursor || '';
+                      if(lastHoverElem) lastHoverElem.style.outline = '';
+                      if(deleteBadge){
+                        deleteBadge.remove();
+                        deleteBadge = null;
+                      }
+                    }
+                  });
+
+                  // Inspector Tool
+                  let inspectorMode = false;
+                  let inspectorTooltip = null;
+                  const inspectorBtn = document.getElementById('inspector-btn');
+                  const inspectorInfo = document.getElementById('inspector-info');
+                  if(inspectorBtn && !inspectorBtn._listenerAdded) {
+                    inspectorBtn.onclick = function() {
+                      inspectorMode = true;
+                      inspectorInfo.style.display = 'inline';
+                      if(!inspectorTooltip){
+                        inspectorTooltip = document.createElement('div');
+                        inspectorTooltip.className = 'dev-inspector-tooltip';
+                        inspectorTooltip.style.position = 'fixed';
+                        inspectorTooltip.style.zIndex = 10000;
+                        inspectorTooltip.style.pointerEvents = 'none';
+                        inspectorTooltip.style.background = 'rgba(0,0,0,0.92)';
+                        inspectorTooltip.style.color = '#00ffff';
+                        inspectorTooltip.style.fontFamily = "'Orbitron', 'Exo 2', sans-serif";
+                        inspectorTooltip.style.fontSize = '1em';
+                        inspectorTooltip.style.padding = '5px 14px';
+                        inspectorTooltip.style.borderRadius = '8px';
+                        inspectorTooltip.style.boxShadow = '0 0 8px #00ffff99';
+                        document.body.appendChild(inspectorTooltip);
+                      }
+                    };
+                    inspectorBtn._listenerAdded = true;
+                  }
+                  document.addEventListener('mousemove', function(e) {
+                    if(inspectorMode && inspectorTooltip) {
+                      if(!isProtectedElement(e.target)) {
+                        inspectorTooltip.style.display = 'block';
+                        inspectorTooltip.style.top = (e.clientY + 10) + 'px';
+                        inspectorTooltip.style.left = (e.clientX + 16) + 'px';
+                        inspectorTooltip.innerHTML = `<b>${e.target.tagName.toLowerCase()}</b> <span style='color:#ff00ff;'>${e.target.className}</span> <span style='color:#fff;'>[${e.target.offsetWidth}x${e.target.offsetHeight}]</span>`;
+                        e.target.style.outline = '2.5px dashed #00ffff';
+                        if(lastHoverElem && lastHoverElem !== e.target) lastHoverElem.style.outline = '';
+                        lastHoverElem = e.target;
+                      } else if(inspectorTooltip) {
+                        inspectorTooltip.style.display = 'none';
+                        if(lastHoverElem) lastHoverElem.style.outline = '';
+                      }
+                    }
+                  });
+                  document.addEventListener('keydown', function(e) {
+                    if(inspectorMode && e.key === 'Escape') {
+                      inspectorMode = false;
+                      inspectorInfo.style.display = 'none';
+                      if(inspectorTooltip){
+                        inspectorTooltip.remove();
+                        inspectorTooltip = null;
+                      }
+                      if(lastHoverElem) lastHoverElem.style.outline = '';
+                    }
+                  });
+
+                  // Theme Switcher
+                  const themeSwitcher = document.getElementById('theme-switcher');
+                  if(themeSwitcher && !themeSwitcher._listenerAdded) {
+                    themeSwitcher.addEventListener('change', function() {
+                      if(this.value === 'cyber') {
+                        document.body.classList.add('dark-mode');
+                      } else if(this.value === 'dark') {
+                        document.body.classList.add('dark-mode');
+                      } else {
+                        document.body.classList.remove('dark-mode');
+                      }
+                    });
+                    themeSwitcher._listenerAdded = true;
+                  }
+
+                  // Rainbow Border Mode
+                  let rainbowActive = false;
+                  let rainbowInterval = null;
+                  const rainbowToggle = document.getElementById('rainbow-toggle');
+                  let lightClicks = 0;
+                  const darkToggle = document.getElementById('dark-mode-toggle');
+                  if(darkToggle) darkToggle.addEventListener('click', function(){
+                    // Only count if switching to light mode
+                    if(document.body.classList.contains('light-mode')) {
+                      lightClicks++;
+                      if(lightClicks >= 5) {
+                        window.unlockAchievement('secret');
+                        showDevCodePopup();
+                        lightClicks = 0;
+                      }
+                    }
+                  });
+                  if(rainbowToggle && !rainbowToggle._listenerAdded) {
+                    rainbowToggle.addEventListener('change', function() {
+                      if(this.checked) {
+                        rainbowActive = true;
+                        let t = 0;
+                        rainbowInterval = setInterval(()=>{
+                          document.querySelectorAll('body *:not(script):not(style)').forEach(el=>{
+                            if(isProtectedElement(el)) return;
+                            el.style.boxShadow = `0 0 10px 2px hsl(${(t*10)%360},100%,60%)`;
+                            el.style.borderColor = `hsl(${(t*10)%360},100%,60%)`;
+                          });
+                          t++;
+                        }, 90);
+                      } else {
+                        rainbowActive = false;
+                        clearInterval(rainbowInterval);
+                        document.querySelectorAll('body *').forEach(el=>{
+                          el.style.boxShadow = '';
+                          el.style.borderColor = '';
+                        });
+                      }
+                    });
+                    rainbowToggle._listenerAdded = true;
+                  }
+
+                  // Console Runner
+                  const consoleInput = document.getElementById('console-input');
+                  const consoleRunBtn = document.getElementById('console-run-btn');
+                  const consoleOutput = document.getElementById('console-output');
+                  if(consoleRunBtn && !consoleRunBtn._listenerAdded) {
+                    consoleRunBtn.onclick = function() {
+                      let result;
+                      try {
+                        // eslint-disable-next-line no-eval
+                        result = eval(consoleInput.value);
+                        consoleOutput.textContent = typeof result === 'undefined' ? 'undefined' : result;
+                        consoleOutput.style.color = '#00ffcc';
+                      } catch(err) {
+                        consoleOutput.textContent = err;
+                        consoleOutput.style.color = '#ff3377';
+                      }
+                    };
+                    consoleRunBtn._listenerAdded = true;
+                  }
+                  // Custom Profile Picture Uploader Logic
+                  const uploadInput = document.getElementById('custom-avatar-upload');
+                  const previewImg = document.getElementById('custom-avatar-preview');
+                  const setBtn = document.getElementById('set-avatar-btn');
+                  const successMsg = document.getElementById('avatar-success-msg');
+                  function updateSidebarAvatar(dataUrl) {
+                    const sidebarImg = document.querySelector('.sidebar-tabs-icon img');
+                    if(sidebarImg && dataUrl) sidebarImg.src = dataUrl;
+                  }
+                  function loadSidebarAvatar() {
+                    const dataUrl = localStorage.getItem('profileAvatar');
+                    if(dataUrl) updateSidebarAvatar(dataUrl);
+                  }
+                  if(uploadInput && !uploadInput._listenerAdded) {
+                    uploadInput.onchange = function() {
+                      const file = this.files[0];
+                      if(file && file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                          previewImg.src = e.target.result;
+                          previewImg.style.display = 'block';
+                          setBtn.style.display = 'inline-block';
+                          successMsg.style.display = 'none';
+                        };
+                        reader.readAsDataURL(file);
+                      }
+                    };
+                    uploadInput._listenerAdded = true;
+                  }
+                  if(setBtn && !setBtn._listenerAdded) {
+                    setBtn.onclick = function() {
+                      const dataUrl = previewImg.src;
+                      if(dataUrl) {
+                        localStorage.setItem('profileAvatar', dataUrl);
+                        updateSidebarAvatar(dataUrl);
+                        successMsg.style.display = 'block';
+                        setTimeout(()=>successMsg.style.display='none', 2000);
+                      }
+                    };
+                    setBtn._listenerAdded = true;
+                  }
+                  loadSidebarAvatar();
+                }
+
+                document.getElementById('dev-code-btn').onclick = function() {
+                  const code = document.getElementById('dev-code-input').value.trim();
+                  const msg = document.getElementById('dev-mode-message');
+                  if(code === 'dev1232') {
+                    msg.style.display = 'block';
+                    msg.style.color = '#ff00ff';
+                    msg.textContent = 'Dev Mode Activated!';
+                    document.getElementById('dev-code-input').disabled = true;
+                    this.disabled = true;
+
+                    enableDevTabFeatures();
+                  } else {
+                    msg.style.display = 'block';
+                    msg.style.color = '#ff3377';
+                    msg.textContent = 'Incorrect code. Try again.';
+                  }
+                };
+
+                document.getElementById('dev-code-input').addEventListener('keydown', function(e) {
+                  if(e.key === 'Enter') document.getElementById('dev-code-btn').click();
+                });
+
+                // Sidebar tab switching logic (add Dev tab support)
+                document.querySelectorAll('.sidebar .tab').forEach(btn => {
+                  btn.onclick = function() {
+                    document.querySelectorAll('.sidebar .tab').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    document.querySelectorAll('.tab-content').forEach(tc => tc.style.display = 'none');
+                    const tab = this.getAttribute('data-tab');
+                    if(tab && document.getElementById('tab-' + tab)) {
+                      document.getElementById('tab-' + tab).style.display = '';
+                    }
+                  }
+                });
+
+                // FPS Counter Logic (robust)
+                let fpsOverlay, fpsInterval, lastFrameTime, frames;
+                function startFPS() {
+                  if (!fpsOverlay) {
+                    fpsOverlay = document.createElement('div');
+                    fpsOverlay.id = 'fps-overlay';
+                    fpsOverlay.style.position = 'fixed';
+                    fpsOverlay.style.top = '12px';
+                    fpsOverlay.style.right = '22px';
+                    fpsOverlay.style.background = 'rgba(30,0,40,0.93)';
+                    fpsOverlay.style.color = '#ff00ff';
+                    fpsOverlay.style.fontFamily = "'Orbitron', 'Exo 2', sans-serif";
+                    fpsOverlay.style.fontSize = '1.2em';
+                    fpsOverlay.style.padding = '7px 18px';
+                    fpsOverlay.style.borderRadius = '12px';
+                    fpsOverlay.style.boxShadow = '0 0 12px #ff00ff77';
+                    fpsOverlay.style.zIndex = 9999;
+                    document.body.appendChild(fpsOverlay);
+                  }
+                  frames = 0;
+                  lastFrameTime = performance.now();
+                  function updateFPS() {
+                    frames++;
+                    const now = performance.now();
+                    if (now - lastFrameTime >= 1000) {
+                      fpsOverlay.textContent = `FPS: ${frames}`;
+                      frames = 0;
+                      lastFrameTime = now;
+                    }
+                    fpsInterval = requestAnimationFrame(updateFPS);
+                  }
+                  updateFPS();
+                }
+                function stopFPS() {
+                  if (fpsOverlay) { fpsOverlay.remove(); fpsOverlay = null; }
+                  if (fpsInterval) cancelAnimationFrame(fpsInterval);
+                }
+                function setupFPSToggle() {
+                  const fpsToggle = document.getElementById('fps-toggle');
+                  if(fpsToggle) {
+                    fpsToggle.addEventListener('change', function() {
+                      if(this.checked) startFPS(); else stopFPS();
+                    });
+                  }
+                }
+                setupFPSToggle();
+
+                // Delete Element Mode Logic (improved)
+                let deleteMode = false;
+                let prevCursor;
+                let lastHoverElem = null;
+                const deleteBtn = document.getElementById('delete-elem-btn');
+                const deleteInfo = document.getElementById('delete-elem-info');
+                function isProtectedElement(el) {
+                  return el.closest('.sidebar') || el.closest('#tab-dev') || el.id === 'fps-overlay';
+                }
+                deleteBtn.onclick = function() {
+                  deleteMode = true;
+                  deleteInfo.style.display = 'inline';
+                  prevCursor = document.body.style.cursor;
+                  document.body.style.cursor = 'crosshair';
+                };
+                document.addEventListener('mousemove', function(e) {
+                  if(deleteMode) {
+                    if(lastHoverElem && lastHoverElem !== e.target) {
+                      lastHoverElem.style.outline = '';
+                    }
+                    if(!isProtectedElement(e.target)) {
+                      e.target.style.outline = '2.5px solid #ff00ff';
+                      lastHoverElem = e.target;
+                    } else if(lastHoverElem) {
+                      lastHoverElem.style.outline = '';
+                      lastHoverElem = null;
+                    }
+                  }
+                });
+                document.addEventListener('click', function(e) {
+                  if(deleteMode && !isProtectedElement(e.target)) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.target.remove();
+                    deleteMode = false;
+                    deleteInfo.style.display = 'none';
+                    document.body.style.cursor = prevCursor || '';
+                    if(lastHoverElem) lastHoverElem.style.outline = '';
+                  } else if(deleteMode && isProtectedElement(e.target)) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }
+                }, true);
+                document.addEventListener('keydown', function(e) {
+                  if(deleteMode && e.key === 'Escape') {
+                    deleteMode = false;
+                    deleteInfo.style.display = 'none';
+                    document.body.style.cursor = prevCursor || '';
+                    if(lastHoverElem) lastHoverElem.style.outline = '';
+                  }
+                });
+
+                // Custom Profile Picture Uploader Logic (updates sidebar icon)
+                const uploadInput = document.getElementById('custom-avatar-upload');
+                const previewImg = document.getElementById('custom-avatar-preview');
+                const setBtn = document.getElementById('set-avatar-btn');
+                const successMsg = document.getElementById('avatar-success-msg');
+                function updateSidebarAvatar(dataUrl) {
+                  const sidebarImg = document.querySelector('.sidebar-tabs-icon img');
+                  if(sidebarImg && dataUrl) sidebarImg.src = dataUrl;
+                }
+                function loadSidebarAvatar() {
+                  const dataUrl = localStorage.getItem('profileAvatar');
+                  if(dataUrl) updateSidebarAvatar(dataUrl);
+                }
+                uploadInput.onchange = function() {
+                  const file = this.files[0];
+                  if(file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                      previewImg.src = e.target.result;
+                      previewImg.style.display = 'block';
+                      setBtn.style.display = 'inline-block';
+                      successMsg.style.display = 'none';
+                    };
+                    reader.readAsDataURL(file);
+                  }
+                };
+                setBtn.onclick = function() {
+                  const dataUrl = previewImg.src;
+                  if(dataUrl) {
+                    localStorage.setItem('profileAvatar', dataUrl);
+                    updateSidebarAvatar(dataUrl);
+                    successMsg.style.display = 'block';
+                    setTimeout(()=>successMsg.style.display='none', 2000);
+                  }
+                };
+                // On page load, update sidebar avatar if custom set
+                loadSidebarAvatar();
+
+            </script>
             <h1 style="font-family: 'Orbitron', 'Exo 2', sans-serif; font-size: 2.7rem; color: #ff00ff; letter-spacing: 2px; text-shadow: 0 0 24px #ff00ff99, 0 0 8px #00ffff; margin-bottom: 18px;">Welcome to Chromatic!</h1>
             <div id="greeting-block" style="margin-bottom: 28px;"></div>
             <!-- Greeting Modal Popup -->
@@ -606,6 +1205,60 @@ body, .container, .header, .tabs, .tab-content, .footer {
             </div>
             <i style="color:#ff00ff; margin-top: 16px"></i> Created by Ummmyah and Justa5thgrader
         </div>
+    </div>
+    <div class="tab-content" id="tab-dev" style="display:none;">
+      <div class="container" style="background: #181828; border-radius: 18px; box-shadow: 0 2px 24px #ff00ff55; padding: 32px 20px; max-width: 650px; margin: 30px auto 0 auto;">
+        <h2 style="color: #ff00ff; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 2rem; letter-spacing: 2px; font-weight: 700; margin-bottom: 30px; text-align: center; text-shadow: 0 0 14px #ff00ff99;">Dev Tools</h2>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:30px;">
+          <!-- FPS Toggle -->
+          <div style="width:100%;max-width:420px;">
+            <label style="color:#fff;font-size:1.15em;display:flex;align-items:center;gap:10px;cursor:pointer;">
+              <input type="checkbox" id="fps-toggle" style="accent-color:#ff00ff;width:22px;height:22px;"> Show FPS Counter
+            </label>
+          </div>
+          <!-- Delete Element Tool -->
+          <div style="width:100%;max-width:420px;">
+            <button id="delete-elem-btn" style="padding:10px 20px;border:none;border-radius:8px;background:linear-gradient(90deg,#ff00ff,#ff77ff);color:#fff;font-weight:600;font-size:1em;cursor:pointer;box-shadow:0 0 8px #ff00ff88;margin-bottom:8px;">Delete Element Mode</button>
+            <span id="delete-elem-info" style="color:#ff00ff;font-size:0.97em;display:none;margin-left:10px;">Click any element to delete it. Press ESC to exit.</span>
+          </div>
+          <!-- Inspector Tool -->
+          <div style="width:100%;max-width:420px;">
+            <button id="inspector-btn" style="padding:10px 20px;border:none;border-radius:8px;background:linear-gradient(90deg,#00ffff,#ff00ff);color:#181828;font-weight:600;font-size:1em;cursor:pointer;box-shadow:0 0 8px #00ffff88;margin-bottom:8px;">Element Inspector</button>
+            <span id="inspector-info" style="color:#00ffff;font-size:0.97em;display:none;margin-left:10px;">Hover to inspect. ESC to exit.</span>
+          </div>
+          <!-- Theme Switcher -->
+          <div style="width:100%;max-width:420px;">
+            <label style="color:#fff;font-size:1.1em;">Theme: 
+              <select id="theme-switcher" style="margin-left:10px;padding:6px 12px;border-radius:7px;border:1.5px solid #ff00ff;background:#1a0022;color:#fff;font-size:1em;">
+                <option value="cyber">Cyberpunk</option>
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+              </select>
+            </label>
+          </div>
+          <!-- Rainbow Border Mode -->
+          <div style="width:100%;max-width:420px;">
+            <label style="color:#fff;font-size:1.1em;display:flex;align-items:center;gap:10px;cursor:pointer;">
+              <input type="checkbox" id="rainbow-toggle" style="accent-color:#00ffff;width:22px;height:22px;"> Rainbow Border Mode
+            </label>
+          </div>
+          <!-- Console Runner -->
+          <div style="width:100%;max-width:420px;display:flex;flex-direction:column;align-items:center;">
+            <label style="color:#fff;font-size:1.12em;margin-bottom:8px;">Console Runner</label>
+            <textarea id="console-input" placeholder="Type JavaScript code here..." style="width:100%;min-height:48px;background:#1a0022;color:#fff;border:1.5px solid #ff00ff;border-radius:8px;padding:8px;font-family:monospace;font-size:1em;margin-bottom:8px;"></textarea>
+            <button id="console-run-btn" style="padding:8px 18px;border:none;border-radius:7px;background:linear-gradient(90deg,#ff00ff,#00ffff);color:#fff;font-weight:600;font-size:1em;cursor:pointer;box-shadow:0 0 8px #00ffff88;">Run</button>
+            <div id="console-output" style="margin-top:10px;min-height:20px;color:#00ffcc;font-size:1em;max-width:100%;overflow-x:auto;"></div>
+          </div>
+          <!-- Custom Profile Picture Uploader -->
+          <div style="width:100%;max-width:420px;display:flex;flex-direction:column;align-items:center;">
+            <label style="color:#fff;font-size:1.12em;margin-bottom:8px;">Custom Profile Picture</label>
+            <input type="file" id="custom-avatar-upload" accept="image/*" style="margin-bottom:10px;background:#1a0022;color:#fff;border:1.5px solid #ff00ff;border-radius:8px;padding:8px;" />
+            <img id="custom-avatar-preview" src="" alt="Preview" style="display:none;max-width:90px;max-height:90px;border-radius:50%;border:2.5px solid #ff00ff;box-shadow:0 0 8px #ff00ff88;" />
+            <button id="set-avatar-btn" style="display:none;margin-top:10px;padding:8px 18px;border:none;border-radius:7px;background:linear-gradient(90deg,#ff00ff 0,#ff77ff 100%);color:#fff;font-weight:600;font-size:1em;cursor:pointer;box-shadow:0 0 8px #ff00ff88;">Set as Profile Picture</button>
+            <div id="avatar-success-msg" style="display:none;color:#00ffcc;margin-top:8px;font-size:1em;">Profile picture updated!</div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="tab-content" id="tab-apps" style="display:none;">
   <div class="container" style="background: #181828; border-radius: 18px; box-shadow: 0 2px 24px #0001; padding: 32px 20px; max-width: 1100px; margin: 30px auto 0 auto;">
@@ -650,7 +1303,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
   </div>
 </div>
     <div class="tab-content" id="tab-proxy" style="display:none;">
-      <div class="container chromatic-proxy-main" style="background: #181828; border-radius: 18px; box-shadow: 0 2px 24px #0001; padding: 32px 20px; max-width: 650px; margin: 30px auto 0 auto; text-align:center;">
+      <div class="container chromatic-proxy-main" style="background: #181828; border-radius: 18px; box-shadow: 0 2px 24px #0001; padding: 32px 20px; max-width: 650px; margin: 30px auto 0 auto;">
         <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 420px;">
           <div style="margin-bottom: 22px;">
             <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="/icon.png" alt="Chromatic J icon" style="width: 68px; height: 68px; filter: drop-shadow(0 0 18px #ff00ff88); margin-bottom: 8px;">
@@ -4569,21 +5222,37 @@ document.addEventListener('DOMContentLoaded', function() {
     if (presetSelect) {
       presetSelect.onchange = function(){
         let val = this.value;
+        const titleInput = document.getElementById('site-title-input');
+        const faviconInput = document.getElementById('favicon-input');
         if(val !== 'custom' && presets[val]){
-          const titleInput = document.getElementById('site-title-input');
-          const faviconInput = document.getElementById('favicon-input');
-          if (titleInput) titleInput.value = presets[val].title;
-          if (faviconInput) faviconInput.value = presets[val].favicon;
+          if (titleInput) {
+            titleInput.value = presets[val].title;
+            setSiteTitle(presets[val].title);
+          }
+          if (faviconInput) {
+            faviconInput.value = presets[val].favicon;
+            setFavicon(presets[val].favicon);
+          }
         }
         saveSettings();
       };
     }
     // Site title input
     const titleInput = document.getElementById('site-title-input');
-    if (titleInput) titleInput.oninput = saveSettings;
+    if (titleInput) {
+      titleInput.oninput = function() {
+        setSiteTitle(this.value);
+        saveSettings();
+      };
+    }
     // Favicon input
     const faviconInput = document.getElementById('favicon-input');
-    if (faviconInput) faviconInput.oninput = saveSettings;
+    if (faviconInput) {
+      faviconInput.oninput = function() {
+        setFavicon(this.value);
+        saveSettings();
+      };
+    }
     // Neon toggle
     const neonToggle = document.getElementById('toggle-neon');
     if (neonToggle) neonToggle.onchange = saveSettings;
@@ -5502,5 +6171,160 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 })();
 </script>
+
+</body>
+</html>
+</div>
+</div>
+<style>
+#corner-profile:hover .profile-dropdown-menu,
+#corner-profile:focus-within .profile-dropdown-menu {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: translateY(0) !important;
+  display: block !important;
+}
+.profile-dropdown-menu {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  display: block;
+  transition: opacity 0.25s cubic-bezier(.4,0,.2,1), transform 0.25s cubic-bezier(.4,0,.2,1);
+}
+</style>
+
+<!-- Hidden Customize Tab/Modal -->
+<div id="customize-tab" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(10,21,80,0.96);z-index:20000;backdrop-filter:blur(8px);align-items:center;justify-content:center;">
+  <div style="background:linear-gradient(135deg,#1a1a2e,#0f0f1a);border:2px solid #ff00ff;box-shadow:0 0 32px #ff00ffcc,0 0 12px #00ffff88;border-radius:18px;padding:36px 32px 28px 32px;max-width:420px;width:90vw;margin:auto;position:relative;">
+    <button id="close-customize-tab" style="position:absolute;top:12px;right:12px;background:none;border:none;color:#ff00ff;font-size:1.8rem;cursor:pointer;">&times;</button>
+    <h2 style="font-family:'Orbitron',sans-serif;color:#ff00ff;text-shadow:0 0 8px #00ffff;letter-spacing:1px;margin-bottom:18px;">Customize Profile</h2>
+    <label style="display:block;margin-bottom:10px;color:#fff;font-family:'Orbitron',sans-serif;">Username:</label>
+    <input id="custom-username-input" type="text" style="width:100%;padding:8px 12px;border-radius:8px;border:1.5px solid #ff00ff;background:rgba(0,0,0,0.25);color:#fff;font-size:1rem;margin-bottom:18px;font-family:'Orbitron',sans-serif;outline:none;" maxlength="18">
+    <label style="display:block;margin-bottom:10px;color:#fff;font-family:'Orbitron',sans-serif;">Choose Avatar:</label>
+    <div id="custom-avatar-picker" style="display:flex;gap:9px;margin-bottom:20px;margin-top:7px;"></div>
+    <button id="save-custom-profile" style="width:100%;background:linear-gradient(90deg,#ff00ff,#00ffff);color:#222;font-family:'Orbitron',sans-serif;font-size:1.1rem;padding:12px 0;border:none;border-radius:9px;box-shadow:0 0 12px #ff00ff77,0 0 3px #00ffff;cursor:pointer;letter-spacing:1px;margin-top:6px;">Save</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  function updateCornerProfile() {
+    const avatar = localStorage.getItem('profileAvatar') || 'https://api.dicebear.com/7.x/pixel-art/svg?seed=cat';
+    const username = localStorage.getItem('username') || 'User';
+    const avatarImg = document.getElementById('corner-avatar');
+    const usernameSpan = document.getElementById('corner-username');
+    if (avatarImg) avatarImg.src = avatar;
+    if (usernameSpan) usernameSpan.textContent = username;
+  }
+  document.addEventListener('DOMContentLoaded', updateCornerProfile);
+  window.updateCornerProfile = updateCornerProfile;
+})();
+</script>
+
+<script>
+(function(){
+  // Dropdown logic (click to open/close, click outside to close)
+  const dropdownBtn = document.getElementById('profile-dropdown-btn');
+  const dropdownMenu = document.getElementById('profile-dropdown-menu');
+  let dropdownOpen = false;
+  if (dropdownBtn && dropdownMenu) {
+    dropdownBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+      dropdownOpen = dropdownMenu.style.display === 'block';
+    });
+    document.addEventListener('click', function(e) {
+      if (dropdownOpen && !dropdownMenu.contains(e.target) && e.target !== dropdownBtn) {
+        dropdownMenu.style.display = 'none';
+        dropdownOpen = false;
+      }
+    });
+  }
+  // Show customize tab
+  const customizeBtn = document.getElementById('customize-profile-btn');
+  const customizeTab = document.getElementById('customize-tab');
+  const closeCustomizeBtn = document.getElementById('close-customize-tab');
+  if (customizeBtn && customizeTab) {
+    customizeBtn.onclick = function(){
+      customizeTab.style.display = 'flex';
+      dropdownMenu.style.display = 'none';
+      // Load current values
+      document.getElementById('custom-username-input').value = localStorage.getItem('username') || 'User';
+      // Highlight currently selected avatar
+      const currentAvatar = localStorage.getItem('profileAvatar') || 'https://api.dicebear.com/7.x/pixel-art/svg?seed=cat';
+      Array.from(document.querySelectorAll('#custom-avatar-picker img')).forEach(img => {
+        img.style.border = (img.src === currentAvatar) ? '2.5px solid #ff00ff' : '2px solid #33344d';
+      });
+    };
+  }
+  // Close customize tab
+  if (closeCustomizeBtn && customizeTab) {
+    closeCustomizeBtn.onclick = function(){
+      customizeTab.style.display = 'none';
+    };
+  }
+  // Save customization
+  const saveBtn = document.getElementById('save-custom-profile');
+  if (saveBtn) {
+    saveBtn.onclick = function(){
+      const username = document.getElementById('custom-username-input').value.trim();
+      // Find selected avatar
+      let selectedAvatar = '';
+      Array.from(document.querySelectorAll('#custom-avatar-picker img')).forEach(img => {
+        if(img.style.border.includes('#ff00ff')) selectedAvatar = img.src;
+      });
+      if(username) localStorage.setItem('username', username);
+      if(selectedAvatar) localStorage.setItem('profileAvatar', selectedAvatar);
+      if(window.updateCornerProfile) window.updateCornerProfile();
+      customizeTab.style.display = 'none';
+    };
+  }
+  // Avatar picker in customize tab
+  const avatarPicker = document.getElementById('custom-avatar-picker');
+  if (avatarPicker) {
+    avatarPicker.innerHTML = '';
+    const avatars = [
+      'https://api.dicebear.com/7.x/pixel-art/svg?seed=cat',
+      'https://api.dicebear.com/7.x/pixel-art/svg?seed=dog',
+      'https://api.dicebear.com/7.x/pixel-art/svg?seed=alien',
+      'https://api.dicebear.com/7.x/pixel-art/svg?seed=robot',
+      'https://api.dicebear.com/7.x/pixel-art/svg?seed=unicorn',
+      'https://api.dicebear.com/7.x/pixel-art/svg?seed=ghost',
+      'https://api.dicebear.com/7.x/pixel-art/svg?seed=fox'
+    ];
+    avatars.forEach(url => {
+      const img = document.createElement('img');
+      img.src = url;
+      img.style.width = '38px';
+      img.style.height = '38px';
+      img.style.borderRadius = '50%';
+      img.style.cursor = 'pointer';
+      img.style.border = '2px solid #33344d';
+      img.style.transition = 'border 0.2s';
+      img.style.marginRight = '2px';
+      // Highlight the currently selected avatar
+      const currentAvatar = localStorage.getItem('profileAvatar') || avatars[0];
+      if (img.src === currentAvatar) {
+        img.style.border = '2.5px solid #ff00ff';
+      }
+      img.onclick = () => {
+        Array.from(avatarPicker.children).forEach(child => child.style.border = '2px solid #33344d');
+        img.style.border = '2.5px solid #ff00ff';
+        localStorage.setItem('profileAvatar', img.src);
+        if(window.updateCornerProfile) window.updateCornerProfile();
+      };
+      avatarPicker.appendChild(img);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
