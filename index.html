@@ -3685,53 +3685,63 @@ body, .container, .header, .tabs, .tab-content, .footer {
         </div>
     </div>
     <div class="tab-content" id="tab-settings" style="display:none;">
-  <div class="container" style="max-width:540px;margin:36px auto 0 auto;">
-    <h2 style="color:#ff00ff; font-family:'Orbitron',sans-serif; font-size:2rem; margin-bottom:24px;">Settings</h2>
-    <div style="margin-bottom:30px;">
-  <label for="preset-select" style="color:#00ffff; font-size:1.1rem;">Cloak:</label>
-  <select id="preset-select" style="background:#232336; color:#fff; border:1.5px solid #33344d; border-radius:8px; padding:8px 16px; font-size:1.1rem; margin-left:14px;">
-    <option value="custom">Custom</option>
-    <option value="classroom">Google Classroom</option>
-    <option value="docs">Google Docs</option>
-    <option value="slides">Google Slides</option>
-    <option value="canvas">Canvas</option>
-    <option value="desmos">Desmos</option>
-  </select>
-  <div style="margin-top:14px;">
-    <label style="color:#ff00ff; font-size:1.05rem;">Site Title:</label>
-    <input id="site-title-input" type="text" maxlength="32" style="background:#181828; color:#fff; border:1.5px solid #33344d; border-radius:8px; padding:8px 14px; font-size:1.1rem; margin-left:10px; width:220px;">
-  </div>
-  <div style="margin-top:14px;">
-    <label style="color:#ff00ff; font-size:1.05rem;">Favicon URL:</label>
-    <input id="favicon-input" type="text" maxlength="256" style="background:#181828; color:#fff; border:1.5px solid #33344d; border-radius:8px; padding:8px 14px; font-size:1.1rem; margin-left:10px; width:220px;">
-  </div>
-  <div style="margin-top:18px; display: flex; flex-wrap: wrap; gap: 18px;">
-    <div>
-      <label style="color:#00ffff; font-size:1.05rem;">Theme:</label>
-      <select id="theme-select" style="background:#232336; color:#fff; border:1.5px solid #33344d; border-radius:8px; padding:7px 12px; font-size:1.05rem; margin-left:10px;">
-        <option value="cyberpunk">Cyberpunk Pink</option>
-        <option value="galaxy">Galaxy Blue</option>
-      </select>
-    </div>
-    <div>
-      <label style="color:#00ffff; font-size:1.05rem;">Animated Background:</label>
-      <input id="toggle-anim-bg" type="checkbox" style="transform:scale(1.4); margin-left:10px;">
-    </div>
-    <div>
-      <label style="color:#00ffff; font-size:1.05rem;">Sound Effects:</label>
-      <input id="toggle-sound" type="checkbox" style="transform:scale(1.4); margin-left:10px;">
-    </div>
-  </div>
-  <div style="margin-top:18px;">
-    <label style="color:#ff00ff; font-size:1.05rem;">Profile Avatar:</label>
-    <div id="avatar-picker" style="display:flex;gap:10px;align-items:center;margin-top:6px;"></div>
-  </div>
-  <div style="margin-top:18px;">
-    <button id="surprise-btn" style="background:linear-gradient(90deg,#ff00ff,#00ffff);color:#181828;border:none;border-radius:8px;padding:8px 22px;font-family:'Orbitron',sans-serif;font-size:1.1rem;font-weight:bold;box-shadow:0 0 10px #ff00ff99,0 0 2px #fff;cursor:pointer;letter-spacing:1px;text-shadow:0 0 5px #00ffff;transition:background 0.2s, color 0.2s, transform 0.1s;">Surprise Me!</button>
-  </div>
-</div>
-    <div style="margin-bottom:30px;">
-     
+      <div class="container" style="background: linear-gradient(120deg, #181828 0%, #ff00ff22 100%); border-radius: 18px; box-shadow: 0 2px 24px #ff00ff33; padding: 38px 22px; max-width: 680px; margin: 30px auto 0 auto; color: #fff;">
+        <h2 style="color: #ff00ff; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 2rem; letter-spacing: 2px; font-weight: 700; margin-bottom: 26px; text-align: left; text-shadow: 0 0 18px #ff00ff77, 0 0 8px #00ffff;">Settings</h2>
+        <form id="settings-form" autocomplete="off" style="display: flex; flex-direction: column; gap: 22px;">
+          <div style="display: flex; gap: 18px; flex-wrap: wrap; align-items: center;">
+            <label for="username-input" style="min-width: 100px;">Username:</label>
+            <input id="username-input" type="text" maxlength="24" style="flex:1; border-radius: 8px; padding: 10px 14px; border: 1.5px solid #00ffff; background: #181828; color: #00ffff; font-family: 'Orbitron',sans-serif; font-size: 1.1rem; margin-bottom:6px;" />
+          </div>
+          <div style="display: flex; gap: 18px; flex-wrap: wrap; align-items: center;">
+            <label for="site-title-input" style="min-width: 100px;">Site Title:</label>
+            <input id="site-title-input" type="text" maxlength="40" style="flex:1; border-radius: 8px; padding: 10px 14px; border: 1.5px solid #ff00ff; background: #181828; color: #ff00ff; font-family: 'Orbitron',sans-serif; font-size: 1.1rem;" />
+          </div>
+          <div style="display: flex; gap: 18px; flex-wrap: wrap; align-items: center;">
+            <label for="favicon-input" style="min-width: 100px;">Favicon URL:</label>
+            <input id="favicon-input" type="text" maxlength="300" style="flex:1; border-radius: 8px; padding: 10px 14px; border: 1.5px solid #ff00ff; background: #181828; color: #ff00ff; font-family: 'Orbitron',sans-serif; font-size: 1.1rem;" />
+          </div>
+          <div style="display: flex; gap: 18px; flex-wrap: wrap; align-items: center;">
+            <label for="preset-select" style="min-width: 100px;">Preset:</label>
+            <select id="preset-select" style="flex:1; border-radius: 8px; padding: 10px 14px; border: 1.5px solid #ff00ff; background: #181828; color: #ff00ff; font-family: 'Orbitron',sans-serif; font-size: 1.1rem;">
+              <option value="custom">Custom</option>
+              <option value="classroom">Google Classroom</option>
+              <option value="docs">Google Docs</option>
+              <option value="slides">Google Slides</option>
+              <option value="canvas">Canvas</option>
+              <option value="desmos">Desmos</option>
+            </select>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 22px; align-items: center;">
+            <label style="min-width: 100px;">Neon Glow:</label>
+            <input id="toggle-neon" type="checkbox" style="accent-color: #ff00ff; width: 20px; height: 20px;" />
+            <label style="min-width: 100px;">Matrix Rain:</label>
+            <input id="toggle-matrix" type="checkbox" style="accent-color: #00ffff; width: 20px; height: 20px;" />
+            <label style="min-width: 100px;">Sidebar Labels:</label>
+            <input id="toggle-sidebar-labels" type="checkbox" style="accent-color: #ff00ff; width: 20px; height: 20px;" />
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 22px; align-items: center;">
+            <label for="theme-select" style="min-width: 100px;">Theme:</label>
+            <select id="theme-select" style="flex:1; border-radius: 8px; padding: 10px 14px; border: 1.5px solid #ff00ff; background: #181828; color: #ff00ff; font-family: 'Orbitron',sans-serif; font-size: 1.1rem;">
+              <option value="cyberpunk">Cyberpunk</option>
+              <option value="galaxy">Galaxy</option>
+              <option value="classic">Classic</option>
+            </select>
+            <label>Animated BG:</label>
+            <input id="toggle-anim-bg" type="checkbox" style="accent-color: #00ffff; width: 20px; height: 20px;" />
+            <label>Sound FX:</label>
+            <input id="toggle-sound" type="checkbox" style="accent-color: #ff00ff; width: 20px; height: 20px;" />
+          </div>
+          <div style="margin: 12px 0 0 0;">
+          
+            <div id="avatar-picker" style="display: flex; gap: 14px; margin: 10px 0 0 0; align-items: center;"></div>
+          </div>
+          <div style="margin: 18px 0 0 0; display: flex; align-items: center; gap: 18px;">
+            <button id="surprise-btn" type="button" style="background: linear-gradient(90deg, #ff00ff, #00ffff); color: #fff; border: none; border-radius: 8px; padding: 10px 28px; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.2s; box-shadow: 0 0 12px #ff00ff99, 0 0 4px #00ffff;">Surprise Me</button>
+            <span id="surprise-joke" style="color:#ff00ff; font-size:1.09rem; margin-left:10px;"></span>
+          </div>
+        </form>
+      </div>
+
    
     </div>
   </div>
@@ -3946,38 +3956,20 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </div>
     <div class="tab-content" id="tab-about" style="display: none;">
-        <div class="container" style="text-align:center; padding: 50px 50px; min-height: 350px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-            <h1 style="font-family: 'Orbitron', 'Exo 2', sans-serif; font-size: 2.7rem; color: #ff00ff; letter-spacing: 2px; text-shadow: 0 0 24px #ff00ff99, 0 0 8px #00ffff; margin-bottom: 18px;">About Chromatic</h1>
-            <div id="greeting-block" style="margin-bottom: 28px;"></div>
-            <!-- Greeting Modal Popup -->
-            <div id="greeting-modal-overlay" class="greeting-modal-overlay"></div>
-            <div id="greeting-modal" class="greeting-modal" role="dialog" aria-modal="true" aria-labelledby="greeting-modal-title">
-                <form id="greeting-form" style="display:flex; flex-direction:column; align-items:center; gap:16px;">
-                    <h2 id="greeting-modal-title" style="font-family: 'Orbitron', 'Exo 2', sans-serif; font-size:1.5rem; color:#ff00ff; letter-spacing:1px; text-shadow:0 0 12px #ff00ff99, 0 0 4px #00ffff; margin-bottom:0;">Welcome! What's your name?</h2>
-                    <input id="greeting-input" type="text" maxlength="24" required placeholder="Enter your name..." autocomplete="off" style="background:#232336; color:#ffb3ff; border:1.5px solid #ff00ff; box-shadow:0 0 10px #ff00ff55; font-family:'Orbitron', 'Exo 2', sans-serif; font-size:1.1rem; border-radius:10px; padding:12px 18px; width:230px; transition:box-shadow 0.2s; outline:none;" />
-                    <button type="submit" class="go-btn" style="background:linear-gradient(90deg,#ff00ff,#00ffff); margin-top:4px; box-shadow:0 0 8px #ff00ff88; font-family:'Orbitron', 'Exo 2', sans-serif;">Save</button>
-                </form>
-            </div>
-            <p style="max-width: 600px; color: #f6f8fa; font-size: 1.25rem; margin-bottom: 36px; text-shadow: 0 0 8px #00ffff99;">
-                Chromatic was the free time project of two main developers, it was first uploaded onto github in june of 2025, the very first version looked extremely different from the one we know today!<br>
-            </p>
-            <div style="display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-top: 18px;">
-                <div class="gradient-border">
-                    <i class="fa-solid fa-palette"></i>
-                    <div style="font-size: 1.15rem; color: #fff; margin-top: 10px;">Ummmyah</div>
-                    <div style="font-size: 0.95rem; color: #ffb3ff; margin-top: 6px;">Stylist and graphics designer</div>
-                </div>
-                <div class="gradient-border-2" >
-                    <i class="fas fa-th-large" style="font-size: 2.2rem; color: #00ffff;"></i>
-                    <div style="font-size: 1.15rem; color: #fff; margin-top: 10px;">Try <b>Apps</b></div>
-                    <div style="font-size: 0.95rem; color: #b3ffff; margin-top: 6px;">Windows 11, Gemini AI, and more!</div>
-                </div>
-            </div>
-            <div style="margin-top: 32px; font-size: 1rem; color: #ffb3ff; text-shadow: 0 0 6px #ff00ff44;">
-                <i class="fas fa-bolt" style="color:#ff00ff;"></i> Stay cyber, stay chromatic.
-            </div>
-            <i style="color:#ff00ff; margin-top: 16px"></i> Created by Ummmyah and Justa5thgrader
+        <div class="container" style="text-align:center; padding: 36px 10px; min-height: 350px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <h1 style="font-family: 'Orbitron', 'Exo 2', sans-serif; font-size: 2.7rem; color: #ff00ff; letter-spacing: 2px; text-shadow: 0 0 24px #ff00ff99, 0 0 8px #00ffff; margin-bottom: 18px;">About Chromatic</h1>
+    <p style="max-width: 600px; color: #f6f8fa; font-size: 1.15rem; margin-bottom: 32px; text-shadow: 0 0 8px #00ffff99;">
+        <span style="color:#ff00ff; font-weight:bold;">Chromatic</span> is a passion project by two developers, first launched on GitHub in June 2025. The original version looked nothing like the vibrant cyberpunk hub you see today!<br><br>
+        Chromatic is your all-in-one neon portal for unblocked games, powerful apps, a stealthy proxy, and full customization—all wrapped in a glowing pink theme.
+    </p>
+
+    <div style="margin-top: 22px; font-size: 1rem; color: #ffb3ff; text-shadow: 0 0 6px #ff00ff44;">
+        <i class="fas fa-bolt" style="color:#ff00ff;"></i> Stay cyber, stay chromatic.
     </div>
+    <div style="margin-top: 14px; color:#ff00ff; font-size:1.08rem;">
+        Created by <b>Ummmyah</b> <span style="font-size:0.96em; color:#ffb3ff;">(Stylist & Graphics)</span> and <b>Justa5thgrader</b> <span style="font-size:0.96em; color:#b3ffff;">(Developer)</span>
+    </div>
+</div>
     </div>
     <style>
     #game-modal { scrollbar-width: thin; }
@@ -4313,11 +4305,11 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     canvas: {
       title: 'Canvas',
-      favicon: 'https://du11hjcvx0uqb.cloudfront.net/br/dist/images/favicon-e32d8b9302.ico'
+      favicon: 'https://portlandpublic.instructure.com/favicon.ico'
     },
     desmos: {
       title: 'Desmos',
-      favicon: 'https://www.desmos.com/assets/img/touch-icon-192x192.png'
+      favicon: 'https://www.desmos.com/favicon.ico'
     }
   };
   // Utility
@@ -4906,7 +4898,7 @@ document.addEventListener('DOMContentLoaded', function() {
         angle = finalAngle;
         drawWheel(games, selectedIdx);
         setTimeout(()=>{
-          resultDiv.innerHTML = `<div style='margin-bottom:8px;'>🎉 <b>${games[selectedIdx].title}</b> was chosen!</div><button id='play-now-picked' style='background:linear-gradient(90deg,#ff00ff 10%,#00ffff 90%);color:#fff;padding:10px 26px;border-radius:12px;font-family:Orbitron,sans-serif;font-size:1.05rem;font-weight:bold;text-decoration:none;box-shadow:0 0 12px #ff00ff88, 0 0 4px #00ffff;display:inline-block;margin-top:4px;cursor:pointer;'>PLAY NOW</button>`;
+          resultDiv.innerHTML = `<div style='margin-bottom:8px;'>🎉 <b>${games[selectedIdx].title}</b> was chosen!</div><button id='play-now-picked' class='play-now-btn'>PLAY NOW</button>`;
 
           // Attach handler to PLAY NOW button in result
           setTimeout(() => {
@@ -5001,6 +4993,319 @@ document.addEventListener('DOMContentLoaded', function() {
   modal.addEventListener('click', function(e) {
     if(e.target === modal) closeBtn.click();
   });
+})();
+</script>
+<script>
+// --- Settings Tab Logic ---
+(function(){
+  // Presets for site title and favicon
+  const presets = {
+    classroom: {
+      title: 'Google Classroom',
+      favicon: 'https://ssl.gstatic.com/classroom/ic_product_classroom_32.png'
+    },
+    docs: {
+      title: 'Google Docs',
+      favicon: 'https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico'
+    },
+    slides: {
+      title: 'Google Slides',
+      favicon: 'https://ssl.gstatic.com/docs/presentations/images/favicon5.ico'
+    },
+    canvas: {
+      title: 'Canvas',
+      favicon: 'https://portlandpublic.instructure.com/favicon.ico'
+    },
+    desmos: {
+      title: 'Desmos',
+      favicon: 'https://www.desmos.com/favicon.ico'
+    }
+  };
+  function setFavicon(url) {
+    document.querySelectorAll("link[rel*='icon']").forEach(link => link.parentNode.removeChild(link));
+    let link = document.createElement('link');
+    link.type = 'image/x-icon';
+    link.rel = 'icon';
+    link.href = url;
+    document.getElementsByTagName('head')[0].appendChild(link);
+  }
+  function setSiteTitle(title) {
+    document.title = title;
+  }
+  function loadSettings() {
+    let preset = localStorage.getItem('sitePreset') || 'custom';
+    let title = localStorage.getItem('siteTitle') || document.title;
+    let favicon = localStorage.getItem('siteFavicon') || (document.querySelector("link[rel*='icon']") ? document.querySelector("link[rel*='icon']").href : '');
+    let neon = localStorage.getItem('neonGlow') === '1';
+    let matrix = localStorage.getItem('matrixRain') === '1';
+    let hideLabels = localStorage.getItem('hideSidebarLabels') === '1';
+    let theme = localStorage.getItem('siteTheme') || 'cyberpunk';
+    let animBg = localStorage.getItem('animBg') === '1';
+    let sound = localStorage.getItem('soundFx') === '1';
+    let avatar = localStorage.getItem('profileAvatar') || '';
+    let username = localStorage.getItem('username') || 'User';
+    if(document.getElementById('preset-select')){
+      document.getElementById('preset-select').value = preset;
+      document.getElementById('site-title-input').value = title;
+      document.getElementById('favicon-input').value = favicon;
+      document.getElementById('toggle-neon').checked = neon;
+      document.getElementById('toggle-matrix').checked = matrix;
+      document.getElementById('toggle-sidebar-labels').checked = hideLabels;
+      document.getElementById('theme-select').value = theme;
+      document.getElementById('toggle-anim-bg').checked = animBg;
+      document.getElementById('toggle-sound').checked = sound;
+      if (document.getElementById('avatar-picker')) {
+        Array.from(document.getElementById('avatar-picker').children).forEach(img => {
+          img.style.border = (img.src === avatar) ? '3px solid #ff00ff' : '2px solid #33344d';
+        });
+      }
+      if (document.getElementById('username-input')) {
+        document.getElementById('username-input').value = username;
+      }
+    }
+    setSiteTitle(title);
+    if(favicon) setFavicon(favicon);
+    document.body.classList.toggle('neon-glow', neon);
+    document.body.classList.toggle('matrix-rain', matrix);
+    document.body.classList.toggle('hide-sidebar-labels', hideLabels);
+    document.body.setAttribute('data-theme', theme);
+    document.body.classList.toggle('anim-bg', animBg);
+    if (avatar) {
+      let profileSpot = document.getElementById('sidebar-avatar');
+      if (profileSpot) profileSpot.src = avatar;
+    }
+    if (window.updateCornerProfile) window.updateCornerProfile();
+  }
+  function saveSettings() {
+    let preset = document.getElementById('preset-select').value;
+    let title = document.getElementById('site-title-input').value;
+    let favicon = document.getElementById('favicon-input').value;
+    let neon = document.getElementById('toggle-neon').checked;
+    let matrix = document.getElementById('toggle-matrix').checked;
+    let hideLabels = document.getElementById('toggle-sidebar-labels').checked;
+    let theme = document.getElementById('theme-select').value;
+    let animBg = document.getElementById('toggle-anim-bg').checked;
+    let sound = document.getElementById('toggle-sound').checked;
+    localStorage.setItem('sitePreset', preset);
+    localStorage.setItem('siteTitle', title);
+    localStorage.setItem('siteFavicon', favicon);
+    localStorage.setItem('neonGlow', neon ? '1' : '0');
+    localStorage.setItem('matrixRain', matrix ? '1' : '0');
+    localStorage.setItem('hideSidebarLabels', hideLabels ? '1' : '0');
+    localStorage.setItem('siteTheme', theme);
+    localStorage.setItem('animBg', animBg ? '1' : '0');
+    localStorage.setItem('soundFx', sound ? '1' : '0');
+    loadSettings();
+  }
+  document.addEventListener('DOMContentLoaded', function(){
+    const presetSelect = document.getElementById('preset-select');
+    if (presetSelect) {
+      presetSelect.onchange = function(){
+        let val = this.value;
+        if(val !== 'custom' && presets[val]){
+          const titleInput = document.getElementById('site-title-input');
+          const faviconInput = document.getElementById('favicon-input');
+          if (titleInput) titleInput.value = presets[val].title;
+          if (faviconInput) faviconInput.value = presets[val].favicon;
+        }
+        saveSettings();
+      };
+    }
+    const titleInput = document.getElementById('site-title-input');
+    if (titleInput) titleInput.oninput = saveSettings;
+    const faviconInput = document.getElementById('favicon-input');
+    if (faviconInput) faviconInput.oninput = saveSettings;
+    const neonToggle = document.getElementById('toggle-neon');
+    if (neonToggle) neonToggle.onchange = saveSettings;
+    const matrixToggle = document.getElementById('toggle-matrix');
+    if (matrixToggle) matrixToggle.onchange = saveSettings;
+    const sidebarLabelsToggle = document.getElementById('toggle-sidebar-labels');
+    if (sidebarLabelsToggle) sidebarLabelsToggle.onchange = saveSettings;
+    const themeSelect = document.getElementById('theme-select');
+    if (themeSelect) themeSelect.onchange = saveSettings;
+    const animBgToggle = document.getElementById('toggle-anim-bg');
+    if (animBgToggle) animBgToggle.onchange = saveSettings;
+    const soundToggle = document.getElementById('toggle-sound');
+    if (soundToggle) soundToggle.onchange = saveSettings;
+    const avatarPicker = document.getElementById('avatar-picker');
+    if (avatarPicker) {
+      avatarPicker.innerHTML = '';
+      const avatars = [
+        'https://api.dicebear.com/7.x/pixel-art/svg?seed=cat',
+        'https://api.dicebear.com/7.x/pixel-art/svg?seed=dog',
+        'https://api.dicebear.com/7.x/pixel-art/svg?seed=alien',
+        'https://api.dicebear.com/7.x/pixel-art/svg?seed=robot',
+        'https://api.dicebear.com/7.x/pixel-art/svg?seed=unicorn',
+        'https://api.dicebear.com/7.x/pixel-art/svg?seed=ghost',
+        'https://api.dicebear.com/7.x/pixel-art/svg?seed=fox'
+      ];
+      avatars.forEach(url => {
+        const img = document.createElement('img');
+        img.src = url;
+        img.style.width = '40px';
+        img.style.height = '40px';
+        img.style.borderRadius = '50%';
+        img.style.cursor = 'pointer';
+        img.style.border = '2px solid #33344d';
+        img.style.transition = 'border 0.2s';
+        img.onclick = () => {
+          localStorage.setItem('profileAvatar', url);
+          loadSettings();
+          if (window.updateCornerProfile) window.updateCornerProfile();
+        };
+        avatarPicker.appendChild(img);
+      });
+    }
+    const surpriseBtn = document.getElementById('surprise-btn');
+    const surpriseJoke = document.getElementById('surprise-joke');
+    if (surpriseBtn) {
+      surpriseBtn.onclick = function() {
+        const jokes = [
+          "Why did the computer get cold? Because it left its Windows open!",
+          "Why was the math book sad? Because it had too many problems!",
+          "Why did the student eat his homework? Because his teacher said it was a piece of cake!",
+          "What do you call a bear with no teeth? A gummy bear!",
+          "Why did the kid cross the playground? To get to the other slide!",
+          "What do you call cheese that isn't yours? Nacho cheese!",
+          "404: Joke Not Found... Try again!"
+        ];
+        const idx = Math.floor(Math.random() * jokes.length);
+        surpriseJoke.textContent = jokes[idx];
+        setTimeout(()=>{surpriseJoke.textContent='';}, 9000);
+      };
+    }
+    loadSettings();
+  });
+})();
+</script>
+<!-- Top-right Avatar & Username Display -->
+<div id="corner-profile" style="position:fixed;top:24px;right:32px;z-index:9999;display:flex;align-items:center;gap:14px;background:rgba(24,24,40,0.82);padding:8px 18px 8px 12px;border-radius:16px;box-shadow:0 0 18px #ff00ff99,0 0 8px #00ffff55;backdrop-filter:blur(3px);">
+  <img id="corner-avatar" src="" alt="Avatar" style="width:48px;height:48px;border-radius:50%;border:3px solid #ff00ff;box-shadow:0 0 12px #ff00ff88;object-fit:cover;background:#222;">
+  <span id="corner-username" style="font-family:'Orbitron',sans-serif;font-size:1.18rem;color:#ff00ff;text-shadow:0 0 8px #00ffff,0 0 2px #fff;letter-spacing:1px;font-weight:700;">User</span>
+  <button id="profile-dropdown-btn" style="background:none;border:none;outline:none;cursor:pointer;padding:0 0 0 6px;display:flex;align-items:center;">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="#ff00ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+<div id="profile-dropdown-menu" style="display:none;position:absolute;top:60px;right:0;background:rgba(24,24,40,0.98);border-radius:12px;box-shadow:0 0 16px #ff00ff99,0 0 6px #00ffff66;padding:10px 0;min-width:150px;z-index:10000;">
+  <button id="customize-profile-btn" style="width:100%;background:none;border:none;color:#ff00ff;font-family:'Orbitron',sans-serif;font-size:1rem;padding:10px 20px;text-align:left;cursor:pointer;transition:background 0.2s;">Customize</button>
+</div>
+</div>
+
+<!-- Hidden Customize Tab/Modal -->
+<div id="customize-tab" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(10,21,80,0.96);z-index:20000;backdrop-filter:blur(8px);align-items:center;justify-content:center;">
+  <div style="background:linear-gradient(135deg,#1a1a2e,#0f0f1a);border:2px solid #ff00ff;box-shadow:0 0 32px #ff00ffcc,0 0 12px #00ffff88;border-radius:18px;padding:36px 32px 28px 32px;max-width:420px;width:90vw;margin:auto;position:relative;">
+    <button id="close-customize-tab" style="position:absolute;top:12px;right:12px;background:none;border:none;color:#ff00ff;font-size:1.8rem;cursor:pointer;">&times;</button>
+    <h2 style="font-family:'Orbitron',sans-serif;color:#ff00ff;text-shadow:0 0 8px #00ffff;letter-spacing:1px;margin-bottom:18px;">Customize Profile</h2>
+    <label style="display:block;margin-bottom:10px;color:#fff;font-family:'Orbitron',sans-serif;">Username:</label>
+    <input id="custom-username-input" type="text" style="width:100%;padding:8px 12px;border-radius:8px;border:1.5px solid #ff00ff;background:rgba(0,0,0,0.25);color:#fff;font-size:1rem;margin-bottom:18px;font-family:'Orbitron',sans-serif;outline:none;" maxlength="18">
+    <label style="display:block;margin-bottom:10px;color:#fff;font-family:'Orbitron',sans-serif;">Choose Avatar:</label>
+    <div id="custom-avatar-picker" style="display:flex;gap:9px;margin-bottom:20px;margin-top:7px;"></div>
+    <button id="save-custom-profile" style="width:100%;background:linear-gradient(90deg,#ff00ff,#00ffff);color:#222;font-family:'Orbitron',sans-serif;font-size:1.1rem;padding:12px 0;border:none;border-radius:9px;box-shadow:0 0 12px #ff00ff77,0 0 3px #00ffff;cursor:pointer;letter-spacing:1px;margin-top:6px;">Save</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  function updateCornerProfile() {
+    const avatar = localStorage.getItem('profileAvatar') || 'https://api.dicebear.com/7.x/pixel-art/svg?seed=cat';
+    const username = localStorage.getItem('username') || 'User';
+    const avatarImg = document.getElementById('corner-avatar');
+    const usernameSpan = document.getElementById('corner-username');
+    if (avatarImg) avatarImg.src = avatar;
+    if (usernameSpan) usernameSpan.textContent = username;
+  }
+  document.addEventListener('DOMContentLoaded', updateCornerProfile);
+  window.updateCornerProfile = updateCornerProfile;
+})();
+</script>
+
+<script>
+(function(){
+  // Dropdown logic (click to open/close, click outside to close)
+  const dropdownBtn = document.getElementById('profile-dropdown-btn');
+  const dropdownMenu = document.getElementById('profile-dropdown-menu');
+  let dropdownOpen = false;
+  if (dropdownBtn && dropdownMenu) {
+    dropdownBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+      dropdownOpen = dropdownMenu.style.display === 'block';
+    });
+    document.addEventListener('click', function(e) {
+      if (dropdownOpen && !dropdownMenu.contains(e.target) && e.target !== dropdownBtn) {
+        dropdownMenu.style.display = 'none';
+        dropdownOpen = false;
+      }
+    });
+  }
+  // Show customize tab
+  const customizeBtn = document.getElementById('customize-profile-btn');
+  const customizeTab = document.getElementById('customize-tab');
+  const closeCustomizeBtn = document.getElementById('close-customize-tab');
+  if (customizeBtn && customizeTab) {
+    customizeBtn.onclick = function(){
+      customizeTab.style.display = 'flex';
+      dropdownMenu.style.display = 'none';
+      // Load current values
+      document.getElementById('custom-username-input').value = localStorage.getItem('username') || 'User';
+      // Highlight currently selected avatar
+      const currentAvatar = localStorage.getItem('profileAvatar') || 'https://api.dicebear.com/7.x/pixel-art/svg?seed=cat';
+      Array.from(document.querySelectorAll('#custom-avatar-picker img')).forEach(img => {
+        img.style.border = (img.src === currentAvatar) ? '2.5px solid #ff00ff' : '2px solid #33344d';
+      });
+    };
+  }
+  // Close customize tab
+  if (closeCustomizeBtn && customizeTab) {
+    closeCustomizeBtn.onclick = function(){
+      customizeTab.style.display = 'none';
+    };
+  }
+  // Save customization
+  const saveBtn = document.getElementById('save-custom-profile');
+  if (saveBtn) {
+    saveBtn.onclick = function(){
+      const username = document.getElementById('custom-username-input').value.trim();
+      // Find selected avatar
+      let selectedAvatar = '';
+      Array.from(document.querySelectorAll('#custom-avatar-picker img')).forEach(img => {
+        if(img.style.border.includes('#ff00ff')) selectedAvatar = img.src;
+      });
+      if(username) localStorage.setItem('username', username);
+      if(selectedAvatar) localStorage.setItem('profileAvatar', selectedAvatar);
+      if(window.updateCornerProfile) window.updateCornerProfile();
+      customizeTab.style.display = 'none';
+    };
+  }
+  // Avatar picker in customize tab
+  const avatarPicker = document.getElementById('custom-avatar-picker');
+  if (avatarPicker) {
+    avatarPicker.innerHTML = '';
+    const avatars = [
+      'https://api.dicebear.com/7.x/pixel-art/svg?seed=cat',
+      'https://api.dicebear.com/7.x/pixel-art/svg?seed=dog',
+      'https://api.dicebear.com/7.x/pixel-art/svg?seed=alien',
+      'https://api.dicebear.com/7.x/pixel-art/svg?seed=robot',
+      'https://api.dicebear.com/7.x/pixel-art/svg?seed=unicorn',
+      'https://api.dicebear.com/7.x/pixel-art/svg?seed=ghost',
+      'https://api.dicebear.com/7.x/pixel-art/svg?seed=fox'
+    ];
+    avatars.forEach(url => {
+      const img = document.createElement('img');
+      img.src = url;
+      img.style.width = '38px';
+      img.style.height = '38px';
+      img.style.borderRadius = '50%';
+      img.style.cursor = 'pointer';
+      img.style.border = '2px solid #33344d';
+      img.style.transition = 'border 0.2s';
+      img.style.marginRight = '2px';
+      img.onclick = () => {
+        Array.from(avatarPicker.children).forEach(child => child.style.border = '2px solid #33344d');
+        img.style.border = '2.5px solid #ff00ff';
+      };
+      avatarPicker.appendChild(img);
+    });
+  }
 })();
 </script>
 </body>
