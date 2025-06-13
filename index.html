@@ -256,48 +256,6 @@ body {
             }
         }
 
- .slide-in-elliptic-top-fwd {
-	-webkit-animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: slide-in-elliptic-top-fwd 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-}
-     
-     
-     
-     @-webkit-keyframes slide-in-elliptic-top-fwd {
-  0% {
-    -webkit-transform: translateY(-600px) rotateX(-30deg) scale(0);
-            transform: translateY(-600px) rotateX(-30deg) scale(0);
-    -webkit-transform-origin: 50% 100%;
-            transform-origin: 50% 100%;
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateY(0) rotateX(0) scale(1);
-            transform: translateY(0) rotateX(0) scale(1);
-    -webkit-transform-origin: 50% 1400px;
-            transform-origin: 50% 1400px;
-    opacity: 1;
-  }
-}
-@keyframes slide-in-elliptic-top-fwd {
-  0% {
-    -webkit-transform: translateY(-600px) rotateX(-30deg) scale(0);
-            transform: translateY(-600px) rotateX(-30deg) scale(0);
-    -webkit-transform-origin: 50% 100%;
-            transform-origin: 50% 100%;
-    opacity: 0;
-  }
-  100% {
-    -webkit-transform: translateY(0) rotateX(0) scale(1);
-            transform: translateY(0) rotateX(0) scale(1);
-    -webkit-transform-origin: 50% 1400px;
-            transform-origin: 50% 1400px;
-    opacity: 1;
-  }
-}
-
-
-    
     </style>
     <!-- Orbitron font for a futuristic look -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
@@ -620,7 +578,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
 </nav>
     <div class="tab-content" id="tab-home">
         <div class="container" style="text-align:center; padding: 50px 50px; min-height: 350px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-            <h1 class="slide-in-elliptic-top-fwd"style="font-family: 'Orbitron', 'Exo 2', sans-serif; font-size: 2.7rem; color: #ff00ff; letter-spacing: 2px; text-shadow: 0 0 24px #ff00ff99, 0 0 8px #00ffff; margin-bottom: 18px;">Welcome to Chromatic!</h1>
+            <h1 style="font-family: 'Orbitron', 'Exo 2', sans-serif; font-size: 2.7rem; color: #ff00ff; letter-spacing: 2px; text-shadow: 0 0 24px #ff00ff99, 0 0 8px #00ffff; margin-bottom: 18px;">Welcome to Chromatic!</h1>
             <div id="greeting-block" style="margin-bottom: 28px;"></div>
             <!-- Greeting Modal Popup -->
             <div id="greeting-modal-overlay" class="greeting-modal-overlay"></div>
@@ -855,7 +813,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
           });
         }
 
-        function renderTabContent() {
+          function renderTabContent() {
           tabsContent.innerHTML = '';
           const tab = proxyTabs.find(t => t.id === activeTabId);
           if (!tab) return;
@@ -995,6 +953,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
       </div>
   </div>
 </div>
+
                   <!-- Drift Boss Card -->
 <div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/driftboss.html')" data-category="arcade">
   <div class="game-card-overlay">
@@ -4499,60 +4458,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 })();
 </script>
-<!-- Username Modal -->
-<div id="username-modal" style="display:none; position:fixed; z-index:9999; top:0;left:0;width:100vw;height:100vh; background:rgba(10,18,30,0.98); backdrop-filter:blur(2px); align-items:center; justify-content:center;">
-  <div style="background:#232336; border-radius:18px; box-shadow:0 4px 32px #00ffff55,0 0 10px #ff00ff99; padding:42px 36px; display:flex; flex-direction:column; align-items:center; min-width:320px;">
-    <h2 style="color:#ff00ff; font-family:'Orbitron',sans-serif; margin-bottom:18px;">Welcome!</h2>
-    <label for="username-input" style="color:#f6f8fa; font-size:1.1rem; margin-bottom:8px;">Enter your username:</label>
-    <input id="username-input" type="text" maxlength="18" style="background:#181828; color:#fff; border:1.5px solid #33344d; border-radius:8px; padding:12px 18px; font-size:1.15rem; margin-bottom:16px; width:220px; outline:none;">
-    <button id="username-save-btn" style="background:linear-gradient(90deg,#ff00ff,#00ffff); color:#fff; border:none; border-radius:8px; padding:10px 32px; font-family:'Orbitron',sans-serif; font-size:1rem; font-weight:700; cursor:pointer; margin-top:10px;">Save</button>
-  </div>
-</div>
-
-<script>
-(function() {
-  // Username logic
-  function showUsernameModal() {
-    document.getElementById('username-modal').style.display = 'flex';
-    setTimeout(function(){ document.getElementById('username-input').focus(); }, 100);
-  }
-  function hideUsernameModal() {
-    document.getElementById('username-modal').style.display = 'none';
-  }
-  function setGreeting(name) {
-    const area = document.getElementById('greeting-area');
-    if (!area) return;
-    area.innerHTML = `<span style="font-size:1.5rem;color:#ff00ff;font-family:'Orbitron',sans-serif;">Hi, <span id='username-text'>${name}</span>!</span> <button id='change-username-btn' style='background:none;color:#00ffff;font-size:1rem;border:none;cursor:pointer;margin-left:10px;text-decoration:underline;'>Change</button>`;
-    document.getElementById('change-username-btn').onclick = function() {
-      showUsernameModal();
-      setTimeout(function(){ document.getElementById('username-input').focus(); }, 100);
-    };
-  }
-  function saveUsername(name) {
-    localStorage.setItem('username', name);
-    setGreeting(name);
-    hideUsernameModal();
-  }
-  // Modal save button
-  document.getElementById('username-save-btn').onclick = function() {
-    const val = document.getElementById('username-input').value.trim();
-    if (val.length > 0) saveUsername(val);
-  };
-  document.getElementById('username-input').addEventListener('keydown', function(e){
-    if (e.key === 'Enter') {
-      const val = document.getElementById('username-input').value.trim();
-      if (val.length > 0) saveUsername(val);
-    }
-  });
-  // On load
-  let username = localStorage.getItem('username');
-  if (!username) {
-    showUsernameModal();
-  } else {
-    setGreeting(username);
-  }
-})();
-</script>
 
 <script>
 (function(){
@@ -5148,7 +5053,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Pointer is at -Math.PI/2 (top). Align center of selected segment to pointer.
     const finalAngle = targetAngle + (-Math.PI/2 - selectedIdx * segmentAngle - segmentAngle/2);
     let start = null;
-    let duration = 4200 + Math.random()*800; // longer duration for smoother feel
+    let duration = 4200 + Math.random()*9999; // longer duration for smoother feel
     let startAngle = angle;
     function easeInOutCubic(t) {
       return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -5243,7 +5148,7 @@ document.addEventListener('DOMContentLoaded', function() {
     selectedIdx = -1;
     drawWheel(games);
     resultDiv.innerHTML = '';
-    modal.style.display = 'flex';
+    
     document.body.style.overflow = 'hidden';
   });
   // Close modal
