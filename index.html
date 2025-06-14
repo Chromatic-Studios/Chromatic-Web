@@ -215,38 +215,6 @@ body {
           background: #22223a;
           color: #fff;
         }
-        .go-btn {
-            background: linear-gradient(90deg, #ff00ff, #00ffff);
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            padding: 10px 28px;
-            font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background 0.2s;
-            box-shadow: 0 2px 8px #0002;
-        }
-        .go-btn:hover {
-            background: linear-gradient(90deg, #00ffff, #ff00ff);
-            color: #fff;
-        }
-        .go-btn::after {
-            content: '';
-            position: absolute;
-            left: -50%;
-            top: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, #fff7 0%, #00d0ff00 80%);
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-        }
-        .go-btn:active::after {
-            opacity: 1;
-        }
         @media (max-width: 500px) {
             .container {
                 padding: 24px 8px 16px 8px;
@@ -458,7 +426,6 @@ body {
     }
 
     .gradient-button:hover {
-      background: linear-gradient(90deg,#ff00ff,#00ffff, 100%);
        -webkit-mask-image: text;
       -webkit-mask-repeat: no-repeat;
       -webkit-mask-position: center;
@@ -473,6 +440,50 @@ body {
       opacity: 1;
     }
 
+      .go-btn {
+      padding: 8px 16px;
+      color: white;
+      background: linear-gradient(90deg,#ff00ff,#00ffff);
+      border:0 solid transparent;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.8s ease;
+      position: relative;
+      z-index: 1;
+      font-weight:bold;
+    }
+
+    .go-btn::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 8px;
+      padding: 2px; /* Border thickness */
+      background: linear-gradient(90deg,#ff00ff,#00ffff);
+      -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    .go-btn:hover {
+       -webkit-mask-image: text;
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      -webkit-mask-size: contain;
+      color: transparent;
+      background-clip: text;
+      box-shadow: 0 0 128px #ff00ff;
+      animation: animatedBorder 2s ease-in-out infinite;
+    }
+
+    .go-btn:hover::before {
+      opacity: 1;
+    }
 
       .gradient-border {
       background: linear-gradient(135deg, #181828 60%, #00ffff44 100%);
@@ -566,7 +577,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
     <button class="tab" data-tab="games"><i class="fas fa-gamepad"></i> Games</button>
     <button class="tab" data-tab="proxy"><i class="fas fa-globe"></i> Proxy</button>
     <button class="tab" data-tab="settings"><i class="fas fa-cog"></i> Settings</button>
-    <button class="tab" data-tab="about"><i class="fas fa-globe"></i> About</button>
+    <button class="tab" data-tab="about"><i class="fas fa-address-card"></i> About</button>
     <button class="tab" id="achievements-tab-btn" data-tab="achievements"><i class="fas fa-trophy"></i> Achievements</button>
     <button class="tab" id="dev-tab-btn" data-tab="dev" style="display:none;"><i class="fas fa-tools"></i> Dev</button>
   </div>
@@ -677,12 +688,12 @@ body, .container, .header, .tabs, .tab-content, .footer {
       </div>
     </div>
     <div class="tab-content" id="tab-home">
-        <div class="container" style="text-align:center; padding: 50px 50px; min-height: 350px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <div class="container" style="text-align:center; padding: 100px 50px; min-height: 350px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <!-- Dev Mode Block (Moved Above Welcome) -->
-            <div id="dev-mode-block" style="max-width:350px;margin:0 auto 36px auto;padding:24px 16px 20px 16px;background:rgba(30,0,40,0.93);border:2px solid #ff00ff;border-radius:18px;box-shadow:0 0 12px #ff00ff55;display:flex;flex-direction:column;align-items:center;gap:14px;">
-                <div style="font-size:1.35em;color:#ff00ff;font-weight:600;letter-spacing:1px;text-shadow:0 0 8px #ff00ff99;">Dev Mode Access</div>
-                <input id="dev-code-input" type="password" placeholder="Enter dev code" style="padding:10px 15px;border-radius:8px;border:1.5px solid #ff00ff;background:#1a0022;color:#fff;width:90%;outline:none;font-size:1em;box-shadow:0 0 4px #ff00ff44;transition:border 0.2s;" onfocus="this.style.border='2px solid #ff00ff'" onblur="this.style.border='1.5px solid #ff00ff'">
-                <button id="dev-code-btn" style="margin-top:2px;padding:8px 18px;border:none;border-radius:7px;background:linear-gradient(90deg,#ff00ff 0,#ff77ff 100%);color:#fff;font-weight:600;font-size:1em;cursor:pointer;box-shadow:0 0 8px #ff00ff88;transition:background 0.2s;">Unlock</button>
+            <div id="dev-mode-block" style="max-width:500px;margin:0 auto 36px auto;padding:24px 96px 20px 16px;background:rgba(30,0,40,0.93);border:2px solid #ff00ff;border-radius:18px;box-shadow:0 0 12px #ff00ff55;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;">
+                <div style="font-size:1.35em;color:#ff00ff;font-weight:600;letter-spacing:1px;text-shadow:0 0 8px #ff00ff99;">Codes</div>
+                <input id="dev-code-input" type="password" placeholder="Get secret codes from us personally" style="padding:10px 30px;border-radius:8px;border:1.5px solid #ff00ff;background:#1a0022;color:#fff;width:90%;outline:none;font-size:1em;box-shadow:0 0 4px #ff00ff44;transition:border 0.2s;margin-left: 75px" onfocus="this.style.border='2px solid #ff00ff'" onblur="this.style.border='1.5px solid #ff00ff'">
+                <button class="gradient-button"id="dev-code-btn" style="align-items:center;margin-top:2px;padding:8px 18px;border:none;border-radius:7px;background:linear-gradient(90deg,#ff00ff 0,#ff77ff 100%);color:#fff;font-weight:600;font-size:1em;cursor:pointer;box-shadow:0 0 8px #ff00ff88;transition:background 0.2s;">Unlock</button>
                 <div id="dev-mode-message" style="margin-top:10px;font-size:1.08em;font-weight:500;color:#fff;display:none;text-shadow:0 0 8px #ff00ff99;"></div>
             </div>
             <script>
@@ -1017,6 +1028,8 @@ body, .container, .header, .tabs, .tab-content, .footer {
                     msg.textContent = 'Incorrect code. Try again.';
                   }
                 };
+                
+                
 
                 document.getElementById('dev-code-input').addEventListener('keydown', function(e) {
                   if(e.key === 'Enter') document.getElementById('dev-code-btn').click();
@@ -1313,7 +1326,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
           <form id="chromatic-proxy-form" autocomplete="off" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 14px;">
   <input id="chromatic-proxy-input" type="text" placeholder="https://example.com" style="width: 100%; max-width: 420px; border-radius: 10px; border: 2.5px solid #ff00ff; background: #232336; color: #fff; font-size: 1.1rem; padding: 16px 20px; box-shadow: 0 0 18px #ff00ff44; outline: none; transition: border 0.2s, box-shadow 0.2s; text-align: center;" />
   <div style="display: flex; gap: 12px; width: 100%; max-width: 420px; justify-content: center;">
-    <button type="submit" class="go-btn" style="flex:1; background: linear-gradient(90deg, #ff00ff, #00ffff); color: #fff; font-weight: bold; border-radius: 8px; font-size: 1.1rem; border: none; padding: 13px 0; box-shadow: 0 0 12px #ff00ff44; cursor: pointer; transition: background 0.2s;">Open in Tab!</button>
+    <button type="submit" class="go-btn" class="gradient-button" >Open in Tab!</button>
     
    
   <div id="chromatic-proxy-error" style="display:none; color:#ff3333; font-size:1rem; margin-top:10px; font-family: 'Exo 2', Arial, sans-serif;"></div>
