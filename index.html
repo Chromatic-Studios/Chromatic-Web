@@ -82,7 +82,7 @@ body.dark-mode {
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    gap: 36px;
+    gap: 12px;
     width: 100%;
     align-items: center;
 }
@@ -95,15 +95,15 @@ body.dark-mode {
      margin-bottom: 16px;
 }
 .sidebar .tab {
-    width: 56px;
-    height: 56px;
+    width: 40px;
+    height: 40px;
     background: #232336 !important;
     color: #ff00ff !important;
     border: none;
     outline: none;
-    border-radius: 16px;
+    border-radius: 10px;
     font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
-    font-size: 0.6rem;
+    font-size: 0.5rem;
     letter-spacing: 1px;
     font-weight: 700;
     margin: 0;
@@ -112,26 +112,26 @@ body.dark-mode {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 4px;
     transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s;
     box-shadow: 0 2px 10px #00d0ff22;
     position: relative;
 }
 .sidebar .tab i {
-    font-size: 1.05rem;
+    font-size: 0.85rem;
     margin-bottom: 2px;
 }
 .sidebar .tab:hover, .sidebar .tab:focus {
     background: linear-gradient(90deg, var(--accent2) 10%, var(--accent) 90%);
     color: #222;
     box-shadow: 0 4px 24px #00d0ff88, 0 0 6px #fff8;
-    transform: scale(1.10);
+    transform: scale(1.08);
 }
 .sidebar .tab.active {
     background: linear-gradient(90deg, var(--accent) 10%, var(--accent2) 90%);
     color: #222;
     box-shadow: 0 6px 32px #00d0ffbb, 0 0 8px #fff;
-    transform: scale(1.14);
+    transform: scale(1.11);
 }
 .dark-toggle {
     margin-top: auto;
@@ -1441,7 +1441,17 @@ body, .container, .header, .tabs, .tab-content, .footer {
         } catch (e) {}
         // Optionally, allow user to set their username manually if not detected
         document.getElementById('chromatic-username').textContent = username;
-      })();
+        // Refresh button for game frame
+      const refreshBtn = document.getElementById('refresh-btn');
+      if (refreshBtn) {
+        refreshBtn.addEventListener('click', function() {
+          const gameFrame = document.getElementById('game-frame');
+          if (gameFrame) {
+            gameFrame.src = gameFrame.src;
+          }
+        });
+      }
+    })();
 
       // --- Google/Chrome-style tabbed proxy browser ---
         const tabsBar = document.getElementById('proxy-tabs-bar');
@@ -1654,7 +1664,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
   <div class="game-card-overlay">
       <button class="play-now-btn">PLAY NOW</button>
   </div>
-  <img style="height:160px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/sketchbook-min.png" alt="Sketchbook" class="game-thumbnail">
+  <img style="height:160px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/sketchbook.png" alt="Sketchbook" class="game-thumbnail">
   <div class="game-info">
       <h3>Sketchbook</h3>
       <div class="game-tags">
@@ -3130,7 +3140,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
   <div class="game-card-overlay">
       <button class="play-now-btn">PLAY NOW</button>
   </div>
-  <img style="height:160px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/bumbslime-min.png" alt="Blumgi Slime" class="game-thumbnail">
+  <img style="height:160px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/blumgislime.png" alt="Blumgi Slime" class="game-thumbnail">
   <div class="game-info">
       <h3>Blumgi Slime</h3>
       <div class="game-tags">
@@ -6221,6 +6231,37 @@ window.openGame = openGame;
         }
     });
     </script>
+    <script>
+    // Refresh Game Iframe logic
+    function refreshGameIframe() {
+  var iframe = document.getElementById('game-iframe');
+  var refreshIcon = document.getElementById('game-refresh-icon');
+  if (refreshIcon) refreshIcon.classList.add('spinning');
+  if (iframe) {
+    // Reload the current src
+    var src = iframe.src;
+    // Hide and show overlay if it exists
+    var loadingOverlay = document.getElementById('game-loading-overlay');
+    if (loadingOverlay) {
+      loadingOverlay.style.display = 'flex';
+      loadingOverlay.style.opacity = '1';
+      iframe.style.visibility = 'hidden';
+    }
+    iframe.onload = function() {
+      if (loadingOverlay) {
+        loadingOverlay.style.opacity = '0';
+        setTimeout(function(){ loadingOverlay.style.display = 'none'; }, 350);
+      }
+      iframe.style.visibility = 'visible';
+      if (refreshIcon) refreshIcon.classList.remove('spinning');
+    };
+    iframe.src = src;
+  } else {
+    if (refreshIcon) refreshIcon.classList.remove('spinning');
+  }
+}
+    window.refreshGameIframe = refreshGameIframe;
+    </script>
     <!-- Game Modal Overlay -->
     <div id="game-modal" style="display:none; position:fixed; z-index:9999; left:0; top:0; width:100vw; height:100vh; background:rgba(10,0,30,0.95); align-items:center; justify-content:center; overflow:auto;">
       <div id="game-modal-inner" style="position:relative; width:100vw; max-width:none; height:99vh; background:rgba(30,0,50,0.98); border:2px solid #ff00ff; border-radius:18px; box-shadow:0 0 60px #ff00ff99, 0 0 10px #00ffff; display:flex; flex-direction:column; overflow:hidden;">
@@ -6228,6 +6269,9 @@ window.openGame = openGame;
   <div style="display:flex; gap:8px; align-items:center;">
     <button id="game-fullscreen-btn" onclick="toggleGameModalFullscreen()" title="Fullscreen" style="background:none; border:none; color:#00ffff; font-size:1.6rem; cursor:pointer; text-shadow:0 0 12px #00ffff;">
       <i class="fas fa-expand"></i>
+    </button>
+    <button id="game-refresh-btn" onclick="refreshGameIframe()" title="Refresh Game" style="background:none; border:none; color:#ff00ff; font-size:1.6rem; cursor:pointer; text-shadow:0 0 12px #ff00ff;">
+      <i class="fas fa-sync-alt" id="game-refresh-icon"></i>
     </button>
     <button onclick="closeGameModal()" title="Close" style="background:none; border:none; color:#ff00ff; font-size:2rem; cursor:pointer; text-shadow:0 0 12px #ff00ff;">
       <i class="fas fa-times-circle"></i>
@@ -6268,6 +6312,14 @@ window.openGame = openGame;
       border-radius: 0 !important;
       box-shadow: 0 0 60px #ff00ff99, 0 0 10px #00ffff;
     }
+/* Spinning animation for refresh icon */
+#game-refresh-icon.spinning {
+  animation: spin-refresh-fast 0.45s linear infinite;
+}
+@keyframes spin-refresh-fast {
+  100% { transform: rotate(360deg); }
+}
+
     @media (max-width: 700px) {
       #game-modal-inner { width: 99vw !important; height: 80vh !important; }
       #game-modal-inner.fullscreen { width: 100vw !important; height: 100vh !important; }
@@ -6446,6 +6498,9 @@ window.openGame = openGame;
         <div style="display:flex; gap:8px; align-items:center;">
           <button id="game-fullscreen-btn" onclick="toggleGameModalFullscreen()" title="Fullscreen" style="background:none; border:none; color:#00ffff; font-size:1.6rem; cursor:pointer; text-shadow:0 0 12px #00ffff;">
             <i class="fas fa-expand"></i>
+          </button>
+          <button id="game-refresh-btn" onclick="refreshGameIframe()" title="Refresh Game" style="background:none; border:none; color:#ff00ff; font-size:1.6rem; cursor:pointer; text-shadow:0 0 12px #ff00ff;">
+            <i class="fas fa-sync-alt"></i>
           </button>
           <button onclick="closeGameModal()" title="Close" style="background:none; border:none; color:#ff00ff; font-size:2rem; cursor:pointer; text-shadow:0 0 12px #ff00ff;">
             <i class="fas fa-times-circle"></i>
