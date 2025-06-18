@@ -1190,32 +1190,13 @@ body, .container, .header, .tabs, .tab-content, .footer {
 
             </script>
             <h1 style="font-family: 'Orbitron', 'Exo 2', sans-serif; font-size: 2.7rem; color: #ff00ff; letter-spacing: 2px; text-shadow: 0 0 24px #ff00ff99, 0 0 8px #00ffff; margin-bottom: 18px;">Welcome to Chromatic!</h1>
-            <div id="greeting-block" style="margin-bottom: 28px;"></div>
+
             <!-- Greeting Modal Popup -->
-            <div id="greeting-modal-overlay" class="greeting-modal-overlay"></div>
-            <div id="greeting-modal" class="greeting-modal" role="dialog" aria-modal="true" aria-labelledby="greeting-modal-title">
-                <form id="greeting-form" style="display:flex; flex-direction:column; align-items:center; gap:16px;">
-                    <h2 id="greeting-modal-title" style="font-family: 'Orbitron', 'Exo 2', sans-serif; font-size:1.5rem; color:#ff00ff; letter-spacing:1px; text-shadow:0 0 12px #ff00ff99, 0 0 4px #00ffff; margin-bottom:0;">Welcome! What's your name?</h2>
-                    <input id="greeting-input" type="text" maxlength="24" required placeholder="Enter your name..." autocomplete="off" style="background:#232336; color:#ffb3ff; border:1.5px solid #ff00ff; box-shadow:0 0 10px #ff00ff55; font-family:'Orbitron', 'Exo 2', sans-serif; font-size:1.1rem; border-radius:10px; padding:12px 18px; width:230px; transition:box-shadow 0.2s; outline:none;" />
-                    <button type="submit" class="go-btn" style="background:linear-gradient(90deg,#ff00ff,#00ffff); margin-top:4px; box-shadow:0 0 8px #ff00ff88; font-family:'Orbitron', 'Exo 2', sans-serif;">Save</button>
-                </form>
-            </div>
             <p style="max-width: 600px; color: #f6f8fa; font-size: 1.25rem; margin-bottom: 36px; text-shadow: 0 0 8px #00ffff99;">
                 Your all-in-one cyberpunk hub for <b>educational games</b>, learning tools, and more. Dive into a world of brain-boosting fun and digital discovery, all wrapped in a neon glow. We are trusted by Canvas, My pps, and more.<br>
                 <button id="browse-games-btn" class="gradient-button" style=>Browse Games</button>, <button id="try-apps-btn" class="gradient-button">See Apps</button>, or <span ">Customize Settings</span> — all from one place!
             </p>
-            <div style="display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-top: 18px;">
-                <div class="gradient-border">
-                    <i class="fas fa-gamepad" style="font-size: 2.2rem; color: #ff00ff;"></i>
-                    <div style="font-size: 1.15rem; color: #fff; margin-top: 10px;">Play <b>Educational Games</b></div>
-                    <div style="font-size: 0.95rem; color: #ffb3ff; margin-top: 6px;">Brain-boosting, sorted, and ready to learn!</div>
-                </div>
-                <div class="gradient-border" >
-                    <i class="fas fa-th-large" style="font-size: 2.2rem; color: #00ffff;"></i>
-                    <div style="font-size: 1.15rem; color: #fff; margin-top: 10px;">Try <b>Apps</b></div>
-                    <div style="font-size: 0.95rem; color: #b3ffff; margin-top: 6px;">Windows 11, Gemini AI, and more!</div>
-                </div>
-            </div>
+
             <div style="margin-top: 32px; font-size: 1rem; color: #ffb3ff; text-shadow: 0 0 6px #ff00ff44;">
                 <i class="fas fa-bolt" style="color:#ff00ff;"></i> Stay cyber, stay chromatic.
             </div>
@@ -1304,6 +1285,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
         </div>
         <button onclick="openGame('https://read.ebookswest.com.au/apps/ai/indexone.html', 'Gemini AI')" style="background: linear-gradient(90deg, #ff00ff, #00ffff); color: #fff; border: none; border-radius: 8px; padding: 10px 28px; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; transition: background 0.2s;">Launch App</button>
       </div>
+
       <!-- Soundboard App Card -->
       <div class="app-card" style="border-radius: 16px; background: #111; border: 2px solid #ff00ff; box-shadow: 0 0 25px rgba(255,0,255,0.25); padding: 20px 16px; display: flex; flex-direction: column; align-items: center;">
         <img style="height:160px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs9ugIFCw6PdRy9e3cIgL8XJak5OXeVAFwnNKdO9-LhplD25KYH0tQjJctG_oMPuCxCzI&usqp=CAU" alt="Soundboard" style="width: 72px; height: 72px; object-fit: contain; margin-bottom: 14px; border-radius: 10px; background: #fff; border: 1px solid #e0e0e0;">
@@ -1326,75 +1308,11 @@ body, .container, .header, .tabs, .tab-content, .footer {
             <div style="color: #ff00ff; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 2.2rem; letter-spacing: 2px; font-weight: 700; text-shadow: 0 0 18px #ff00ff99, 0 0 8px #00ffff;">Chromatic Proxy</div>
           </div>
           <div style="margin-bottom: 18px; color: #00ffff; font-size: 1.09rem; font-family: 'Exo 2', 'Orbitron', Arial, sans-serif;">Enter a URL below to start browsing securely and privately.</div>
-          <form id="chromatic-proxy-form" autocomplete="off" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 14px;">
-  <input id="chromatic-proxy-input" type="text" placeholder="https://example.com" style="width: 100%; max-width: 420px; border-radius: 10px; border: 2.5px solid #ff00ff; background: #232336; color: #fff; font-size: 1.1rem; padding: 16px 20px; box-shadow: 0 0 18px #ff00ff44; outline: none; transition: border 0.2s, box-shadow 0.2s; text-align: center;" />
-  <div style="display: flex; gap: 12px; width: 100%; max-width: 420px; justify-content: center;">
-    <button type="submit" class="go-btn" class="gradient-button" >Open in Tab!</button>
-    
-   
-  <div id="chromatic-proxy-error" style="display:none; color:#ff3333; font-size:1rem; margin-top:10px; font-family: 'Exo 2', Arial, sans-serif;"></div>
-</form>
-<script>
-(function() {
-  const proxyForm = document.getElementById('chromatic-proxy-form');
-  const proxyInput = document.getElementById('chromatic-proxy-input');
-  const proxyError = document.getElementById('chromatic-proxy-error');
-  const directBtn = document.getElementById('chromatic-proxy-direct-btn');
-  const ENCODE_BASE = 'https://classlinkapps.derekter127.workers.dev/encode?url=';
-  const PROXY_BASE = 'https://classlinkapps.derekter127.workers.dev/lessons?encoded=';
-  
-  function normalizeUrl(url) {
-    url = url.trim();
-    if (!/^https?:\/\//i.test(url)) {
-      url = 'https://' + url;
-    }
-    return url;
-  }
+          <!-- Option 2 (DaydreamX) Button Only -->
+<div style="margin-top:22px; text-align:center;">
+  <button id="daydreamx-btn" style="background: linear-gradient(90deg, #ff00ff, #00ffff); color: #fff; border: none; border-radius: 10px; padding: 13px 32px; font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif; font-size: 1.1rem; font-weight: bold; box-shadow: 0 0 24px #ff00ff88, 0 0 8px #00ffff; cursor: pointer; transition: background 0.2s, transform 0.1s; margin-bottom: 12px;" onclick="openGame('https://mypps.canvas.securely.com.ebookswest.com.au/internal/newtab/', 'DaydreamX')">Start DaydreamX</button>
+</div>
 
-  if (proxyForm && proxyInput && proxyError) {
-    proxyForm.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      proxyError.style.display = 'none';
-      proxyError.textContent = '';
-      let url = proxyInput.value.trim();
-      if (!url) {
-        proxyError.textContent = 'Please enter a URL.';
-        proxyError.style.display = 'block';
-        return;
-      }
-      url = normalizeUrl(url);
-      try {
-        // Encode the URL via the worker
-        const encodeRes = await fetch(ENCODE_BASE + encodeURIComponent(url));
-        if (!encodeRes.ok) throw new Error('Encoding failed.');
-        const data = await encodeRes.json();
-        if (!data.encoded) throw new Error('No encoded URL returned.');
-        const proxyUrl = PROXY_BASE + encodeURIComponent(data.encoded);
-        window.open(proxyUrl, '_blank');
-      } catch (err) {
-        proxyError.textContent = 'Proxy error: ' + err.message;
-        proxyError.style.display = 'block';
-      }
-    });
-    if (directBtn) {
-      directBtn.addEventListener('click', function() {
-        proxyError.style.display = 'none';
-        proxyError.textContent = '';
-        let url = proxyInput.value.trim();
-        if (!url) {
-          proxyError.textContent = 'Please enter a URL.';
-          proxyError.style.display = 'block';
-          return;
-        }
-        url = normalizeUrl(url);
-        try {
-          window.open(url, '_blank');
-        } catch (err) {
-          proxyError.textContent = 'Direct open error: ' + err.message;
-          proxyError.style.display = 'block';
-        }
-      });
-    }
   }
 })();
 </script>
@@ -1450,9 +1368,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
             gameFrame.src = gameFrame.src;
           }
         });
-      }
-    })();
-
+   
       // --- Google/Chrome-style tabbed proxy browser ---
         const tabsBar = document.getElementById('proxy-tabs-bar');
         const tabsContent = document.getElementById('proxy-tabs-content');
@@ -6684,42 +6600,61 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   // Event listeners
   document.addEventListener('DOMContentLoaded', function(){
-    // Cloak preset
+    // --- ABSOLUTE SIMPLE: Always update <title> and favicon from inputs ---
     const presetSelect = document.getElementById('preset-select');
-    if (presetSelect) {
-      presetSelect.onchange = function(){
-        let val = this.value;
-        const titleInput = document.getElementById('site-title-input');
-        const faviconInput = document.getElementById('favicon-input');
-        if(val !== 'custom' && presets[val]){
-          if (titleInput) {
-            titleInput.value = presets[val].title;
-            setSiteTitle(presets[val].title);
-          }
-          if (faviconInput) {
-            faviconInput.value = presets[val].favicon;
-            setFavicon(presets[val].favicon);
-          }
-        }
-        saveSettings();
-      };
-    }
-    // Site title input
     const titleInput = document.getElementById('site-title-input');
-    if (titleInput) {
-      titleInput.oninput = function() {
-        setSiteTitle(this.value);
-        saveSettings();
-      };
-    }
-    // Favicon input
     const faviconInput = document.getElementById('favicon-input');
-    if (faviconInput) {
-      faviconInput.oninput = function() {
-        setFavicon(this.value);
-        saveSettings();
-      };
+
+    // Helper: set <title> tag
+    function setSiteTitleDirect(val) {
+      let titleTag = document.head.querySelector('title');
+      if (!titleTag) {
+        titleTag = document.createElement('title');
+        document.head.appendChild(titleTag);
+      }
+      titleTag.textContent = val;
+      document.title = val;
     }
+    // Helper: set <link rel='icon'>
+    function setFaviconDirect(url) {
+      // Remove all existing favicon links
+      document.head.querySelectorAll("link[rel*='icon']").forEach(link => link.parentNode.removeChild(link));
+      // Add new
+      let link = document.createElement('link');
+      link.type = 'image/x-icon';
+      link.rel = 'icon';
+      link.href = url;
+      document.head.appendChild(link);
+    }
+
+    // On page load, set title and favicon from input values
+    if (titleInput) setSiteTitleDirect(titleInput.value);
+    if (faviconInput) setFaviconDirect(faviconInput.value);
+
+    // Title input: instantly update DOM
+    if (titleInput) titleInput.oninput = function() {
+      setSiteTitleDirect(this.value);
+    };
+    // Favicon input: instantly update DOM
+    if (faviconInput) faviconInput.oninput = function() {
+      setFaviconDirect(this.value);
+    };
+    // Preset dropdown: update fields and DOM instantly
+    if (presetSelect) presetSelect.onchange = function() {
+      let val = this.value;
+      if(val !== 'custom' && presets[val]){
+        if (titleInput) {
+          titleInput.value = presets[val].title;
+          setSiteTitleDirect(presets[val].title);
+        }
+        if (faviconInput) {
+          faviconInput.value = presets[val].favicon;
+          setFaviconDirect(presets[val].favicon);
+        }
+      }
+    };
+  });
+
     // Neon toggle
     const neonToggle = document.getElementById('toggle-neon');
     if (neonToggle) neonToggle.onchange = saveSettings;
@@ -6904,59 +6839,9 @@ function xorDecode(encoded) {
 window.xorUrl = { encode: xorEncode, decode: xorDecode };
 </script>
 <style>
-.greeting-modal-overlay {
-  position: fixed;
-  z-index: 1001;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  background: rgba(24, 24, 40, 0.82);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.44s cubic-bezier(.77,0,.18,1);
-}
-.greeting-modal-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-.greeting-modal {
-  position: fixed;
-  z-index: 1002;
-  top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.93);
-  min-width: 320px; max-width: 92vw;
-  background: linear-gradient(135deg, #181828 85%, #ff00ff44 100%);
-  border: 2.5px solid #ff00ff;
-  border-radius: 18px;
-  box-shadow: 0 0 44px #ff00ff99, 0 0 10px #00ffff88, 0 0 0 #0000;
-  padding: 38px 34px 28px 34px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate(-50%, -50%) scale(0.93);
-  transition: opacity 0.44s cubic-bezier(.77,0,.18,1), transform 0.44s cubic-bezier(.77,0,.18,1);
-}
-.greeting-modal.active {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translate(-50%, -50%) scale(1);
-}
-.greeting-modal input[type="text"] {
-  outline: none;
-  box-shadow: 0 0 12px #ff00ff55;
-}
-.greeting-modal input[type="text"]:focus {
-  box-shadow: 0 0 22px #ff00ffbb;
-}
-@media (max-width: 600px) {
-  .greeting-modal {
-    min-width: 0;
-    padding: 18px 8vw 18px 8vw;
-  }
-}
 </style>
 <script>
-// Persistent personalized greeting as a smooth modal popup
-function showGreetingModal() {
+
   const overlay = document.getElementById('greeting-modal-overlay');
   const modal = document.getElementById('greeting-modal');
   overlay.classList.add('active');
@@ -6972,7 +6857,7 @@ function showGreetingModal() {
     document.getElementById('greeting-input').focus();
   }, 200);
 }
-function hideGreetingModal() {
+
   const overlay = document.getElementById('greeting-modal-overlay');
   const modal = document.getElementById('greeting-modal');
   overlay.classList.remove('active');
@@ -6982,7 +6867,7 @@ function hideGreetingModal() {
     modal.style.display = 'none';
   }, 440);
 }
-function renderGreeting() {
+
   const greetingBlock = document.getElementById('greeting-block');
   greetingBlock.innerHTML = '';
   const storedName = localStorage.getItem('cromaticUserName');
@@ -7007,41 +6892,7 @@ function renderGreeting() {
     showGreetingModal();
   }
 }
-document.addEventListener('DOMContentLoaded', function() {
-  renderGreeting();
-  // Modal form logic
-  const form = document.getElementById('greeting-form');
-  const input = document.getElementById('greeting-input');
-  form.onsubmit = function(e) {
-    e.preventDefault();
-    const name = input.value.trim();
-    if (name.length > 0) {
-      localStorage.setItem('cromaticUserName', name);
-      renderGreeting();
-    } else {
-      input.focus();
-    }
-  };
-  // Trap focus in modal for accessibility
-  document.addEventListener('keydown', function(e) {
-    const modal = document.getElementById('greeting-modal');
-    if (modal.classList.contains('active')) {
-      if (e.key === 'Tab') {
-        const focusable = modal.querySelectorAll('input, button');
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault(); last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault(); first.focus();
-        }
-      } else if (e.key === 'Escape') {
-        // Optionally allow closing with Escape
-        // hideGreetingModal();
-      }
-    }
-  });
-});
+
 </script>
 <script>
 // --- Wheel Spinner Logic ---
@@ -7327,15 +7178,27 @@ document.addEventListener('DOMContentLoaded', function() {
       favicon: 'https://www.desmos.com/favicon.ico'
     }
   };
+  // Robustly set favicon and ensure a <link rel="icon"> exists in <head>
   function setFavicon(url) {
+    const head = document.getElementsByTagName('head')[0];
+    // Remove all existing favicon links
     document.querySelectorAll("link[rel*='icon']").forEach(link => link.parentNode.removeChild(link));
+    // Create new favicon link
     let link = document.createElement('link');
     link.type = 'image/x-icon';
     link.rel = 'icon';
     link.href = url;
-    document.getElementsByTagName('head')[0].appendChild(link);
+    head.appendChild(link);
   }
+  // Robustly set the site title and ensure a <title> exists in <head>
   function setSiteTitle(title) {
+    let head = document.getElementsByTagName('head')[0];
+    let titleTag = head.querySelector('title');
+    if (!titleTag) {
+      titleTag = document.createElement('title');
+      head.appendChild(titleTag);
+    }
+    titleTag.textContent = title;
     document.title = title;
   }
   function loadSettings() {
