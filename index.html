@@ -303,14 +303,10 @@ body {
 .play-now-btn:hover {
     background: linear-gradient(90deg, #00ffff, #ff00ff);
     color: #fff;
-    transform: scale(1.08);
+    transform: scale(1.08);z
 }
-.game-thumbnail {
-    width: 100%;
-    height: 180px;
-    margin-top: 30px;
-    background: none;
-}
+
+
 .game-card {
     background: #111;
     border: 2px solid #ff00ff;
@@ -360,13 +356,7 @@ body {
     color: #fff;
     transform: scale(1.06);
 }
-.game-thumbnail {
-    width: 100%;
-    height: 240px;
-    object-fit: cover;
-    background: #111;
-    border-bottom: 1px solid #ff00ff;
-}
+
 .game-info {
     padding: 15px;
     color: #fff;
@@ -901,6 +891,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
                         document.body.classList.add('dark-mode');
                       } else {
                         document.body.classList.remove('dark-mode');
+                        window.unlockAchievement && window.unlockAchievement('try_light');
                       }
                     });
                     themeSwitcher._listenerAdded = true;
@@ -1004,6 +995,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
                         updateSidebarAvatar(dataUrl);
                         successMsg.style.display = 'block';
                         setTimeout(()=>successMsg.style.display='none', 2000);
+                        window.unlockAchievement && window.unlockAchievement('change_avatar');
                       }
                     };
                     setBtn._listenerAdded = true;
@@ -1022,6 +1014,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
                     this.disabled = true;
 
                     enableDevTabFeatures();
+                    window.unlockAchievement && window.unlockAchievement('dev_mode');
                   } else {
                     msg.style.display = 'block';
                     msg.style.color = '#ff3377';
@@ -1044,6 +1037,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
                     const tab = this.getAttribute('data-tab');
                     if(tab && document.getElementById('tab-' + tab)) {
                       document.getElementById('tab-' + tab).style.display = '';
+                      if(tab === 'proxy') window.unlockAchievement && window.unlockAchievement('use_proxy');
                     }
                   }
                 });
@@ -1706,6 +1700,21 @@ body, .container, .header, .tabs, .tab-content, .footer {
   </div>
 </div>
 
+<!-- Uno Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://storage.classroomsarecool.mex.com/uno.html')" data-category="card">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://storage.classroomsarecool.mex.com/images/uno.png" alt="Uno" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Uno</h3>
+      <div class="game-tags">
+          <span class="game-tag">CARD</span>
+          <span class="game-tag" style="background: rgba(255, 255, 0, 0.3);">MULTIPLAYER</span>
+      </div>
+  </div>
+</div>
+
 <!-- Moto X3M Winter Card -->
 <div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/motox3mwinter.html')" data-category="racing">
   <div class="game-card-overlay">
@@ -1737,6 +1746,231 @@ body, .container, .header, .tabs, .tab-content, .footer {
 </div>
 
 
+
+<!-- 10 Minutes Till Dawn Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/10minutestildawn.html')" data-category="shooter">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/10minstildawn-min.png" alt="10 Minutes Till Dawn" class="game-thumbnail">
+  <div class="game-info">
+      <h3>10 Minutes Till Dawn</h3>
+      <div class="game-tags">
+          <span class="game-tag">SHOOTER</span>
+          <span class="game-tag" style="background: rgba(255, 0, 255, 0.3);">ACTION</span>
+      </div>
+  </div>
+</div>
+
+<!-- 2D Rocket League Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/2drocketleague.html')" data-category="sports">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/2drocketleague-min.png" alt="2D Rocket League" class="game-thumbnail">
+  <div class="game-info">
+      <h3>2D Rocket League</h3>
+      <div class="game-tags">
+          <span class="game-tag">SPORTS</span>
+          <span class="game-tag" style="background: rgba(0, 255, 255, 0.3);">CAR</span>
+      </div>
+  </div>
+</div>
+
+<!-- 60 Second Burger Run Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/60secondburgerrun.html')" data-category="platformer">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/60sburgerrun-min.png" alt="60 Second Burger Run" class="game-thumbnail">
+  <div class="game-info">
+      <h3>60 Second Burger Run</h3>
+      <div class="game-tags">
+          <span class="game-tag">PLATFORMER</span>
+          <span class="game-tag" style="background: rgba(255, 165, 0, 0.3);">ARCADE</span>
+      </div>
+  </div>
+</div>
+
+<!-- Achievement Unlocked Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/achievementunlocked.html')" data-category="platformer">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/acievementunlocked-min.png" alt="Achievement Unlocked" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Achievement Unlocked</h3>
+      <div class="game-tags">
+          <span class="game-tag">PLATFORMER</span>
+          <span class="game-tag" style="background: rgba(255, 0, 255, 0.3);">PUZZLE</span>
+      </div>
+  </div>
+</div>
+
+<!-- A Dark Room Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/adarkroom.html')" data-category="adventure">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/adarkrooom-min.png" alt="A Dark Room" class="game-thumbnail">
+  <div class="game-info">
+      <h3>A DARK ROOM</h3>
+      <div class="game-tags">
+          <span class="game-tag">ADVENTURE</span>
+          <span class="game-tag" style="background: rgba(255, 255, 255, 0.3);">TEXT</span>
+      </div>
+  </div>
+</div>
+
+<!-- Adventure Capitalist Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/adventurecapitalist.html')" data-category="idle">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/adventurecapitalist-min.jpg" alt="Adventure Capitalist" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Adventure Capitalist</h3>
+      <div class="game-tags">
+          <span class="game-tag">IDLE</span>
+          <span class="game-tag" style="background: rgba(0, 255, 0, 0.3);">SIMULATION</span>
+      </div>
+  </div>
+</div>
+
+<!-- Adventure Drivers Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/adventuredrivers.html')" data-category="racing">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/adventuredrivers-min.png" alt="Adventure Drivers" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Adventure Drivers</h3>
+      <div class="game-tags">
+          <span class="game-tag">RACING</span>
+          <span class="game-tag" style="background: rgba(255, 0, 255, 0.3);">CAR</span>
+      </div>
+  </div>
+</div>
+
+<!-- Age of War Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/ageofwar.html')" data-category="strategy">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/ageofwar-min.jpg" alt="Age of War" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Age of War</h3>
+      <div class="game-tags">
+          <span class="game-tag">STRATEGY</span>
+          <span class="game-tag" style="background: rgba(255, 165, 0, 0.3);">DEFENSE</span>
+      </div>
+  </div>
+</div>
+
+<!-- Age of War 2 Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/ageofwar2.html')" data-category="strategy">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/ageofwar2-min.png" alt="Age of War 2" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Age of War 2</h3>
+      <div class="game-tags">
+          <span class="game-tag">STRATEGY</span>
+          <span class="game-tag" style="background: rgba(255, 165, 0, 0.3);">DEFENSE</span>
+      </div>
+  </div>
+</div>
+
+<!-- Arcade Car Drift 2 Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/arcadecardrift.html')" data-category="racing">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/arcadecardrift-min.png" alt="Arcade Car Drift 2" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Arcade Car Drift 2</h3>
+      <div class="game-tags">
+          <span class="game-tag">RACING</span>
+          <span class="game-tag" style="background: rgba(0, 255, 255, 0.3);">CAR</span>
+      </div>
+  </div>
+</div>
+
+<!-- Archery World Tour Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/archeryworldtour.html')" data-category="sports">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/archeryworldtour-min.jpg" alt="Archery World Tour" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Archery World Tour</h3>
+      <div class="game-tags">
+          <span class="game-tag">SPORTS</span>
+          <span class="game-tag" style="background: rgba(0, 255, 0, 0.3);">ARCHERY</span>
+      </div>
+  </div>
+</div>
+
+<!-- Astro Survivors Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/astrosurvivor.html')" data-category="shooter">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/astrosurvivor-min.jpg" alt="Astro Survivors" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Astro Survivors</h3>
+      <div class="game-tags">
+          <span class="game-tag">SHOOTER</span>
+          <span class="game-tag" style="background: rgba(0, 255, 255, 0.3);">SPACE</span>
+      </div>
+  </div>
+</div>
+
+<!-- Awesome Tanks Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/awesometanks2.html')" data-category="action">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/awsometanks-min.png" alt="Awesome Tanks" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Awesome Tanks</h3>
+      <div class="game-tags">
+          <span class="game-tag">ACTION</span>
+          <span class="game-tag" style="background: rgba(255, 255, 0, 0.3);">TANK</span>
+      </div>
+  </div>
+</div>
+
+<!-- Backrooms Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/backrooms.html')" data-category="horror">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/backrooms-min.jpg" alt="Backrooms" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Backrooms</h3>
+      <div class="game-tags">
+          <span class="game-tag">HORROR</span>
+          <span class="game-tag" style="background: rgba(255, 255, 0, 0.3);">EXPLORATION</span>
+      </div>
+  </div>
+</div>
+
+<!-- Bacon May Die Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/baconmaydie.html')" data-category="action">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/baconmaydie-min.jpg" alt="Bacon May Die" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Bacon May Die</h3>
+      <div class="game-tags">
+          <span class="game-tag">ACTION</span>
+          <span class="game-tag" style="background: rgba(255, 0, 255, 0.3);">FIGHTING</span>
+      </div>
+  </div>
+</div>
 
 <!-- Baldi's Basics Card -->
 <div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/baldis.html')" data-category="horror">
@@ -1771,17 +2005,332 @@ body, .container, .header, .tabs, .tab-content, .footer {
 
 
 
-<!-- Deadly Decent Card -->
-<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/deadlydecent.html')" data-category="action">
+<!-- Day Of Meat: Radiation Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/dayofmeatradiation.html')" data-category="defense">
   <div class="game-card-overlay">
       <button class="play-now-btn">PLAY NOW</button>
   </div>
-  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/deadlydecent-min.png" alt="Deadly Decent" class="game-thumbnail">
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/dayofmeatradiation-min.jpg" alt="Day Of Meat: Radiation" class="game-thumbnail">
   <div class="game-info">
-      <h3>Deadly Decent</h3>
+      <h3>Day Of Meat: Radiation</h3>
       <div class="game-tags">
-          <span class="game-tag">ACTION</span>
-          <span class="game-tag" style="background: rgba(0, 255, 255, 0.3);">PLATFORMER</span>
+          <span class="game-tag">DEFENSE</span>
+          <span class="game-tag" style="background: rgba(255, 0, 255, 0.3);">STRATEGY</span>
+      </div>
+  </div>
+</div>
+
+<!-- Deal or No Deal Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/dealornodeal.html')" data-category="quiz">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/dealornodeal-min.jpg" alt="Deal or No Deal" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Deal or No Deal</h3>
+      <div class="game-tags">
+          <span class="game-tag">QUIZ</span>
+          <span class="game-tag" style="background: rgba(255, 255, 0, 0.3);">LUCK</span>
+      </div>
+  </div>
+</div>
+
+<!-- Dreadhead Parkour Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/dreadheadparkour.html')" data-category="platformer">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/dreadhead-min.png" alt="Dreadhead Parkour" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Dreadhead Parkour</h3>
+      <div class="game-tags">
+          <span class="game-tag">PLATFORMER</span>
+          <span class="game-tag" style="background: rgba(255, 0, 255, 0.3);">ACTION</span>
+      </div>
+  </div>
+</div>
+
+<!-- Drive Mad Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/drivemad.html')" data-category="racing">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/drivemad-min.png" alt="Drive Mad" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Drive Mad</h3>
+      <div class="game-tags">
+          <span class="game-tag">RACING</span>
+          <span class="game-tag" style="background: rgba(0, 255, 255, 0.3);">CAR</span>
+      </div>
+  </div>
+</div>
+
+<!-- Ducklings IO Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/ducklingsio.html')" data-category="io">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/ducklingsio-min.jpg" alt="Ducklings IO" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Ducklings IO</h3>
+      <div class="game-tags">
+          <span class="game-tag">.IO</span>
+          <span class="game-tag" style="background: rgba(255, 255, 0, 0.3);">CASUAL</span>
+      </div>
+  </div>
+</div>
+
+<!-- FNAF 2 Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/fnaf2.html')" data-category="horror">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/fnaf2-min.png" alt="FNAF 2" class="game-thumbnail">
+  <div class="game-info">
+      <h3>FNAF 2</h3>
+      <div class="game-tags">
+          <span class="game-tag">HORROR</span>
+          <span class="game-tag" style="background: rgba(255, 0, 255, 0.3);">JUMPSCARE</span>
+      </div>
+  </div>
+</div>
+
+<!-- FNAF 3 Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/fnaf3.html')" data-category="horror">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/fnaf3-min.jpg" alt="FNAF 3" class="game-thumbnail">
+  <div class="game-info">
+      <h3>FNAF 3</h3>
+      <div class="game-tags">
+          <span class="game-tag">HORROR</span>
+          <span class="game-tag" style="background: rgba(255, 0, 255, 0.3);">JUMPSCARE</span>
+      </div>
+  </div>
+</div>
+
+<!-- FNAF 4 Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/fnaf4.html')" data-category="horror">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/fnaf3-min.jpg" alt="FNAF 4" class="game-thumbnail">
+  <div class="game-info">
+      <h3>FNAF 4</h3>
+      <div class="game-tags">
+          <span class="game-tag">HORROR</span>
+          <span class="game-tag" style="background: rgba(255, 0, 255, 0.3);">JUMPSCARE</span>
+      </div>
+  </div>
+</div>
+
+<!-- FNAF 5 Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/fnaf5.html')" data-category="horror">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/fnafsl-min.png" alt="FNAF 5" class="game-thumbnail">
+  <div class="game-info">
+      <h3>FNAF 5</h3>
+      <div class="game-tags">
+          <span class="game-tag">HORROR</span>
+          <span class="game-tag" style="background: rgba(255, 0, 255, 0.3);">JUMPSCARE</span>
+      </div>
+  </div>
+</div>
+
+<!-- Fire Trigger Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://storage.classroomsarecool.mex.com/johnnytrigger/index.html')" data-category="shooter">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://storage.classroomsarecool.mex.com/images/johnnytrigger.png" alt="Fire Trigger" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Fire Trigger</h3>
+      <div class="game-tags">
+          <span class="game-tag">SHOOTER</span>
+          <span class="game-tag" style="background: rgba(255, 0, 255, 0.3);">ACTION</span>
+      </div>
+  </div>
+</div>
+
+<!-- Fruit Merge Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/fruitmerge.html')" data-category="puzzle">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/fruitmerge-min.png" alt="Fruit Merge" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Fruit Merge</h3>
+      <div class="game-tags">
+          <span class="game-tag">PUZZLE</span>
+          <span class="game-tag" style="background: rgba(255, 255, 0, 0.3);">MERGE</span>
+      </div>
+  </div>
+</div>
+
+<!-- Gladihoppers Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/gladihoppers.html')" data-category="fighting">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/gladihoppers-min.jpg" alt="Gladihoppers" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Gladihoppers</h3>
+      <div class="game-tags">
+          <span class="game-tag">FIGHTING</span>
+          <span class="game-tag" style="background: rgba(255, 0, 255, 0.3);">ARENA</span>
+      </div>
+  </div>
+</div>
+
+<!-- Going Balls Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/goingballs.html')" data-category="arcade">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/goingballs-min.png" alt="Going Balls" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Going Balls</h3>
+      <div class="game-tags">
+          <span class="game-tag">ARCADE</span>
+          <span class="game-tag" style="background: rgba(0, 255, 255, 0.3);">SKILL</span>
+      </div>
+  </div>
+</div>
+
+<!-- Free Rider Jumps Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/freeriderjumps.html')" data-category="racing">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/freeriderjumps-min.jpg" alt="Free Rider Jumps" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Free Rider Jumps</h3>
+      <div class="game-tags">
+          <span class="game-tag">RACING</span>
+          <span class="game-tag" style="background: rgba(0, 255, 255, 0.3);">BIKE</span>
+      </div>
+  </div>
+</div>
+
+<!-- Bits 2 Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/bigtowertinysquare2.html')" data-category="platformer">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/bigtowertinysquare-min.png" alt="Bits 2" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Bits 2</h3>
+      <div class="game-tags">
+          <span class="game-tag">PLATFORMER</span>
+          <span class="game-tag" style="background: rgba(255, 0, 255, 0.3);">PUZZLE</span>
+      </div>
+  </div>
+</div>
+
+<!-- Bob the Robber 2 Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/bobtherobber2.html')" data-category="stealth">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/bobtherobber2-min.png" alt="Bob the Robber 2" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Bob the Robber 2</h3>
+      <div class="game-tags">
+          <span class="game-tag">STEALTH</span>
+          <span class="game-tag" style="background: rgba(0, 255, 255, 0.3);">PUZZLE</span>
+      </div>
+  </div>
+</div>
+
+<!-- Blumgi Paintball Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/blumgipaintball.html')" data-category="shooter">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/blumgipaintball-min.png" alt="Blumgi Paintball" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Blumgi Paintball</h3>
+      <div class="game-tags">
+          <span class="game-tag">SHOOTER</span>
+          <span class="game-tag" style="background: rgba(255, 0, 255, 0.3);">ARCADE</span>
+      </div>
+  </div>
+</div>
+
+<!-- Blumgi Racers Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/blumgiracers.html')" data-category="racing">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/blumgiracers-min.jpg" alt="Blumgi Racers" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Blumgi Racers</h3>
+      <div class="game-tags">
+          <span class="game-tag">RACING</span>
+          <span class="game-tag" style="background: rgba(0, 255, 255, 0.3);">CAR</span>
+      </div>
+  </div>
+</div>
+
+<!-- Blumgi Slime Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/blumgislime.html')" data-category="platformer">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/blumgislime.png" alt="Blumgi Slime" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Blumgi Slime</h3>
+      <div class="game-tags">
+          <span class="game-tag">PLATFORMER</span>
+          <span class="game-tag" style="background: rgba(255, 0, 255, 0.3);">ARCADE</span>
+      </div>
+  </div>
+</div>
+
+<!-- Circloo Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/circloo.html')" data-category="platformer">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/circloo-min.png" alt="Circloo" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Circloo</h3>
+      <div class="game-tags">
+          <span class="game-tag">PLATFORMER</span>
+          <span class="game-tag" style="background: rgba(255, 0, 255, 0.3);">PUZZLE</span>
+      </div>
+  </div>
+</div>
+
+<!-- Crazy Motorcycle Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/crazybikes.html')" data-category="racing">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/crazybikes-min.png" alt="Crazy Motorcycle" class="game-thumbnail">
+  <div class="game-info">
+      <h3>Crazy Motorcycle</h3>
+      <div class="game-tags">
+          <span class="game-tag">RACING</span>
+          <span class="game-tag" style="background: rgba(0, 255, 255, 0.3);">BIKE</span>
+      </div>
+  </div>
+</div>
+
+<!-- CSGO Clicker Card -->
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/csgoclicker.html')" data-category="clicker">
+  <div class="game-card-overlay">
+      <button class="play-now-btn">PLAY NOW</button>
+  </div>
+  <img style="height:110px; object-fit:cover; margin-top:16px; border-radius:10px;" src="https://read.ebookswest.com.au/images/games/csgoclicker.png" alt="CSGO Clicker" class="game-thumbnail">
+  <div class="game-info">
+      <h3>CSGO Clicker</h3>
+      <div class="game-tags">
+          <span class="game-tag">CLICKER</span>
+          <span class="game-tag" style="background: rgba(255, 255, 0, 0.3);">IDLE</span>
       </div>
   </div>
 </div>
@@ -2059,7 +2608,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
       </div>
   </div>
 </div>
-<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://read.ebookswest.com.au/assets/mainstorage/racesurvival.html')" data-category="racing">
+<div class="game-card" style="max-width:220px; min-width:0; width:100%; margin:auto;" onclick="openGame('https://script.google.com/macros/s/AKfycbxQuqMuGYqOJSyYwUL5vYn1E3xCTjM7DAQZnhnKyYVmhH_2mNQS7INnwJkwr7l7T9GC/exec')" data-category="sports">
   <div class="game-card-overlay">
       <button class="play-now-btn">PLAY NOW</button>
   </div>
@@ -6327,13 +6876,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if(window.updateCornerProfile) window.updateCornerProfile();
       };
       avatarPicker.appendChild(img);
-    });
-  }
-})();
-</script>
-
-</body>
-</html>
     });
   }
 })();
