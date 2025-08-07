@@ -1178,6 +1178,7 @@ body, .container, .header, .tabs, .tab-content, .footer {
                     msg.style.color = '#ff00ff';
                     msg.textContent = 'Dev Mode Activated!';
                     document.getElementById('dev-code-input').disabled = true;
+                    document.cookie = "devmode=true; path=/; max-age=604800";
                     this.disabled = true;
 
                     enableDevTabFeatures();
@@ -6809,6 +6810,21 @@ body, .container, .header, .tabs, .tab-content, .footer {
 
     <!-- Games Tab JS (inlined) -->
     <script>
+function generateToken(length = 12) {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    let token = "";
+    for (let i = 0; i < length; i++) {
+        token += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+
+    // Set cookie
+    document.cookie = "token=" + token + "; path=/; max-age=" + 60*60*24;
+    console.log("Token set in cookie:", token);
+}
+
+generateToken();
+
+      
 // Cromatic Games Tab Integration Script (inlined)
 document.addEventListener('DOMContentLoaded', function() {
     // --- Game Enhancements (Sorting, Thumbnail Fixes) ---
